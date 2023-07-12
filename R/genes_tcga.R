@@ -10,7 +10,7 @@ genes_tcga <- function(){
     dplyr::select(
       "entrez" = "Entrez ID",
       "io_landscape_name" = "Friendly Name",
-      "pathway" = "Pathway",
+      "gene_pathway" = "Pathway",
       "therapy_type" = "Therapy Type",
       "description" = "Description"
     ) %>%
@@ -26,14 +26,22 @@ genes_tcga <- function(){
       by = "entrez"
     ) %>%
     dplyr::right_join(hgnc_to_entrez, by = "entrez") %>%
-    dplyr::select("entrez", "hgnc", dplyr::everything()) %>%
-    dplyr::arrange(.data$entrez) %>%
+    dplyr::select(
+      "entrez_id"  = "entrez",
+      "hgnc_id" = "hgnc",
+      dplyr::everything()
+    ) %>%
     dplyr::mutate(
       "id" =  uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "genes"
     )
 
-  readr::write_csv(genes, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    genes,
+    "syn50896918",
+    "genes"
+  )
 
 }
 

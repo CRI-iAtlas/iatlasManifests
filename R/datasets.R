@@ -4,9 +4,9 @@ build_dataset_table <- function(){
   require(rlang)
 
   datasets <-
-    dplyr::tibble("display" = character(), type = character()) %>%
-    dplyr::add_row("display" = c("TCGA", "PCAWG"), "type" = "analysis") %>%
-    dplyr::add_row("display" = c("GTEX"), "type" = "other") %>%
+    dplyr::tibble("display" = character(), "dataset_type" = character()) %>%
+    dplyr::add_row("display" = c("TCGA", "PCAWG"), "dataset_type" = "analysis") %>%
+    dplyr::add_row("display" = c("GTEX"), "dataset_type" = "other") %>%
     dplyr::mutate("name" = stringr::str_replace_all(.data$display, " ", "_")) %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
@@ -14,7 +14,7 @@ build_dataset_table <- function(){
       "Component" = "datasets"
     )
 
-  readr::write_csv(datasets, "synapse_storage_manifest.csv")
+  readr::write_csv(datasets, "synapse_storage_manifest.csv", na = "")
 
 }
 

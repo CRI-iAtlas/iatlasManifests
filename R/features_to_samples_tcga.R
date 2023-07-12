@@ -19,7 +19,6 @@ samples_tcga <- function(){
       "sample_id" = "id"
     )
 
-
   features_to_samples <-
     synapse_feather_id_to_tbl(syn,  "syn22128019") %>%
     dplyr::rename_all(~stringr::str_replace_all(.x, "[\\.]", "_")) %>%
@@ -39,10 +38,9 @@ samples_tcga <- function(){
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "features_to_samples"
-    ) %>%
-    dplyr::slice(1:100)
+    )
 
-  readr::write_csv(features_to_samples, "synapse_storage_manifest.csv")
+  readr::write_csv(features_to_samples, "synapse_storage_manifest.csv", na = "")
 }
 
 

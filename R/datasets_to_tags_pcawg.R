@@ -5,7 +5,10 @@ datasets_to_tags_tcga <- function(){
   syn <- create_synapse_login()
 
   tags <-
-    synapse_csv_id_to_tbl(syn, "syn51080176") %>%
+    dplyr::bind_rows(
+      synapse_csv_id_to_tbl(syn, "syn51080176"),
+      synapse_csv_id_to_tbl(syn, "syn51088201")
+    ) %>%
     dplyr::select(
       "tag_name" = "name",
       "tag_id" = "id"
@@ -21,9 +24,8 @@ datasets_to_tags_tcga <- function(){
   datasets_to_tags <-
     dplyr::tribble(
       ~tag_name,        ~dataset_name,
-      "Immune_Subtype", "TCGA",
-      "TCGA_Subtype",   "TCGA",
-      "TCGA_Study",     "TCGA"
+      "Immune_Subtype", "PCAWG",
+      "PCAWG_Study",    "PCAWG"
     ) %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
     dplyr::inner_join(datasets, by = "dataset_name") %>%
@@ -33,7 +35,12 @@ datasets_to_tags_tcga <- function(){
       "Component" = "datasets_to_tags"
     )
 
-  readr::write_csv(datasets_to_tags, "synapse_storage_manifest.csv", na = "")
+  synapse_store_table_as_csv(
+    syn,
+    datasets_to_tags,
+    "syn51759860",
+    "datasets_to_tags"
+  )
 
 }
 

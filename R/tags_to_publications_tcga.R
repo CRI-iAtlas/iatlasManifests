@@ -1,4 +1,4 @@
-publications_to_tags_tcga <- function(){
+tags_to_publications_tcga <- function(){
 
   require(magrittr)
   require(rlang)
@@ -7,7 +7,7 @@ publications_to_tags_tcga <- function(){
   publications <-
     synapse_csv_id_to_tbl(syn, "syn51080887") %>%
     dplyr::select(
-      "publication_name" = "name",
+      "publication_title",
       "publication_id" = "id"
     )
 
@@ -18,22 +18,27 @@ publications_to_tags_tcga <- function(){
       "tag_id" = "id"
     )
 
-  publications_to_tags <-
+  tags_to_publications <-
     synapse_feather_id_to_tbl(syn, "syn23545806") %>%
     dplyr::select(
-      "publication_name" = "title",
+      "publication_title" = "title",
       "tag_name"
     ) %>%
     dplyr::distinct() %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
-    dplyr::inner_join(publications, by = "publication_name") %>%
-    dplyr::select(-c("tag_name", "publication_name")) %>%
+    dplyr::inner_join(publications, by = "publication_title") %>%
+    dplyr::select(-c("tag_name", "publication_title")) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "publications_to_tags"
     )
 
-  readr::write_csv(publications_to_tags, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    tags_to_publications,
+    "syn51080939",
+    "tags_to_publications"
+  )
 
 }
 

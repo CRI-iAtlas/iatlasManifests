@@ -1,21 +1,23 @@
-samples_tcga <- function(){
+patients_pcawg <- function() {
 
   require(magrittr)
   require(rlang)
   syn <- create_synapse_login()
 
   patients <-
-    synapse_csv_id_to_tbl(syn, "syn50932269") %>%
+    synapse_csv_id_to_tbl(syn, "syn51088152") %>%
     dplyr::select(
       "patient_name" = "name",
       "patient_id" = "id"
     )
 
   samples <-
-    synapse_feather_id_to_tbl(syn, "syn22128019") %>%
-    dplyr::select(
-      "name" = "ParticipantBarcode",
-      "patient_name" = "ParticipantBarcode"
+    synapse_tsv_id_to_tbl(syn, "syn21785582") %>%
+    dplyr::select("name" = "icgc_donor_id") %>%
+    dplyr::mutate("patient_name" = .data$name) %>%
+    dplyr::mutate(
+      "id" = uuid::UUIDgenerate(n = dplyr::n()),
+      "Component" = "samples"
     ) %>%
     dplyr::inner_join(patients, by = "patient_name") %>%
     dplyr::select(-"patient_name") %>%
@@ -27,6 +29,3 @@ samples_tcga <- function(){
   readr::write_csv(samples, "synapse_storage_manifest.csv", na = "")
 
 }
-
-
-

@@ -4,16 +4,14 @@ copy_number_results_tcga <- function() {
   require(rlang)
   syn <- create_synapse_login()
 
-  datasets <-
-    synapse_csv_id_to_tbl(syn, "syn51080455") %>%
-    dplyr::select(
-      "dataset_name" = "name",
-      "dataset_id" = "id"
-    )
+  dataset_id <-
+    synapse_csv_id_to_tbl(syn, "syn51132398") %>%
+    dplyr::filter(.data$name == "TCGA") %>%
+    dplyr::pull("id")
 
   features <-
     synapse_csv_id_to_tbl(syn, "syn50944340") %>%
-    dplyr::filter(.data$class != "Clinical") %>%
+    dplyr::filter(.data$feature_class != "Clinical") %>%
     dplyr::select(
       "feature_name" =  "name",
       "feature_id" = "id"
@@ -29,8 +27,8 @@ copy_number_results_tcga <- function() {
   genes <-
     synapse_csv_id_to_tbl(syn, "syn50896922") %>%
     dplyr::select(
-      "hgnc",
-      "entrez",
+      "hgnc" = "hgnc_id",
+      "entrez" = "entrez_id",
       "gene_id" = "id"
     ) %>%
     dplyr::arrange(.data$entrez) %>%
@@ -48,8 +46,11 @@ copy_number_results_tcga <- function() {
   }
 
   copy_number_results <-
-    list(immunetable, studytable, subtypetable) %>%
-    dplyr::bind_rows() %>%
+    dplyr::bind_rows(
+      immunetable,
+      studytable,
+      subtypetable
+    ) %>%
     dplyr::select(
       "tag_name" = "Group",
       "hgnc" = "Gene",
@@ -66,18 +67,27 @@ copy_number_results_tcga <- function() {
       "tag_name" = stringr::str_replace_all(.data$tag_name, "[\\.]", "_"),
       "tag_name" = stringr::str_replace_all(.data$tag_name, "-", "_"),
       "tag_name" = stringr::str_replace_all(.data$tag_name, ":", "_"),
-      "tag_name" = stringr::str_remove_all(.data$tag_name, "[[:space:]]"),
-      "dataset_name" = "TCGA"
+      "tag_name" = stringr::str_remove_all(.data$tag_name, "[[:space:]]")
     ) %>%
     dplyr::inner_join(genes, by = "hgnc") %>%
     dplyr::inner_join(features, by = "feature_name") %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
-    dplyr::inner_join(datasets, by = "dataset_name")  %>%
+    dplyr::select(-c("hgnc", "feature_name", "tag_name")) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
+      "dataset_id" = dataset_id,
       "Component" = "copy_number_results"
     )
 
-  readr::write_csv(copy_number_results, "synapse_storage_manifest.csv")
+  copy_number_results1 <- copy_number_results %>%
+    dplyr::slice(1:2000000)
+
+
+  synapse_store_table_as_csv(
+    syn,
+    copy_number_results1,
+    "syn51514780",
+    "copy_number_results"
+  )
 
 }

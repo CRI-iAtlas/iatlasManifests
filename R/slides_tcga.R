@@ -28,7 +28,7 @@ slides_tcga <- function(){
       "Component" = "slides"
     )
 
-  readr::write_csv(slides, "synapse_storage_manifest.csv")
+  readr::write_csv(slides, "synapse_storage_manifest.csv", na = "")
 }
 
 

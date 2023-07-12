@@ -1,4 +1,4 @@
-genes_to_gene_sets_to_publications_tcga <- function(){
+publications_to_genes_to_gene_sets_tcga <- function(){
 
   require(magrittr)
   require(rlang)
@@ -7,7 +7,7 @@ genes_to_gene_sets_to_publications_tcga <- function(){
   genes <-
     synapse_csv_id_to_tbl(syn, "syn50896922") %>%
     dplyr::select(
-      "entrez",
+      "entrez" = "entrez_id",
       "gene_id" = "id"
     )
 
@@ -25,7 +25,7 @@ genes_to_gene_sets_to_publications_tcga <- function(){
       "publication_id" = "id"
     )
 
-  genes_to_gene_sets_to_publications <-
+  publications_to_genes_to_gene_sets <-
     synapse_feather_id_to_tbl(syn,  "syn23518445") %>%
     dplyr::mutate(
       "pubmed_id" = as.integer(.data$pubmed_id),
@@ -37,10 +37,15 @@ genes_to_gene_sets_to_publications_tcga <- function(){
     dplyr::select(-c("pubmed_id", "pubmed_id",  "gene_set_name")) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "genes_to_gene_sets_to_publications"
+      "Component" = "publications_to_genes_to_gene_sets"
     )
 
-  readr::write_csv(genes_to_gene_sets_to_publications, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    publications_to_genes_to_gene_sets,
+    "syn51080925",
+    "publications_to_genes_to_gene_sets"
+  )
 
 }
 

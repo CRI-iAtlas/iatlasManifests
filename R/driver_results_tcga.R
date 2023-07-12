@@ -5,7 +5,7 @@ driver_results_tcga <- function() {
   syn <- create_synapse_login()
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "syn51080455") %>%
+    synapse_csv_id_to_tbl(syn, "syn51132398") %>%
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -13,7 +13,7 @@ driver_results_tcga <- function() {
 
   features <-
     synapse_csv_id_to_tbl(syn, "syn50944340") %>%
-    dplyr::filter(.data$class != "Clinical") %>%
+    dplyr::filter(.data$feature_class != "Clinical") %>%
     dplyr::select(
       "feature_name" =  "name",
       "feature_id" = "id"
@@ -30,7 +30,7 @@ driver_results_tcga <- function() {
     synapse_csv_id_to_tbl(syn,  "syn51068962") %>%
     dplyr::select(
       "mutation_name" = "name",
-      "mutations_id" = "id"
+      "mutation_id" = "id"
     )
 
   driver_results_label_to_hgnc <- function(label) {
@@ -53,7 +53,7 @@ driver_results_tcga <- function() {
       "log10_fold_change",
       "p_value" = "pvalue",
       "n_wildtype" = "n_wt",
-      "n_mutant" = "n_mut"
+      "n_mutants" = "n_mut"
     ) %>%
     dplyr::mutate(
       "gene_mutation" = driver_results_label_to_hgnc(.data$label)
@@ -92,6 +92,34 @@ driver_results_tcga <- function() {
       "Component" = "driver_results"
     )
 
-  readr::write_csv(driver_results, "synapse_storage_manifest.csv")
+  driver_results_1 <- driver_results %>%
+    dplyr::slice(1:400000)
+
+  driver_results_2 <- driver_results %>%
+    dplyr::slice(400001:800000)
+
+  driver_results_3 <- driver_results %>%
+    dplyr::slice(800001:dplyr::n())
+
+  synapse_store_table_as_csv(
+    syn,
+    driver_results_1,
+    "syn51082334",
+    "driver_results"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    driver_results_2,
+    "syn51750853",
+    "driver_results"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    driver_results_3,
+    "syn51750854",
+    "driver_results"
+  )
 
 }

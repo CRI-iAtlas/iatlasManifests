@@ -38,7 +38,7 @@ edges_tcga <- function() {
     dplyr::select("name", "score", "label", "node1", "node2") %>%
     dplyr::inner_join(nodes, by = c("node1" = "node_name")) %>%
     dplyr::rename("node_1_id" = "node_id") %>%
-    dplyr::inner_join(nodes, by = c("node1" = "node_name")) %>%
+    dplyr::inner_join(nodes, by = c("node2" = "node_name")) %>%
     dplyr::rename("node_2_id" = "node_id") %>%
     dplyr::select(-c("node1", "node2")) %>%
     dplyr::mutate(
@@ -46,6 +46,11 @@ edges_tcga <- function() {
       "Component" = "edges"
     )
 
-  readr::write_csv(edges, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    edges,
+    "syn51082240",
+    "edges"
+  )
 
 }

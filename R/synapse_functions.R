@@ -31,9 +31,29 @@ synapse_tsv_id_to_tbl <- function(syn, id) {
 }
 
 synapse_rds_id_to_tbl <- function(syn, id) {
-  path <- id %>%
+  id %>%
     syn$get(.) %>%
     purrr::pluck("path") %>%
     readRDS() %>%
     dplyr::as_tibble()
+}
+
+synapse_excel_id_to_tbl <- function(syn, id) {
+  id %>%
+    syn$get(.) %>%
+    purrr::pluck("path") %>%
+    readxl::read_excel(.) %>%
+    dplyr::as_tibble()
+}
+
+synapse_store_file <- function(syn, file_path, parent_id, component_name) {
+  synapseclient <- reticulate::import("synapseclient")
+  file_entity <- synapseclient$File(file_path, parent = parent_id)
+  file_entity$annotations$Component <- component_name
+  syn$store(file_entity)
+}
+
+synapse_store_table_as_csv <- function(syn, table, parent_id, component_name) {
+  readr::write_csv(table, "synapse_storage_manifest.csv", na = "")
+  synapse_store_file(syn, "synapse_storage_manifest.csv", parent_id, component_name)
 }

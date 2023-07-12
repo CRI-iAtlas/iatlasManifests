@@ -46,7 +46,8 @@ patients_tcga <- function(){
     )
 
 
-  readr::write_csv(patients, "synapse_storage_manifest.csv")
+  readr::write_csv(patients, "synapse_storage_manifest.csv", na = "")
+
 }
 
 

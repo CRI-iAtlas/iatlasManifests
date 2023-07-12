@@ -7,13 +7,16 @@ mutations_tcga <- function(){
   genes <-
     synapse_csv_id_to_tbl(syn,  "syn50896922") %>%
     dplyr::select(
-      "hgnc" = "hgnc",
-      "genes_id" = "id"
+      "hgnc" = "hgnc_id",
+      "gene_id" = "id"
     )
+
+  mutation_type_id <-
+    synapse_csv_id_to_tbl(syn,  "syn51671620") %>%
+    dplyr::pull("id")
 
   mutations <-
     synapse_feather_id_to_tbl(syn, "syn22131029") %>%
-    dplyr::slice(1:100) %>% #remove
     dplyr::rename("sample_name" = "ParticipantBarcode") %>%
     tidyr::pivot_longer(
       -"sample_name",
@@ -34,8 +37,13 @@ mutations_tcga <- function(){
         "(NS)",
         .data$mutation_code
       ),
+      "mutation_code" = dplyr::if_else(
+        .data$mutation_code == "NA",
+        "(NA)",
+        .data$mutation_code
+      ),
       "name" = stringr::str_c(.data$hgnc, ":", .data$mutation_code),
-      "mutation_type" = "driver mutation"
+      "mutation_type_id" =  mutation_type_id
     ) %>%
     dplyr::inner_join(genes, by = "hgnc") %>%
     dplyr::select(-"hgnc") %>%
@@ -45,7 +53,31 @@ mutations_tcga <- function(){
       "Component" = "mutations"
     )
 
-  readr::write_csv(mutations, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    mutations,
+    "syn51068961",
+    "mutations"
+  )
+}
+
+mutations_tcga2 <- function(){
+
+  require(magrittr)
+  require(rlang)
+  syn <- create_synapse_login()
+
+  mutations <-
+    synapse_csv_id_to_tbl(syn,  "syn51068962")
+
+  synapse_store_table_as_csv(
+    syn,
+    mutations,
+    "syn51068961",
+    "mutations"
+  )
+
+
 }
 
 

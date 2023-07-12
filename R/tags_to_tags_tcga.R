@@ -13,10 +13,10 @@ tags_to_tags_tcga <- function() {
 
   tags_to_tags <-
     synapse_feather_id_to_tbl(syn, "syn23545186") %>%
-    dplyr::select("tag_name" = "tag", "parent_tag_name" = "related_tag") %>%
-    dplyr::inner_join(tags, by = c("parent_tag_name" = "tag_name")) %>%
-    dplyr::rename("parent_tag_id" = "tag_id") %>%
-    dplyr::select(-"parent_tag_name") %>%
+    dplyr::select("tag_name" = "tag", "related_tag_name" = "related_tag") %>%
+    dplyr::inner_join(tags, by = c("related_tag_name" = "tag_name")) %>%
+    dplyr::rename("related_tag_id" = "tag_id") %>%
+    dplyr::select(-"related_tag_name") %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
     dplyr::select(-"tag_name") %>%
     dplyr::mutate(
@@ -25,7 +25,11 @@ tags_to_tags_tcga <- function() {
     )
 
 
-
-  readr::write_csv(tags_to_tags, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    tags_to_tags,
+    "syn51080195",
+    "tags_to_tags"
+  )
 
 }

@@ -66,6 +66,12 @@ nodes_to_tags_tcga <- function() {
       "Component" = "nodes_to_tags"
     )
 
-  readr::write_csv(nodes_to_tags, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    nodes_to_tags,
+    "syn51082277",
+    "nodes_to_tags"
+  )
+
 
 }

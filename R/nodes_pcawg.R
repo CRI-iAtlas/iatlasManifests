@@ -1,4 +1,4 @@
-nodes_tcga <- function() {
+tcga_build_ecn_nodes_files <- function() {
 
   require(magrittr)
   require(rlang)
@@ -25,32 +25,27 @@ nodes_tcga <- function() {
       "node_feature_id" = "id"
     )
 
-  ecn_stratified_nodes <- synapse_feather_id_to_tbl(syn, "syn26067676")
-  ecn_immune_subtype_nodes <- synapse_feather_id_to_tbl(syn, "syn23538679")
-  ecn_tcga_study_nodes <- synapse_feather_id_to_tbl(syn, "syn23538696")
-  ecn_tcga_subtype_nodes <- synapse_feather_id_to_tbl(syn, "syn23538712")
+  ecn_immune_subtype_nodes <- synapse_feather_id_to_tbl(syn, "syn23538632")
+  ecn_pcawg_study_nodes <- synapse_feather_id_to_tbl(syn, "syn23538635")
 
   ecn_nodes <-
     dplyr::bind_rows(
-      ecn_stratified_nodes,
       ecn_immune_subtype_nodes,
-      ecn_tcga_study_nodes,
-      ecn_tcga_subtype_nodes
+      ecn_pcawg_study_nodes
     ) %>%
     dplyr::mutate("network" = "Extracellular Network") %>%
     dplyr::select(
       "name", "network", "feature", "entrez", "score", "label", "dataset"
     )
 
-  ci_immune_subtype_nodes <- synapse_feather_id_to_tbl(syn, "syn23538719")
-  ci_tcga_study_nodes <- synapse_feather_id_to_tbl(syn, "syn23538721")
-  ci_tcga_subtype_nodes <- synapse_feather_id_to_tbl(syn, "syn23538726")
+  ci_immune_subtype_nodes <- synapse_feather_id_to_tbl(syn, "syn23538626")
+  ci_pcawg_study_nodes <- synapse_feather_id_to_tbl(syn, "syn23538628")
 
-  ci_nodes <- dplyr::bind_rows(
-    ci_immune_subtype_nodes,
-    ci_tcga_study_nodes,
-    ci_tcga_subtype_nodes
-  ) %>%
+  ci_nodes <-
+    dplyr::bind_rows(
+      ci_immune_subtype_nodes,
+      ci_pcawg_study_nodes
+    ) %>%
     dplyr::mutate("network" = "Cellimage Network") %>%
     dplyr::select(
       "name", "network", "feature", "entrez", "score", "dataset", "x", "y"
@@ -74,7 +69,7 @@ nodes_tcga <- function() {
   synapse_store_table_as_csv(
     syn,
     nodes,
-    "syn51082218",
+    "syn51095755",
     "nodes"
   )
 

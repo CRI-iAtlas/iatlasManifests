@@ -17,12 +17,12 @@ publications_tcga <- function(){
     ) %>%
     dplyr::select(-"name") %>%
     dplyr::select(
-      "name" = "title",
+      "title",
       "do_id",
       "pubmed_id",
       "journal",
       "first_author_last_name",
-      "publicaiton_link" = "link",
+      "link",
       "year"
     ) %>%
     dplyr::distinct() %>%
@@ -31,7 +31,32 @@ publications_tcga <- function(){
       "Component" = "publications"
     )
 
-  readr::write_csv(publications, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    publications,
+    "syn51080886",
+    "publications"
+  )
+
+}
+
+publications_tcga2 <- function(){
+
+  require(magrittr)
+  require(rlang)
+  syn <- create_synapse_login()
+
+
+  publications <-
+    synapse_csv_id_to_tbl(syn,"syn51080887") %>%
+    dplyr::rename("title" = "name")
+
+  synapse_store_table_as_csv(
+    syn,
+    publications,
+    "syn51080886",
+    "publications"
+  )
 
 }
 

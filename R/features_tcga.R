@@ -4,6 +4,14 @@ features_tcga <- function(){
   require(rlang)
   syn <- create_synapse_login()
 
+  methods <-
+    synapse_feather_id_to_tbl(syn, "syn22130608") %>%
+    dplyr::select("origin" = "Feature Origin", "method_tag" = "Methods Tag") %>%
+    tidyr::drop_na()
+
+  germline_features <-
+    synapse_feather_id_to_tbl(syn, "syn25170093")
+
   features <-
     synapse_feather_id_to_tbl(syn, "syn22128265") %>%
     dplyr::filter(
@@ -15,8 +23,11 @@ features_tcga <- function(){
       "display" = "FriendlyLabel",
       "class" = "Variable Class",
       "order" = "Variable Class Order",
-      "unit" = "Unit"
+      "unit" = "Unit",
+      "origin" = "Origin"
     ) %>%
+    dplyr::left_join(methods, by = "origin") %>%
+    dplyr::select(-"origin") %>%
     dplyr::mutate(
       "name" = stringr::str_replace_all(.data$name, "[\\.]", "_"),
       class = dplyr::if_else(is.na(.data$class), "Miscellaneous", class),
@@ -31,19 +42,27 @@ features_tcga <- function(){
         .data$name == "age_at_initial_pathologic_diagnosis",
         "age_at_diagnosis",
         .data$name
+      ),
+      method_tag = dplyr::if_else(
+        .data$name == "TCR_Evenness",
+        "TCR",
+        .data$method_tag
       )
     ) %>%
+    dplyr::filter(!is.na(.data$method_tag)) %>%
     dplyr::add_row(
       "name" = "Tumor_fraction",
       "display" = "Tumor Fraction",
       "class" = "Overall Proportion",
       "order" = 4,
-      "unit"  = "Fraction"
+      "unit"  = "Fraction",
+      "method_tag" = "LF"
     ) %>%
     dplyr::add_row(
       "name" = "totTCR_reads",
       "display" = "Total TCR reads",
-      "class" = "Miscellaneous"
+      "class" = "Miscellaneous",
+      "method_tag" = "TCR"
     ) %>%
     dplyr::filter(
       !(
@@ -53,12 +72,19 @@ features_tcga <- function(){
       )
     ) %>%
     dplyr::arrange(.data$name) %>%
+    dplyr::rename("feature_class" = "class") %>%
+    dplyr::left_join(germline_features, by = "name") %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "features"
     )
 
-  readr::write_csv(features, "synapse_storage_manifest.csv")
+  synapse_store_table_as_csv(
+    syn,
+    features,
+    "syn50944339",
+    "features"
+  )
 
 }
 
