@@ -6,7 +6,7 @@ samples_tcga <- function(){
 
   features <-
     synapse_csv_id_to_tbl(syn, "syn50944340") %>%
-    dplyr::filter(.data$class != "Clinical") %>%
+    dplyr::filter(.data$feature_class != "Clinical") %>%
     dplyr::select(
       "feature_name" =  "name",
       "feature_id" = "id"
