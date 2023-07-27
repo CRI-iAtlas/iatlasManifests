@@ -26,8 +26,12 @@ cohorts_tcga <- function(){
     dataset_name = datasets$dataset_name,
     tag_name = tags$tag_name
   ) %>%
+    dplyr::mutate(
+      name = paste(dataset_name, tag_name, sep = "_")
+    ) %>%
     dplyr::bind_rows(
       data.frame(
+        name = datasets$dataset_name,
         dataset_name = datasets$dataset_name,
         tag_name = NA
       )
