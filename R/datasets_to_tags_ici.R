@@ -42,7 +42,7 @@ datasets_to_tags_ici <- function(){
 
   synapse_store_table_as_csv(
     syn,
-    datasets_to_samples,
+    datasets_to_tags,
     "syn52069253",
     "datasets_to_tags"
   )
