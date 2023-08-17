@@ -8,6 +8,7 @@ dataset_ici_table <- function(){
     dplyr::rename(
       "dataset_type" = "type"
     ) %>%
+    dplyr::add_row("display" = c("PRINCE"), "dataset_type" = "ici") %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "datasets"
