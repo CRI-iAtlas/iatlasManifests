@@ -4,7 +4,7 @@ samples_prince <- function(){
   require(rlang)
   syn <- create_synapse_login()
 
-  source("patients_prince.R")
+  #source("patients_prince.R")
   patients <-
     patients_prince() %>% #replace with
     dplyr::select(
