@@ -1,4 +1,4 @@
-dataset_ici_table <- function(){
+dataset_htan <- function(){
 
   require(magrittr)
   require(rlang)

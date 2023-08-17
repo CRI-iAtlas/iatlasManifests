@@ -60,7 +60,7 @@ patients_htan <- function(){
     )
 
 
-  readr::write_csv(patients, "synapse_storage_manifest.csv", na = "")
+  #readr::write_csv(patients, "synapse_storage_manifest.csv", na = "")
 
 }
 
