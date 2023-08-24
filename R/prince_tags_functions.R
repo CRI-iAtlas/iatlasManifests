@@ -76,8 +76,10 @@ prince_build_tag_table <- function(){
     dplyr::select(
       "sample.id",
       "subject.id",
+      "Arm" = subject.therapies,
       Response,
       Responder,
+      Progression,
       Clinical_Benefit,
       Sample_Treatment,
       Biopsy_Site,
@@ -120,6 +122,34 @@ prince_build_tag_table <- function(){
                    "ICI_Pathway" = "pd1_ici_pathway",
                    "ICI_Target" = "pd1_ici_target",
                    "Non_ICI_Rx" = "nab-paclitaxel_gemcitabine_APX005M_non_ici_rx")
+
+  #there are some patients in the B2 arm that have records of having taking nivolumab
+  b2_with_nivo <- trial_drugs %>%
+    tidyr::fill(`Subject ID`, Arm) %>%
+    dplyr::filter(Arm == "B2", Drug == "Nivolumab", !is.na(`Dose \r\n Administered \r\n (mg)`))
+
+  prince_tags <- dplyr::inner_join(
+    prince_tags,
+    key_df,
+    by = "Arm"
+  ) %>%
+    dplyr::mutate(
+      "ICI_Rx" = dplyr::if_else(
+        .data$subject.id %in% b2_with_nivo$`Subject ID`,
+        "nivolumab",
+        .data$ICI_Rx
+      ),
+      "ICI_Pathway" = dplyr::if_else(
+        .data$subject.id %in% b2_with_nivo$`Subject ID`,
+        "pd1_ici_pathway",
+        .data$ICI_Pathway
+      ),
+      "ICI_Target" = dplyr::if_else(
+        .data$subject.id %in% b2_with_nivo$`Subject ID`,
+        "pd1_ici_target",
+        .data$ICI_Target
+      )
+    )
 
 
 
