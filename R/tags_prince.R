@@ -40,6 +40,11 @@ tags_prince <- function() {
 
   })
 
+  description_templates[["TCGA_Study"]] <- data.frame(
+    "short_display" = "PDAC",
+    "description" = "PDAC: pancreatic ductal adenocarcinoma"
+    )
+
   order_seed <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
     purrr::map(.f= function(category){
@@ -53,9 +58,10 @@ tags_prince <- function() {
         as.vector()
 
     })
+  order_seed[["TCGA_Study"]]$order <- 34
 
   new_colors_per_group <-
-    purrr::set_names(unique(new_categories$parent_group)) %>%
+    purrr::set_names(unique(dplyr::filter(new_categories, parent_group != "TCGA_Study")$parent_group)) %>%
     purrr::map(.f= function(category){
 
     n_groups <- new_categories %>%
@@ -64,7 +70,6 @@ tags_prince <- function() {
 
     group_colors <- ici_tags %>%
       dplyr::filter(stringr::str_detect(name, tolower(category))) %>%
-      dplyr::filter(!stringr::str_detect(name, na_labels)) %>%
       dplyr::pull(color)
 
     new_colors <- Polychrome::createPalette(n_groups,  group_colors)
@@ -76,6 +81,10 @@ tags_prince <- function() {
 
   colnames(new_colors_per_group) <- c("parent_group", "color")
   rownames(new_colors_per_group) <- NULL
+  new_colors_per_group <-  new_colors_per_group %>% dplyr::add_row(
+    "parent_group" = "TCGA_Study",
+    "color" = "#BDA626"
+  )
 
 
   full_tags <- new_categories %>%
@@ -113,7 +122,7 @@ tags_prince <- function() {
   synapse_store_table_as_csv(
     syn,
     tags,
-    "",
+    "", #replace
     "tags"
   )
 

@@ -259,6 +259,8 @@ prince_build_tag_table <- function(){
       "Tissue_Subtype_info" =.data$`Cancer Location`,
       "Cancer_Tissue" = "pancreas_cancer_tissue",
       "Cancer_Tissue_info" = "Pancreas",
+      "TCGA_Study" = "PDAC",
+      "TCGA_Study_info" = "PDAC",
       "NeoICI_Rx" = "none_neoici_rx",
       "Metastasized" = "true_metastasized"
     )
@@ -299,7 +301,8 @@ prince_build_tag_table <- function(){
         Clinical_Stage,
         Tissue_Subtype,
         Cancer_Tissue,
-        Metastasized
+        Metastasized,
+        TCGA_Study
       )
 
   readr::write_csv(prince_tags, "prince_tags_wide.csv", na = "")
