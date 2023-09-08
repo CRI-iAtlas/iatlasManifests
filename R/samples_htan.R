@@ -13,11 +13,10 @@ samples_htan <- function(){
       "patient_id" = "id"
     )
 
-  samples <- read.csv(paste("inst/",ohsu, ".csv", sep = "")) #should we select the 5 assayed samples?
-
+  samples <- read.csv(paste("inst/",ohsu, ".csv", sep = "")) %>%  #should we select the 5 assayed samples?
     dplyr::select(
-      "name",
-      "patient_name" = "patient_barcode"
+      "name" = "HTAN.Biospecimen.ID",
+      "patient_name" = "HTAN.Parent.ID"
     ) %>%
     dplyr::inner_join(patients, by = "patient_name") %>%
     dplyr::select(-"patient_name") %>%
@@ -26,12 +25,12 @@ samples_htan <- function(){
       "Component" = "samples"
     )
 
-  synapse_store_table_as_csv(
-    syn,
-    samples,
-    "update",#update with folder id
-    "samples"
-  )
+  # synapse_store_table_as_csv(
+  #   syn,
+  #   samples,
+  #   "",#update with folder id
+  #   "samples"
+  # )
 
 }
 

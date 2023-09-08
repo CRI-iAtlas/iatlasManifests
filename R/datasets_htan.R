@@ -12,12 +12,12 @@ dataset_htan <- function(){
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "datasets"
     )
-  synapse_store_table_as_csv(
-    syn,
-    ici_datasets,
-    synapse_folder,
-    "datasets"
-  )
+  # synapse_store_table_as_csv(
+  #   syn,
+  #   ici_datasets,
+  #   "", #replace
+  #   "datasets"
+  # )
 
 }
 
