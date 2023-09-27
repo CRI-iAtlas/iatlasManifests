@@ -114,6 +114,7 @@ htan_build_tag_table <- function(){
       "HTAN.Biospecimen.ID",
       "HTAN.Parent.ID",
       "Preservation.Method",
+      "Collection.Days.from.Index",
       "Tumor.Tissue.Type",
       "Site.of.Resection.or.Biopsy"
     ) %>%
@@ -177,11 +178,14 @@ htan_build_tag_table <- function(){
         TRUE ~ "na_tcga_subtype"
       ),
       "NeoICI_Rx" = "none_neoici_rx",
-      "Tissue_Subtype" = "na_tissue_subtype"
+      "Tissue_Subtype" = "na_tissue_subtype",
+      "Timepoint_Relative_Order" = dplyr::dense_rank(Collection.Days.from.Index)
    ) %>%
     dplyr::select(
       HTAN.Biospecimen.ID,
       HTAN.Parent.ID,
+      c,
+      Sample_Treatment,
       Biopsy_Site,
       Cancer_Tissue,
       Tissue_Subtype,
@@ -195,7 +199,6 @@ htan_build_tag_table <- function(){
       TCGA_Study,
       TCGA_Subtype,
       NeoICI_Rx,
-      Sample_Treatment,
       ICI_Rx,
       ICI_Pathway,
       ICI_Target,
