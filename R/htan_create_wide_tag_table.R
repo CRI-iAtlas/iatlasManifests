@@ -184,7 +184,7 @@ htan_build_tag_table <- function(){
     dplyr::select(
       HTAN.Biospecimen.ID,
       HTAN.Parent.ID,
-      c,
+      Timepoint_Relative_Order,
       Sample_Treatment,
       Biopsy_Site,
       Cancer_Tissue,
