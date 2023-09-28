@@ -1,4 +1,4 @@
-htan_build_tag_table <- function(){
+htan_create_wide_tag_table <- function(){
 
   syn <- create_synapse_login()
   synapseclient <- reticulate::import("synapseclient")
@@ -43,11 +43,11 @@ htan_build_tag_table <- function(){
     dplyr::mutate(
       "flag" = dplyr::case_when(
         (Collection.Days.from.Index < Days.to.Treatment.Start) & Therapeutic.Agents %in%  ici_agents ~ "Subsq_ICI",
-        (Collection.Days.from.Index < Days.to.Treatment.Start) & !Therapeutic.Agents %in%  ici_agents ~ "Subsq",
+        (Collection.Days.from.Index < Days.to.Treatment.Start) & !Therapeutic.Agents %in%  ici_agents ~ "Subsq_info",
         (Collection.Days.from.Index >= Days.to.Treatment.Start & Collection.Days.from.Index <= Days.to.Treatment.End) & Therapeutic.Agents %in%  ici_agents ~ "ICI",
-        (Collection.Days.from.Index >= Days.to.Treatment.Start & Collection.Days.from.Index <= Days.to.Treatment.End) & !Therapeutic.Agents %in%  ici_agents ~ "Non_ICI",
+        (Collection.Days.from.Index >= Days.to.Treatment.Start & Collection.Days.from.Index <= Days.to.Treatment.End) & !Therapeutic.Agents %in%  ici_agents ~ "Non_ICI_info",
         Collection.Days.from.Index > Days.to.Treatment.End & Therapeutic.Agents %in% ici_agents ~ "Prior_ICI",
-        Collection.Days.from.Index > Days.to.Treatment.End & !Therapeutic.Agents %in% ici_agents ~ "Prior"
+        Collection.Days.from.Index > Days.to.Treatment.End & !Therapeutic.Agents %in% ici_agents ~ "Prior_info"
       )
     ) %>%
     dplyr::select(
@@ -57,7 +57,8 @@ htan_build_tag_table <- function(){
     ) %>%
     dplyr::group_by(HTAN.Biospecimen.ID, flag) %>%
     dplyr::summarise(
-      all_drugs = paste0(unique(Therapeutic.Agents), collapse = "_")
+      all_drugs = paste0(sort(unique(Therapeutic.Agents)), collapse = ", "),
+      .groups = "drop"
     ) %>%
     tidyr::pivot_wider(
       names_from = flag,
@@ -77,23 +78,29 @@ htan_build_tag_table <- function(){
     )
 
   #The pre and post treatment information in iAtlas is recorded using the ICI treatment as reference, so in this dataset all samples will have the same info for these fields
-  therapy_iatlas$Non_ICI_Rx = paste0(dplyr::filter(therapy_iatlas, Sample_Treatment == "on_sample_treatment") %>%
-                              dplyr::pull(Non_ICI) %>%
-                              sort() %>%
-                              tolower(),
-                              "_non_ici_rx")
-  therapy_iatlas$Prior_Rx = paste0(dplyr::filter(therapy_iatlas, Sample_Treatment == "on_sample_treatment") %>%
-                                     dplyr::pull(Prior) %>%
-                                     sort() %>%
-                                     tolower(),
-                                     "_prior_rx")
-  therapy_iatlas$Subsq_Rx = paste0(dplyr::filter(therapy_iatlas, Sample_Treatment == "on_sample_treatment") %>%
-                                     dplyr::pull(Subsq) %>%
-                                     sort() %>%
-                                     tolower(),
-                                   "_subsq_rx")
+  therapy_info <- therapy_iatlas %>%
+    dplyr::filter(Sample_Treatment == "on_sample_treatment") %>%
+    dplyr::select(Non_ICI_info, Prior_info, Subsq_info) %>%
+    dplyr::mutate(
+      "Non_ICI_Rx" = paste0(tolower(stringi::stri_replace_all_regex(.data$Non_ICI_info, c(", ", " "), "_", vectorize_all=FALSE)), "_non_ici_rx"),
+      "Prior_Rx" = paste0(tolower(stringi::stri_replace_all_regex(.data$Prior_info, c(", ", " "), "_", vectorize_all=FALSE)), "_prior_rx"),
+      "Subsq_Rx" = paste0(tolower(stringi::stri_replace_all_regex(.data$Subsq_info, c(", ", " "), "_", vectorize_all=FALSE)), "_subsq_rx"),
+    )
+
+
+  therapy_labels <- therapy_info %>%
+    dplyr::rename_with(.cols=ends_with('_info'), ~ gsub("_info", "_Rx-short_display", .x)) %>%
+    dplyr::rename_with(.cols=!ends_with('-short_display'), ~ paste0(.x, "-name")) %>%
+    tidyr::pivot_longer(dplyr::everything(),
+                        names_to = c("parent_tag", ".value"),
+                        names_sep="-")
 
   therapy_iatlas <- therapy_iatlas %>%
+    dplyr::mutate(
+      "Non_ICI_Rx" = therapy_info$Non_ICI_Rx,
+      "Prior_Rx" = therapy_info$Prior_Rx,
+      "Subsq_Rx" = therapy_info$Subsq_Rx
+    ) %>%
     dplyr::select(
       HTAN.Biospecimen.ID,
       Sample_Treatment,
@@ -128,14 +135,10 @@ htan_build_tag_table <- function(){
       by = "HTAN.Biospecimen.ID"
     ) %>%
     dplyr::mutate(
-      "Biopsy_Site" = stringr::str_replace_all(
-        gsub(" ", "_", tolower(paste0(.data$Site.of.Resection.or.Biopsy, "_biopsy_site"))),
-        "_nos", ""
-      ),
-      "Cancer_Tissue" = stringr::str_replace_all(
-        gsub(" ", "_", tolower(paste0(.data$Tissue.or.Organ.of.Origin, "_cancer_tissue"))),
-        "_nos", ""
-      ),
+      "Biopsy_Site" = paste0(tolower(gsub(" NOS", "", .data$Site.of.Resection.or.Biopsy)), "_biopsy_site"),
+      "Biopsy_Site_info" = gsub(" NOS", "", .data$Site.of.Resection.or.Biopsy),
+      "Cancer_Tissue" = paste0(tolower(gsub(" NOS", "", .data$Tissue.or.Organ.of.Origin)), "_cancer_tissue"),
+      "Cancer_Tissue_info" = gsub(" NOS", "", .data$Tissue.or.Organ.of.Origin),
       "Response" = dplyr::if_else(
         HTAN.Biospecimen.ID == "HTA9_1_86",
         "progressive_disease_response", #we have this information from the manuscript, missing for other samples
@@ -177,10 +180,31 @@ htan_build_tag_table <- function(){
         Biopsy_Site == "bone_biopsy_site" ~ "BRCA_LumB",
         TRUE ~ "na_tcga_subtype"
       ),
+      "TCGA_Subtype_info" = dplyr::if_else(
+        TCGA_Subtype == "na_tcga_subtype",
+        "Not available",
+        NA_character_
+      ),
       "NeoICI_Rx" = "none_neoici_rx",
       "Tissue_Subtype" = "na_tissue_subtype",
       "Timepoint_Relative_Order" = dplyr::dense_rank(Collection.Days.from.Index)
-   ) %>%
+   )
+
+
+  tags_info <- htan_tags %>%
+    dplyr::select(dplyr::ends_with("info"),
+                  c("Cancer_Tissue", "Biopsy_Site", "TCGA_Subtype")) %>%
+    dplyr::rename_with(.cols=ends_with('_info'), ~ gsub("_info", "-short_display", .x)) %>%
+    dplyr::rename_with(.cols=!ends_with('-short_display'), ~ paste0(.x, "-name")) %>%
+    tidyr::pivot_longer(dplyr::everything(),
+                        names_to = c("parent_tag", ".value"),
+                        names_sep="-") %>%
+    dplyr::filter(!is.na(short_display)) %>%
+    dplyr::distinct() %>%
+    rbind(therapy_labels)
+
+
+  htan_tags <- htan_tags %>%
     dplyr::select(
       HTAN.Biospecimen.ID,
       HTAN.Parent.ID,
@@ -211,6 +235,11 @@ htan_build_tag_table <- function(){
 
   readr::write_csv(htan_tags, "htan_ohsu_tags_wide.csv", na = "")
   file_entity <- synapseclient$File("htan_ohsu_tags_wide.csv", parent = "syn52570141")
+  syn$store(file_entity)
+
+  #writing key short labels
+  readr::write_csv(tags_info, "htan_ohsu_labels.csv", na = "")
+  file_entity <- synapseclient$File("htan_ohsu_labels.csv", parent = "syn52570141")
   syn$store(file_entity)
 
   }
