@@ -14,9 +14,12 @@ tags_htan <- function() {
   #load the current ici tags
   db_tags <- iatlasGraphQLClient::query_tags_with_parent_tags()
 
+  #Adding new parent groups
+
   #check if we added a new parent group
   new_parent_groups <- colnames(htan_tags)[!colnames(htan_tags) %in% db_tags$parent_tag_name]
-  #the only new columns are HTAN.Biospecimen.ID and HTAN.Parent.ID and Timepoint_Relative_Order. We only need to add Timepoint_Relative_Order.
+  #the only new columns are HTAN.Biospecimen.ID and HTAN.Parent.ID
+
 
   #check if we have new levels
   htan_categories <- htan_tags %>%

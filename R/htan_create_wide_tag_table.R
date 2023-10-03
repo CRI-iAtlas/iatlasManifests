@@ -186,8 +186,7 @@ htan_create_wide_tag_table <- function(){
         NA_character_
       ),
       "NeoICI_Rx" = "none_neoici_rx",
-      "Tissue_Subtype" = "na_tissue_subtype",
-      "Timepoint_Relative_Order" = dplyr::dense_rank(Collection.Days.from.Index)
+      "Tissue_Subtype" = "na_tissue_subtype"
    )
 
 
@@ -208,7 +207,6 @@ htan_create_wide_tag_table <- function(){
     dplyr::select(
       HTAN.Biospecimen.ID,
       HTAN.Parent.ID,
-      Timepoint_Relative_Order,
       Sample_Treatment,
       Biopsy_Site,
       Cancer_Tissue,

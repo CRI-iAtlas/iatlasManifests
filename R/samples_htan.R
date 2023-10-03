@@ -7,6 +7,16 @@ samples_htan <- function(){
   #biospecimen file
   ohsu <- "syn39141309"
 
+  #samples ids to be kept
+  samples_ids <- c(
+    "HTA9_1_1",
+    "HTA9_1_9",
+    "HTA9_1_33",
+    "HTA9_1_86",
+    "HTA9_1_97"
+  )
+
+
   patients <- patients_htan() %>%  #update to read from patients in synapse id for patients_htan
     dplyr::select(
       "patient_name" = "name",
@@ -14,6 +24,8 @@ samples_htan <- function(){
     )
 
   samples <- read.csv(paste("inst/",ohsu, ".csv", sep = "")) %>%  #should we select the 5 assayed samples?
+    dplyr::filter(HTAN.Biospecimen.ID %in% samples_ids) %>%
+    dplyr::mutate(HTAN.Parent.ID = replace(HTAN.Parent.ID, HTAN.Parent.ID == "HTA9_1_6", "HTA9_1")) %>% #changing patient ID to version in Therapy
     dplyr::select(
       "name" = "HTAN.Biospecimen.ID",
       "patient_name" = "HTAN.Parent.ID"
