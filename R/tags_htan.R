@@ -131,12 +131,12 @@ tags_htan <- function() {
       "Component" = "tags"
     )
 
-  synapse_store_table_as_csv(
-    syn,
-    tags,
-    "", #replace
-    "tags"
-  )
+  # synapse_store_table_as_csv(
+  #   syn,
+  #   tags,
+  #   "", #replace
+  #   "tags"
+  # )
 
 
 }
