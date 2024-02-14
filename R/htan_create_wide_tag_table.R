@@ -10,7 +10,8 @@ htan_create_wide_tag_table <- function(){
                   "demographics" ="syn39253974",
                   "diagnosis" = "syn39254633",
                   "followup" = "syn39255125",
-                  "therapy" = "syn39255232"
+                  "therapy" = "syn39255232",
+                 "subtype" = "msk_sclc_subtype" #the SCLC subtype was only found at a h5ad file, so it was exported to a table stored in this repo
   )
 
   files_path <- paste("inst/", msk_files, ".csv", sep = "") #locally stored, ideally will change to read directly from synapse
@@ -136,19 +137,6 @@ htan_create_wide_tag_table <- function(){
     dplyr::bind_cols(
       dplyr::select(therapy_info, ICI_Rx, Prior_ICI_Rx, Non_ICI_Rx, Prior_Rx, Subsq_ICI_Rx, Subsq_Rx)
     ) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      "ICI_Pathway" = dplyr::case_when(
-        ICI_Rx == "na_ici_rx" ~ "none_ici_pathway",
-        ICI_Rx %in% ici_agents ~ paste0(ici_pathways[ICI_Rx], "_ici_pathway"),
-        !is.na(ICI_Rx) & !ICI_Rx %in% ici_agents ~ paste(paste0(sort(unique(ici_pathways[stringr::str_split(ICI_Rx, "_", simplify = TRUE)])), collapse = "_"), "_ici_pathway")
-      ),
-      "ICI_Target" = dplyr::case_when(
-        ICI_Rx == "na_ici_rx" ~ "none_ICI_Target",
-        ICI_Rx %in% ici_agents ~ paste0(ici_targets[ICI_Rx], "_ici_target"),
-        !is.na(ICI_Rx) & !ICI_Rx %in% ici_agents ~ paste(paste0(sort(unique(ici_targets[stringr::str_split(ICI_Rx, "_", simplify = TRUE)])), collapse = "_"), "_ici_target")
-      )
-    ) %>%
     dplyr::select(
       HTAN.Biospecimen.ID,
       Sample_Treatment,
@@ -164,17 +152,27 @@ htan_create_wide_tag_table <- function(){
 
 
   #3. CONSOLIDATING
-  htan_tags <- msk_df[["biospecimen"]] %>%
-    #dplyr::filter(HTAN.Biospecimen.ID %in% samples_ids) %>%
+
+  format_entry <- function(string_to_format, patterns_to_remove, add_underscore = FALSE){
+    reg_remove <- stringr::str_remove(string_to_format, paste0(patterns_to_remove, collapse = '|') )
+
+    if(add_underscore) tolower(gsub(" ", "_", reg_remove)) #remove white spaces
+    else reg_remove
+  }
+
+  htan_tags <- msk_df[["subtype"]] %>%
+    dplyr::select(-Cell) %>%
+    dplyr::distinct() %>%
+    dplyr::right_join(msk_df[["biospecimen"]],  by = c("HTAN_Biospecimen_ID" = "HTAN.Biospecimen.ID")) %>%
     dplyr::select(
-      "HTAN.Biospecimen.ID",
+      "HTAN.Biospecimen.ID" = "HTAN_Biospecimen_ID",
       "HTAN.Parent.ID",
       "Preservation.Method",
       "Collection.Days.from.Index",
       "Tumor.Tissue.Type",
-      "Site.of.Resection.or.Biopsy"
+      "Site.of.Resection.or.Biopsy",
+      "subtype"
     ) %>%
-   # dplyr::mutate(HTAN.Parent.ID = replace(HTAN.Parent.ID, HTAN.Parent.ID == "HTA9_1_6", "HTA9_1")) %>% #changing patient ID to version in Therapy
     dplyr::inner_join(
       dplyr::select(msk_df[["diagnosis"]], -Site.of.Resection.or.Biopsy), #removing duplicated information from biospecimen df
       by = dplyr::join_by("HTAN.Parent.ID" == "HTAN.Participant.ID")
@@ -184,28 +182,29 @@ htan_create_wide_tag_table <- function(){
       by = "HTAN.Biospecimen.ID"
     ) %>%
     dplyr::mutate(
-      "Biopsy_Site" = paste0(tolower(gsub(" NOS", "", .data$Site.of.Resection.or.Biopsy)), "_biopsy_site"),
-      "Biopsy_Site_info" = gsub(" NOS", "", .data$Site.of.Resection.or.Biopsy),
-      "Cancer_Tissue" = paste0(tolower(gsub(" NOS", "", .data$Tissue.or.Organ.of.Origin)), "_cancer_tissue"),
-      "Cancer_Tissue_info" = gsub(" NOS", "", .data$Tissue.or.Organ.of.Origin),
-      #"Response" = dplyr::if_else(
-      #   HTAN.Biospecimen.ID == "HTA9_1_86",
-      #   "progressive_disease_response", #we have this information from the manuscript, missing for other samples
-      #   "na_response"
-      # ),
+      "Biopsy_Site_info" = format_entry(.data$Site.of.Resection.or.Biopsy, c("Upper lobe ", "Intrathoracic ", " NOS", "s of head face and neck", "Lower lobe ", "Middle lobe ", "s of axilla or arm"), add_underscore = FALSE),
+      "Biopsy_Site" = paste0(format_entry(Biopsy_Site_info, "_", add_underscore = TRUE), "_biopsy_site"),
+      "Cancer_Tissue_info" = format_entry(.data$Tissue.or.Organ.of.Origin, (" NOS")),
+      "Cancer_Tissue" = paste0(format_entry(.data$Tissue.or.Organ.of.Origin, (" NOS"), add_underscore = TRUE), "_cancer_tissue"),
       "Responder" = dplyr::case_when(
         Progression.or.Recurrence == "Yes - Progression or Recurrence"  ~ "false_responder",
-        #bor %in% c("PD","SD" )  ~ "true_responder", #this dataset only has Yes values for this, update with value for No is encoded
+        Progression.or.Recurrence == "No"  ~ "true_responder",
+        Progression.or.Recurrence == "unknown"  ~ "na_responder",
+        Progression.or.Recurrence == "Not Reported"  ~ "na_responder",
         is.na(Progression.or.Recurrence) ~ "na_responder"
       ),
       "Progression" = dplyr::case_when(
         Progression.or.Recurrence == "Yes - Progression or Recurrence" ~ "true_progression",
-        #bor %in% c("PR","CR","SD")  ~ "false_progression", #this dataset only has Yes values for this, update with value for No is encoded
+        Progression.or.Recurrence == "No"  ~ "false_progression",
+        Progression.or.Recurrence == "unknown"  ~ "na_progression",
+        Progression.or.Recurrence == "Not Reported"  ~ "na_progression",
         is.na(Progression.or.Recurrence) ~ "na_progression"
       ),
       "Clinical_Benefit" = dplyr::case_when(
         Progression.or.Recurrence == "Yes - Progression or Recurrence"  ~ "false_clinical_benefit",
-        #bor %in% c("PR","CR","SD")  ~ "true_clinical_benefit",  #this dataset only has Yes values for this, update with value for No is encoded
+        Progression.or.Recurrence == "No"  ~ "true_clinical_benefit",
+        Progression.or.Recurrence == "unknown"  ~ "na_clinical_benefit",
+        Progression.or.Recurrence == "Not Reported"  ~ "na_clinical_benefit",
         is.na(Progression.or.Recurrence) ~ "na_clinical_benefit"
       ),
       "FFPE" = dplyr::case_when(
@@ -216,6 +215,9 @@ htan_create_wide_tag_table <- function(){
       "Metastasized" = dplyr::case_when(
         .data$Tumor.Tissue.Type == "Metastatic" ~ "true_metastasized",
         .data$Tumor.Tissue.Type == "Primary" ~ "false_metastasized",
+        .data$Tumor.Tissue.Type == "Recurrent" ~ "false_metastasized",
+        .data$Tumor.Tissue.Type == "Local recurrence" ~ "false_metastasized",
+        .data$Tumor.Tissue.Type == "Not Otherwise Specified" ~ "na_metastasized",
         .data$Tumor.Tissue.Type == "" ~ "na_metastasized",
       ),
       "Clinical_Stage" = dplyr::if_else(
@@ -223,19 +225,18 @@ htan_create_wide_tag_table <- function(){
         "na_clinical_stage",
         .data$`AJCC.Clinical.Stage`
       ),
-      # "TCGA_Study" = "BRCA",
-      # "TCGA_Subtype" = dplyr::case_when( # From manuscript: Classification using the PAM50 subtype gene signature 15 showed liver biopsies Bx1, Bx2, and Bx4 to be luminal A, whereas the bone biopsy Bx3 was luminal B
-      #   Biopsy_Site == "liver_biopsy_site" ~ "BRCA_LumA",
-      #   Biopsy_Site == "bone_biopsy_site" ~ "BRCA_LumB",
-      #   TRUE ~ "na_tcga_subtype"
-      # ),
-      # "TCGA_Subtype_info" = dplyr::if_else(
-      #   TCGA_Subtype == "na_tcga_subtype",
-      #   "Not available",
-      #   NA_character_
-      # ),
+      "TCGA_Study" = "SCLC",
+      "TCGA_Subtype" = dplyr::case_when( # Still using this tag name, maybe consider changing to something more generic
+        !is.na(subtype) ~ subtype,
+        is.na(subtype) ~ "na_tcga_subtype"
+      ),
+      "TCGA_Subtype_info" = dplyr::if_else(
+        TCGA_Subtype == "na_tcga_subtype",
+        "Not available",
+        TCGA_Subtype
+      ),
       "NeoICI_Rx" = "none_neoici_rx",
-      # "Tissue_Subtype" = "na_tissue_subtype"
+      "Tissue_Subtype" = "na_tissue_subtype"
     )
 
 
@@ -260,7 +261,7 @@ htan_create_wide_tag_table <- function(){
       Biopsy_Site,
       Cancer_Tissue,
       Tissue_Subtype,
-      Response,
+     # Response,
       Responder,
       Progression,
       Clinical_Benefit,
