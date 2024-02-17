@@ -20,6 +20,13 @@ htan_create_wide_tag_table <- function(){
     else paste(string_to_paste, cleaned_string, sep = "_")
   }
 
+  format_entry <- function(string_to_format, patterns_to_remove, add_underscore = FALSE){
+    reg_remove <- stringr::str_remove(string_to_format, paste0(patterns_to_remove, collapse = '|') )
+
+    if(add_underscore) tolower(gsub(" ", "_", reg_remove)) #remove white spaces
+    else reg_remove
+  }
+
   #MSK
   #1. LOADING DATA
 
@@ -202,17 +209,11 @@ htan_create_wide_tag_table <- function(){
 
   #3. CONSOLIDATING
 
-  format_entry <- function(string_to_format, patterns_to_remove, add_underscore = FALSE){
-    reg_remove <- stringr::str_remove(string_to_format, paste0(patterns_to_remove, collapse = '|') )
-
-    if(add_underscore) tolower(gsub(" ", "_", reg_remove)) #remove white spaces
-    else reg_remove
-  }
-
   htan_tags <- msk_df[["subtype"]] %>%
     dplyr::select(-Cell) %>%
     dplyr::distinct() %>%
     dplyr::right_join(msk_df[["biospecimen"]],  by = c("HTAN_Biospecimen_ID" = "HTAN.Biospecimen.ID")) %>%
+    dplyr::right_join(dplyr::select(msk_df[["therapy"]], "HTAN.Participant.ID",  "Treatment.Intent.Type"),  by = c("HTAN.Parent.ID" = "HTAN.Participant.ID"), relationship = "many-to-many") %>%
     dplyr::select(
       "HTAN.Biospecimen.ID" = "HTAN_Biospecimen_ID",
       "HTAN.Parent.ID",
@@ -220,7 +221,8 @@ htan_create_wide_tag_table <- function(){
       "Collection.Days.from.Index",
       "Tumor.Tissue.Type",
       "Site.of.Resection.or.Biopsy",
-      "subtype"
+      "subtype",
+      "Treatment.Intent.Type"
     ) %>%
     dplyr::inner_join(
       dplyr::select(msk_df[["diagnosis"]], -Site.of.Resection.or.Biopsy), #removing duplicated information from biospecimen df
@@ -296,7 +298,16 @@ htan_create_wide_tag_table <- function(){
         .data$Tumor.Tissue.Type == "Not Otherwise Specified" ~ "na_tumor_tissue_type",
         TRUE ~ paste0(tolower(gsub(" - ", "_", .data$Tumor.Tissue.Type)), "_tumor_tissue_type")
       ),
-      "NeoICI_Rx" = "none_neoici_rx",
+      "NeoICI_Rx_info" = dplyr::if_else(
+        Prior_ICI_Rx != "na_prior_ici_rx" & Treatment.Intent.Type == "Neoadjuvant",
+        Prior_ICI_Rx,
+        "none_neoici_rx"
+      ),
+      "NeoICI_Rx" = dplyr::if_else(
+        Prior_ICI_Rx != "na_prior_ici_rx" & Treatment.Intent.Type == "Neoadjuvant",
+        gsub("prior_ici_rx","neoici_rx", Prior_ICI_Rx),
+        "none_neoici_rx"
+      ),
       "Tissue_Subtype" = "na_tissue_subtype"
     )
 
