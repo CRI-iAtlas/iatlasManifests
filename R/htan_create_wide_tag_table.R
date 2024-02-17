@@ -3,6 +3,23 @@ htan_create_wide_tag_table <- function(){
   syn <- create_synapse_login()
   synapseclient <- reticulate::import("synapseclient")
 
+  #data extraction functions
+
+  remove_ici_drugs_from_string <- function(string_to_clean, ici_drugs){
+    if(is.na(string_to_clean)) NA_character_
+    else gsub("^\\++|\\+$", "", stringr::str_remove_all(string_to_clean, paste0(ici_drugs, collapse = '|')))
+  }
+
+  paste_non_ici_drug_to_string <- function(string_to_clean, string_to_paste, ici_drugs){
+
+    cleaned_string <- remove_ici_drugs_from_string(string_to_clean, ici_drugs)
+
+    if(is.na(cleaned_string)) return(string_to_paste)
+    if(is.na(string_to_paste)) cleaned_string
+    if(nchar(cleaned_string) == 0) return(string_to_paste)
+    else paste(string_to_paste, cleaned_string, sep = "_")
+  }
+
   #MSK
   #1. LOADING DATA
 
@@ -70,6 +87,7 @@ htan_create_wide_tag_table <- function(){
       names_from = flag,
       values_from = all_drugs
     ) %>%
+    dplyr::rowwise() %>%
     dplyr::mutate(
       "Sample_Treatment" = dplyr::case_when(
         !is.na(ICI)  ~ "on_sample_treatment",
@@ -78,17 +96,34 @@ htan_create_wide_tag_table <- function(){
       ),
       "Non_ICI_info" = dplyr::case_when(
         is.na(ICI) ~ Non_ICI_info,
-        !is.na(ICI) & is.na(Non_ICI_info) ~ gsub("^\\++|\\+$", "", (stringr::str_remove_all(ICI, paste0(ici_agents, collapse = '|')))),
-        !is.na(ICI) & !is.na(Non_ICI_info) ~ paste(Non_ICI_info, gsub("^\\++|\\+$", "",(stringr::str_remove_all(ICI, paste0(ici_agents, collapse = '|')))), sep = "_")
+        !is.na(ICI) & is.na(Non_ICI_info) ~  remove_ici_drugs_from_string(ICI, ici_agents),
+        !is.na(ICI) & !is.na(Non_ICI_info) ~ paste_non_ici_drug_to_string(ICI, Non_ICI_info, ici_agents)
+      ),
+      "Prior_info" = dplyr::case_when(
+        is.na(Prior_ICI_info) ~ Prior_info,
+        !is.na(Prior_ICI_info) & is.na(Prior_info) ~ remove_ici_drugs_from_string(Prior_ICI_info, ici_agents),
+        !is.na(Prior_ICI_info) & !is.na(Prior_info) ~ paste_non_ici_drug_to_string(Prior_ICI_info, Prior_info, ici_agents)
+      ),
+      "Subsq_info" = dplyr::case_when(
+        is.na(Subsq_ICI_info) ~ Subsq_info,
+        !is.na(Subsq_ICI_info) & is.na(Subsq_info) ~ remove_ici_drugs_from_string(Subsq_ICI_info, ici_agents),
+        !is.na(Subsq_ICI_info) & !is.na(Subsq_info) ~ paste_non_ici_drug_to_string(Subsq_ICI_info, Subsq_info, ici_agents)
+      ),
+      "Non_ICI_info" = ifelse(nchar(Non_ICI_info) == 0, NA_character_, Non_ICI_info),
+      "Prior_info" = ifelse(nchar(Prior_info) == 0, NA_character_, Prior_info),
+      "Subsq_info" = ifelse(nchar(Subsq_info) == 0, NA_character_, Subsq_info),
+      "ICI" = dplyr::case_when(
+        is.na(ICI) ~ ICI,
+        !is.na(ICI) ~ paste0(sort(unique(unlist(stringr::str_extract_all(ICI, paste0(ici_agents, collapse = '|'))))), collapse = "_")
+      ),
+      "Prior_ICI_info" = dplyr::case_when(
+        is.na(Prior_ICI_info) ~ Prior_ICI_info,
+        !is.na(Prior_ICI_info) ~ paste0(sort(unique(unlist(stringr::str_extract_all(Prior_ICI_info, paste0(ici_agents, collapse = '|'))))), collapse = "_")
+      ),
+      "Subsq_ICI_info" = dplyr::case_when(
+        is.na(Subsq_ICI_info) ~ Subsq_ICI_info,
+        !is.na(Subsq_ICI_info) ~ paste0(sort(unique(unlist(stringr::str_extract_all(Subsq_ICI_info, paste0(ici_agents, collapse = '|'))))), collapse = "_")
       )
-    ) %>%
-    dplyr::rowwise() %>%
-      dplyr::mutate(
-        "Non_ICI_info" = ifelse(nchar(Non_ICI_info) == 0, NA_character_, Non_ICI_info),
-        "ICI" = dplyr::case_when(
-          is.na(ICI) ~ ICI,
-          !is.na(ICI) ~ paste0(sort(unique(unlist(stringr::str_extract_all(ICI, paste0(ici_agents, collapse = '|'))))), collapse = "_")
-        )
     )
 
   #check if all samples from same patient have the same treatment information - so far we hadn't have this issue, but will need to accommodate that in case this happens
@@ -122,8 +157,9 @@ htan_create_wide_tag_table <- function(){
     dplyr::mutate( #deal with NAs
       "ICI_info" = ifelse(is.na(ICI_info), "Not available", ICI_info),
       "Non_ICI_info" = ifelse(is.na(Non_ICI_info), "Not available", Non_ICI_info),
-      "Prior_ICI_info" = ifelse(is.na(Non_ICI_info), "Not available", Non_ICI_info),
+      "Prior_ICI_info" = ifelse(is.na(Prior_ICI_info), "Not available", Prior_ICI_info),
       "Prior_info" = ifelse(is.na(Prior_info), "Not available", Prior_info),
+      "Subsq_ICI_info" = ifelse(is.na(Subsq_ICI_info), "Not available", Subsq_ICI_info),
       "Subsq_info" = ifelse(is.na(Subsq_info), "Not available", Subsq_info)
     ) %>%
     dplyr::rename_with(.cols=ends_with('_info'), ~ gsub("_info", "_Rx-short_display", .x)) %>%
@@ -264,10 +300,12 @@ htan_create_wide_tag_table <- function(){
       "Tissue_Subtype" = "na_tissue_subtype"
     )
 
+  columns_with_labels <-  colnames(dplyr::select(htan_tags, dplyr::ends_with("info")))
+  columns_with_names <- gsub("_info", "", columns_with_labels)
 
   tags_info <- htan_tags %>%
-    dplyr::select(dplyr::ends_with("info"),
-                  c("Cancer_Tissue", "Biopsy_Site", "TCGA_Subtype")) %>%
+    dplyr::select(dplyr::all_of(columns_with_labels),
+                  dplyr::all_of(columns_with_names)) %>%
     dplyr::rename_with(.cols=ends_with('_info'), ~ gsub("_info", "-short_display", .x)) %>%
     dplyr::rename_with(.cols=!ends_with('-short_display'), ~ paste0(.x, "-name")) %>%
     tidyr::pivot_longer(dplyr::everything(),
