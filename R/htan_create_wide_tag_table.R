@@ -47,8 +47,14 @@ htan_create_wide_tag_table <- function(){
   #listing the ICI drugs that were used in the treatment
   ici_agents <- c("pembrolizumab", "nivolumab", "ipilimumab", "durvalumab", "atezolizumab")
 
-  ici_targets <- setNames(c("pd1", "pd1", "ctla4", "pdl1", "pdl1"), ici_agents)
+  ici_targets <- setNames(c("pd1", "pd1", "ctla4", "pd_l1", "pd_l1"), ici_agents)
   ici_pathways <- setNames(c("pd1", "pd1", "ctla4", "pd1", "pd1"), ici_agents)
+
+  #fixing some typos
+  msk_therapy <- msk_df$therapy %>%
+    dplyr::mutate(Therapeutic.Agents = gsub("carbplatin", "carboplatin", .data$Therapeutic.Agents)) %>%
+    dplyr::mutate(Therapeutic.Agents = gsub("\\(rechallenge\\)", "", .data$Therapeutic.Agents))%>%
+    dplyr::mutate(Therapeutic.Agents = gsub("radiation therapy", "radiation", .data$Therapeutic.Agents))
 
   therapy_iatlas <- msk_df$biospecimen %>%
     dplyr::select(
@@ -56,7 +62,7 @@ htan_create_wide_tag_table <- function(){
       "HTAN.Parent.ID",
       "Collection.Days.from.Index"
     ) %>%
-    dplyr::inner_join(dplyr::select(msk_df$therapy, HTAN.Participant.ID, Days.to.Treatment.Start, Days.to.Treatment.End, Therapeutic.Agents),
+    dplyr::inner_join(dplyr::select(msk_therapy, HTAN.Participant.ID, Days.to.Treatment.Start, Days.to.Treatment.End, Therapeutic.Agents),
                       by = dplyr::join_by(HTAN.Parent.ID == HTAN.Participant.ID), relationship = "many-to-many") %>%
     dplyr::filter(!is.na(Days.to.Treatment.Start) & !is.na(Days.to.Treatment.End) & Therapeutic.Agents != "") %>%
     dplyr::mutate(
@@ -151,10 +157,10 @@ htan_create_wide_tag_table <- function(){
       "Subsq_Rx" = paste0(tolower(stringi::stri_replace_all_regex(.data$Subsq_info, c(", ", " ", "\\+"), "_", vectorize_all=FALSE)), "_subsq_rx"),
     ) %>%
     dplyr::mutate( #deal with NAs
-      "ICI_Rx" = ifelse(is.na(ICI_info), "na_ici_rx", ICI_Rx),
+      "ICI_Rx" = ifelse(is.na(ICI_info), "none_ICI_Rx", ICI_Rx),
       "Non_ICI_Rx" = ifelse(is.na(Non_ICI_info), "na_non_ici_rx", Non_ICI_Rx),
       "Prior_ICI_Rx" = ifelse(is.na(Prior_ICI_info), "na_prior_ici_rx", Prior_ICI_Rx),
-      "Prior_Rx" = ifelse(is.na(Prior_info), "na_prior_rx", Prior_Rx),
+      "Prior_Rx" = ifelse(is.na(Prior_info), "none_prior_rx", Prior_Rx),
       "Subsq_ICI_Rx" = ifelse(is.na(Subsq_ICI_info), "na_subsq_ici_rx", Subsq_ICI_Rx),
       "Subsq_Rx" = ifelse(is.na(Subsq_info), "na_subsq_rx", Subsq_Rx)
     )
@@ -183,14 +189,14 @@ htan_create_wide_tag_table <- function(){
     dplyr::rowwise() %>%
     dplyr::mutate(
       "ICI_Pathway" = dplyr::case_when(
-        ICI_Rx == "na_ici_rx" ~ "none_ici_pathway",
+        ICI_Rx == "none_ICI_Rx" ~ "none_ici_pathway",
         ICI_Rx %in% ici_agents ~ paste0(ici_pathways[ICI_Rx], "_ici_pathway"),
-        !is.na(ICI_Rx) & !ICI_Rx %in% ici_agents ~ paste(paste0(sort(unique(ici_pathways[stringr::str_split(ICI_Rx, "_", simplify = TRUE)])), collapse = "_"), "_ici_pathway")
+        !is.na(ICI_Rx) & !ICI_Rx %in% ici_agents ~ paste0(paste0(sort(unique(ici_pathways[stringr::str_split(ICI_Rx, "_", simplify = TRUE)])), collapse = "_"), "_ici_pathway")
       ),
       "ICI_Target" = dplyr::case_when(
-        ICI_Rx == "na_ici_rx" ~ "none_ICI_Target",
+        ICI_Rx == "none_ICI_Rx" ~ "none_ICI_Target",
         ICI_Rx %in% ici_agents ~ paste0(ici_targets[ICI_Rx], "_ici_target"),
-        !is.na(ICI_Rx) & !ICI_Rx %in% ici_agents ~ paste(paste0(sort(unique(ici_targets[stringr::str_split(ICI_Rx, "_", simplify = TRUE)])), collapse = "_"), "_ici_target")
+        !is.na(ICI_Rx) & !ICI_Rx %in% ici_agents ~ paste0(paste0(sort(unique(ici_targets[stringr::str_split(ICI_Rx, "_", simplify = TRUE)])), collapse = "_"), "_ici_target")
       )
     ) %>%
     dplyr::select(
@@ -234,9 +240,9 @@ htan_create_wide_tag_table <- function(){
     ) %>%
     dplyr::mutate(
       "Biopsy_Site_info" = format_entry(.data$Site.of.Resection.or.Biopsy, c("Upper lobe ", "Intrathoracic ", " NOS", "s of head face and neck", "Lower lobe ", "Middle lobe ", "s of axilla or arm"), add_underscore = FALSE),
-      "Biopsy_Site" = paste0(format_entry(Biopsy_Site_info, "_", add_underscore = TRUE), "_biopsy_site"),
+      "Biopsy_Site" =  gsub("lymph_nodes", "lymph_node",paste0(format_entry(Biopsy_Site_info, "_", add_underscore = TRUE), "_biopsy_site")),
       "Cancer_Tissue_info" = format_entry(.data$Tissue.or.Organ.of.Origin, (" NOS")),
-      "Cancer_Tissue" = paste0(format_entry(.data$Tissue.or.Organ.of.Origin, (" NOS"), add_underscore = TRUE), "_cancer_tissue"),
+      "Cancer_Tissue" = gsub("lung", "lungs", paste0(format_entry(.data$Tissue.or.Organ.of.Origin, (" NOS"), add_underscore = TRUE), "_cancer_tissue")),
       "Response" = "na_response",
       "Response_info" = "Not available",
       "Responder" = dplyr::case_when(
@@ -305,7 +311,7 @@ htan_create_wide_tag_table <- function(){
       ),
       "NeoICI_Rx" = dplyr::if_else(
         Prior_ICI_Rx != "na_prior_ici_rx" & Treatment.Intent.Type == "Neoadjuvant",
-        gsub("prior_ici_rx","neoici_rx", Prior_ICI_Rx),
+        gsub("prior_ici_rx","neoici_rx", gsub("pembrolizumab", "pembro",Prior_ICI_Rx)),
         "none_neoici_rx"
       ),
       "Tissue_Subtype" = "na_tissue_subtype"
@@ -357,6 +363,8 @@ htan_create_wide_tag_table <- function(){
       Subsq_Rx
     )
 
+
+
   readr::write_csv(htan_tags, "htan_msk_tags_wide.csv", na = "")
   file_entity <- synapseclient$File("htan_msk_tags_wide.csv", parent = "syn52570141")
   syn$store(file_entity)
@@ -392,10 +400,10 @@ htan_create_wide_tag_table <- function(){
     ) %>%
     dplyr::mutate(
       "Sample_Treatment" = "pre_sample_treatment",
-      "ICI_Rx" = "na_ici_rx",
+      "ICI_Rx" = "none_ICI_Rx",
       "Non_ICI_Rx" = "na_non_ici_rx",
       "Prior_ICI_Rx" =  "na_prior_ici_rx",
-      "Prior_Rx" = "na_prior_rx",
+      "Prior_Rx" = "none_prior_rx",
       "Subsq_ICI_Rx" = "na_subsq_ici_rx",
       "Subsq_Rx" = "na_subsq_rx",
       "ICI_Pathway" = "none_ici_pathway",
@@ -505,6 +513,7 @@ htan_create_wide_tag_table <- function(){
 
   columns_with_labels <-  colnames(dplyr::select(htan_tags, dplyr::ends_with("info")))
   columns_with_names <- gsub("_info", "", columns_with_labels)
+
 
   tags_info <- htan_tags %>%
     dplyr::select(dplyr::all_of(columns_with_labels),
