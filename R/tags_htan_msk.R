@@ -6,10 +6,16 @@ tags_htan <- function() {
   require(Polychrome)
   syn <- create_synapse_login()
 
-  #we will use a table with consolidated prince annotation that was created with htan_create_wide_tag_table.R
-  #load wide table with clinical annotation for HTAN OHSU
-  htan_tags <- synapse_csv_id_to_tbl(syn, "syn52570142")
-  htan_labels <- synapse_csv_id_to_tbl(syn, "syn52576077")
+  #we will use a table with consolidated htan annotation that was created with htan_create_wide_tag_table.R
+  #load wide table with clinical annotation for HTAN MSK and Vanderbilt
+  htan_tags <- dplyr::bind_rows(
+    synapse_csv_id_to_tbl(syn, "syn53605383"), #msk
+    synapse_csv_id_to_tbl(syn, "syn53623123") #vanderbilt
+  )
+  htan_labels <- dplyr::bind_rows(
+    synapse_csv_id_to_tbl(syn, "syn53605384"),#msk
+    synapse_csv_id_to_tbl(syn, "syn53627469")#vanderbilt
+  )
 
   #load the current ici tags
   db_tags <- iatlasGraphQLClient::query_tags_with_parent_tags()
@@ -18,12 +24,12 @@ tags_htan <- function() {
 
   #check if we added a new parent group
   new_parent_groups <- colnames(htan_tags)[!colnames(htan_tags) %in% db_tags$parent_tag_name]
-  #the only new columns are HTAN.Biospecimen.ID and HTAN.Parent.ID
+  #we added "Tumor_tissue_type" and "Polyp_Histology". HTAN.Biospecimen.ID and HTAN.Parent.ID are going to be renamed
 
 
   #check if we have new levels
   htan_categories <- htan_tags %>%
-    tidyr::pivot_longer(-c("HTAN.Biospecimen.ID", "HTAN.Parent.ID", "Timepoint_Relative_Order"), names_to = "parent_group", values_to = "tag") %>%
+    tidyr::pivot_longer(-c("HTAN.Biospecimen.ID", "HTAN.Parent.ID"), names_to = "parent_group", values_to = "tag") %>%
     dplyr::select(parent_group, tag) %>%
     dplyr::distinct()
 

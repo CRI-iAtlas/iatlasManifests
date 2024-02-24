@@ -6,7 +6,6 @@ samples_htan <- function(){
 
   #biospecimen file
   msk <- "syn39256250"
-  vanderbilt <- "syn38868462"
 
   select_columns_samples <- function(df){
     df %>%
@@ -17,14 +16,13 @@ samples_htan <- function(){
   }
 
 
-  patients <- patients_htan() %>%  #update to read from patients in synapse id for patients_htan
+  patients <- synapse_csv_id_to_tbl(syn, "syn53678262") %>%
     dplyr::select(
       "patient_name" = "name",
       "patient_id" = "id"
     )
 
   samples <- select_columns_samples(read.csv(paste("inst/",msk, ".csv", sep = ""))) %>%
-    dplyr::bind_rows(select_columns_samples(read.csv(paste("inst/",vanderbilt, ".csv", sep = ""))))%>%
     dplyr::inner_join(patients, by = "patient_name") %>%
     dplyr::select(-"patient_name") %>%
     dplyr::mutate(
@@ -32,11 +30,11 @@ samples_htan <- function(){
       "Component" = "samples"
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   samples,
-  #   "",#update with folder id
-  #   "samples"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    samples,
+    "syn53678284",
+    "samples"
+  )
 
 }

@@ -23,13 +23,6 @@ patients_htan <- function(){
   )
 
 
-  vanderbilt_files <- c("syn38868669", #demographics
-                        "syn39051142", #diagnosis
-                        "syn39051632" #follow up
-  )
-
-
-  #For MSK
   files_path <- paste("inst/", msk_files, ".csv", sep = "") #locally stored, ideally will change to read directly from synapse
   msk_files <- purrr::map_dfr(files_path, read.csv) %>%
     dplyr::select(-c(Component, entityId, Id)) %>%
@@ -37,22 +30,8 @@ patients_htan <- function(){
     dplyr::summarise(across(everything(), ~dplyr::first(na.omit(.)))) %>%
     select_columns_patients()
 
-  #For Vanderbilt
-  files_path <- paste("inst/", vanderbilt_files, ".csv", sep = "") #locally stored, ideally will change to read directly from synapse
-  vanderbilt_files <- purrr::map_dfr(files_path, read.csv) %>%
-    dplyr::select(-c(Component, entityId, Id)) %>%
-    dplyr::group_by(HTAN.Participant.ID) %>%
-    dplyr::summarise(across(everything(), ~dplyr::first(na.omit(.)))) %>%
-    select_columns_patients()
 
-  vanderbilt_files$weight <-as.numeric(vanderbilt_files$weight)
-
-
-  patients <-
-    dplyr::bind_rows(
-      msk_files,
-      vanderbilt_files
-    ) %>%
+  patients <- msk_files %>%
     dplyr::mutate_at(c("ethnicity", "gender", "race"), ~tolower(.x)) %>%
     dplyr::mutate(
       "age_at_diagnosis" = floor(.data$age_at_diagnosis/365),
@@ -85,6 +64,11 @@ patients_htan <- function(){
     )
 
 
-  #readr::write_csv(patients, "synapse_storage_manifest.csv", na = "")
+  synapse_store_table_as_csv(
+    syn,
+    patients,
+    "syn53678248",
+    "patients"
+  )
 
 }
