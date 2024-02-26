@@ -103,8 +103,16 @@ tags_htan <- function() {
         as.vector()
 
     })
-  #order_seed[["TCGA_Study"]]$order <- 34
+  #we need to add manually data for the new parent groups, and for the ones that have NA for other levels
+  order_seed[["Tumor_tissue_type"]]$tag_order <- 1
+  order_seed[["Polyp_Histology"]]$tag_order <- 1
+  order_seed[["TCGA_Study"]]$tag_order <- 34
+  order_seed[["TCGA_Subtype"]]$tag_order <- NA_integer_
 
+  add_new_color <- function(n_groups, group_colors){
+    new_colors <- Polychrome::createPalette(n_groups, group_colors)
+    data.frame(new_colors[!is.na(names(new_colors))])
+  }
   new_colors_per_group <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
     purrr::map(.f= function(category){
@@ -119,8 +127,7 @@ tags_htan <- function() {
         dplyr::pull(tag_color)
 
       if(length(group_colors)>0){
-        new_colors <- Polychrome::createPalette(n_groups, group_colors)
-        data.frame(new_colors[!is.na(names(new_colors))])
+        add_new_color(n_groups, group_colors)
       }else{
         return(NULL)
       }
@@ -134,8 +141,22 @@ tags_htan <- function() {
   new_colors_per_group <- new_colors_per_group %>%
     dplyr::add_row(
       "parent_group" = "TCGA_Subtype",
-      "color" = NA_character_
-    )
+      "color" = "#868A88"
+    ) %>%
+    dplyr::add_row(
+      "parent_group" = "TCGA_Study",
+      "color" = "#868A88"
+    ) %>%
+    dplyr::add_row(
+      "parent_group" = "Tumor_tissue_type",
+      "color" = RColorBrewer::brewer.pal(nrow(dplyr::filter(new_categories, parent_group == "Tumor_tissue_type")), "Paired")
+    ) %>%
+    dplyr::add_row(
+      "parent_group" = "Polyp_Histology",
+      "color" = RColorBrewer::brewer.pal(nrow(dplyr::filter(new_categories, parent_group == "Polyp_Histology")), "Paired")
+    ) %>%
+    dplyr::arrange(parent_group)
+
 
 
   full_tags <- new_categories %>%
@@ -156,6 +177,13 @@ tags_htan <- function() {
       "tag_type" = "group",
       "order" = sum(.data$position, order_seed[[parent_group]]$tag_order)
     ) %>%
+    dplyr::mutate( #making sure the NAs entries have the right info
+      "color" = dplyr::case_when(
+        long_display == "Not available" ~ "#868A88",
+        long_display == "Unknown" ~ "#6D7575",
+        TRUE ~ color),
+      "description" = dplyr::if_else(long_display == "Not available", "Not available", color)
+    ) %>%
     dplyr::select(
       "name" = tag,
       "short_display",
@@ -165,17 +193,19 @@ tags_htan <- function() {
       "tag_type",
       "order"
     ) %>%
+    dplyr::add_row(parent_tags) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "tags"
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   tags,
-  #   "", #replace
-  #   "tags"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    full_tags,
+    "syn53697421",
+    "tags"
+  )
 
 
 }

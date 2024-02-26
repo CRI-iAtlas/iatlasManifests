@@ -1,20 +1,34 @@
-samples_to_tags_ici <- function() {
+samples_to_tags_htan_vanderbilt <- function() {
 
   require(magrittr)
   require(rlang)
   syn <- create_synapse_login()
 
+  #get data from Synapse
+
+  tags_htan <- synapse_csv_id_to_tbl(syn, "syn53623123") %>% #table with consolidated annotation that was created with htan_create_wide_table_vanderbilt.R
+    tidyr::pivot_longer(-c("HTAN.Biospecimen.ID", "HTAN.Parent.ID"),
+                        names_to = "parent_tag",
+                        values_to = "tag") %>%
+    dplyr::select(
+      "sample" = "HTAN.Biospecimen.ID",
+      "tag"
+    )
+
   samples <-
-    synapse_csv_id_to_tbl(syn, "syn51589463") %>%
+    synapse_csv_id_to_tbl(syn, "syn53678312") %>%
     dplyr::select(
       "sample_name" = "name",
       "sample_id" = "id"
     )
 
   tags <-
-    synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
+    synapse_csv_id_to_tbl(syn, "syn53697423") %>% #vanderbilt tags
     dplyr::add_row(
-      synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
+      synapse_csv_id_to_tbl(syn, "syn51613683") #ici tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn51080176")  #add tags from TCGA
     ) %>%
     dplyr::select(
       "tag_name" = "name",
@@ -28,11 +42,7 @@ samples_to_tags_ici <- function() {
 
 
   samples_to_tags <-
-    synapse_feather_id_to_tbl(syn, "syn25999169") %>% #replace
-    dplyr::add_row(
-      synapse_feather_id_to_tbl(syn, "syn27790795") #replace data from nanostring datasets
-    ) %>%
-    tidyr::drop_na() %>%
+    tags_htan %>%
     dplyr::left_join(tag_names, by = "tag", relationship = "many-to-many") %>%
     dplyr::mutate(
       "new_tag" = dplyr::if_else(
@@ -54,7 +64,7 @@ samples_to_tags_ici <- function() {
   synapse_store_table_as_csv(
     syn,
     samples_to_tags,
-    "syn52282785",
+    "syn53697618",
     "samples_to_tags"
   )
 
