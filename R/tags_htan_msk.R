@@ -1,4 +1,4 @@
-tags_htan <- function() {
+tags_htan_msk <- function() {
 
   require(magrittr)
   require(iatlasGraphQLClient)
@@ -8,25 +8,28 @@ tags_htan <- function() {
 
   #we will use a table with consolidated htan annotation that was created with htan_create_wide_tag_table.R
   #load wide table with clinical annotation for HTAN MSK and Vanderbilt
-  htan_tags <- dplyr::bind_rows(
-    synapse_csv_id_to_tbl(syn, "syn53605383"), #msk
-    synapse_csv_id_to_tbl(syn, "syn53623123") #vanderbilt
-  )
-  htan_labels <- dplyr::bind_rows(
-    synapse_csv_id_to_tbl(syn, "syn53605384"),#msk
-    synapse_csv_id_to_tbl(syn, "syn53627469")#vanderbilt
-  )
+  htan_tags <- synapse_csv_id_to_tbl(syn, "syn53605383")
+
+  htan_labels <- synapse_csv_id_to_tbl(syn, "syn53605384")%>%
+    dplyr::add_row(
+      "parent_tag" = "TCGA_Study",
+      "short_display" = "SCLC",
+      "name" = "SCLC"
+    )
 
   #load the current ici tags
   db_tags <- iatlasGraphQLClient::query_tags_with_parent_tags()
+  #we also need to add the tags added in the HTAN Vanderbilt dataset
+  vanderbilt_tags <- synapse_csv_id_to_tbl(syn, "syn53697423")
 
-  #Adding new parent groups
+  #1. ADDING NEW PARENT GROUP
 
   #check if we added a new parent group
-  new_parent_groups <- colnames(htan_tags)[!colnames(htan_tags) %in% db_tags$parent_tag_name]
-  #we added "Tumor_tissue_type" and "Polyp_Histology". HTAN.Biospecimen.ID and HTAN.Parent.ID are going to be renamed
+  parent_groups <- colnames(dplyr::select(htan_tags, -c("HTAN.Biospecimen.ID", "HTAN.Parent.ID")))
+  new_parent_groups <- parent_groups[!parent_groups %in% db_tags$parent_tag_name]
+  #we added "Tumor_tissue_type" and "Polyp_Histology", but we already added info about them in Vanderbilt, so no need to do it again
 
-
+  #2. ADDINNG NEW GROUPS
   #check if we have new levels
   htan_categories <- htan_tags %>%
     tidyr::pivot_longer(-c("HTAN.Biospecimen.ID", "HTAN.Parent.ID"), names_to = "parent_group", values_to = "tag") %>%
@@ -35,7 +38,8 @@ tags_htan <- function() {
 
   #new levels that need to be added
   new_categories <- htan_categories %>%
-    dplyr::filter(!tag %in% db_tags$tag_name)
+    dplyr::filter(!tag %in% db_tags$tag_name) %>%
+    dplyr::filter(!tag %in% vanderbilt_tags$name)
 
   description_templates <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
@@ -51,9 +55,19 @@ tags_htan <- function() {
 
     })
 
+  #Manually adding template for new categories
+  description_templates[["Tumor_tissue_type"]] <- data.frame(
+    "tag_short_display" = "XYZ",
+    "tag_characteristics" = "tumor tissue collected is XYZ"
+  )
+  description_templates[["TCGA_Study"]] <- data.frame(
+    "tag_short_display" = "SCLC",
+    "tag_characteristics" = "SCLC: Small Cell Lung Cancer"
+  )
+
   description_templates[["TCGA_Subtype"]] <- data.frame(
-    "tag_short_display" = "Not available",
-    "tag_characteristics" = "Not available"
+    "tag_short_display" = "SCLC-A",
+    "tag_characteristics" = "Subtype SCLC-A"
   )
 
   order_seed <-
@@ -70,7 +84,11 @@ tags_htan <- function() {
         as.vector()
 
     })
-  #order_seed[["TCGA_Study"]]$order <- 34
+  #we need to add manually data for the new parent groups, and for the ones that have NA for other levels
+  order_seed[["Tumor_tissue_type"]]$tag_order <- 7
+  order_seed[["TCGA_Study"]]$tag_order <- 33
+  order_seed[["TCGA_Subtype"]]$tag_order <- NA_integer_
+
 
   new_colors_per_group <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
@@ -101,8 +119,17 @@ tags_htan <- function() {
   new_colors_per_group <- new_colors_per_group %>%
     dplyr::add_row(
       "parent_group" = "TCGA_Subtype",
-      "color" = NA_character_
-    )
+      "color" = RColorBrewer::brewer.pal(nrow(dplyr::filter(new_categories, parent_group == "TCGA_Subtype")), "Paired")
+    ) %>%
+    dplyr::add_row(
+      "parent_group" = "TCGA_Study",
+      "color" = "#BEA222"
+    ) %>%
+    dplyr::add_row(
+      "parent_group" = "Tumor_tissue_type",
+      "color" = RColorBrewer::brewer.pal(nrow(dplyr::filter(new_categories, parent_group == "Tumor_tissue_type")), "Paired")
+    ) %>%
+    dplyr::arrange(parent_group)
 
 
   full_tags <- new_categories %>%
@@ -137,12 +164,12 @@ tags_htan <- function() {
       "Component" = "tags"
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   tags,
-  #   "", #replace
-  #   "tags"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    full_tags,
+    "syn53697422",
+    "tags"
+  )
 
 
 }
