@@ -11,6 +11,7 @@ cells_htan_msk <- function(){
       "cell_type" = dplyr::case_when(
         cell_type == "T cells" ~ "T cell",
         cell_type == "Myeloid" ~ "myeloid cell",
+        TRUE ~ cell_type
       )
     ) %>%
     dplyr::select(
