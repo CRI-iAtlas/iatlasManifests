@@ -34,14 +34,48 @@ cells_to_genes_htan_vanderbilt <- function() {
         "gene_id" = "id",
         "single_cell_seq") %>%
       dplyr::mutate(
-        "id" = uuid::UUIDgenerate(n = dplyr::n()),
-        "Component" = "cells_to_genes"
+        "id" = uuid::UUIDgenerate(n = dplyr::n())
       )
+
+  # synapse_store_table_as_csv(
+  #   syn,
+  #   cells_to_genes,
+  #   "syn53708096",
+  #   "cells_to_genes"
+  # )
+#we need to split this file in smaller files
+  synapse_store_table_as_csv(
+     syn,
+     all_msk[1:2303667,],
+     "syn53708096",
+     "cells_to_genes"
+     )
 
   synapse_store_table_as_csv(
     syn,
-    cells_to_genes,
-    "syn53708096",
+    all_msk[2303668:4607334,],
+    "syn53909814",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    all_msk[4607335:6911001,],
+    "syn53910296",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    all_msk[6911002:9214668,],
+    "syn53910297",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    all_msk[9214669:11518333,],
+    "syn53910366",
     "cells_to_genes"
   )
 

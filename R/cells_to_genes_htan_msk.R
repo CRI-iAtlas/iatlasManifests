@@ -38,14 +38,80 @@ cells_to_genes_htan_msk <- function() {
         "gene_id",
         "single_cell_seq") %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "cells_to_genes"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
+
+    #This data is too large and we'll save it in 10 different files
+
+  nrow_files <- as.integer(nrow(cells_to_genes)/10)
 
   synapse_store_table_as_csv(
     syn,
-    cells_to_genes,
+    cells_to_genes[1:nrow_files,],
     "syn53708005",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(nrow_files+1):(2*nrow_files),],
+    "syn53892120",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(2*nrow_files+1):(3*nrow_files),],
+    "syn53892193",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(3*nrow_files+1):(4*nrow_files),],
+    "syn53892255",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(4*nrow_files+1):(5*nrow_files),],
+    "syn53892368",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(5*nrow_files+1):(6*nrow_files),],
+    "syn53896643",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(6*nrow_files+1):(7*nrow_files),],
+    "syn53896670",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(7*nrow_files+1):(8*nrow_files),],
+    "syn53896728",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(8*nrow_files+1):(9*nrow_files),],
+    "syn53896835",
+    "cells_to_genes"
+  )
+
+  synapse_store_table_as_csv(
+    syn,
+    cells_to_genes[(9*nrow_files+1):nrow(cells_to_genes),],
+    "syn53896891",
     "cells_to_genes"
   )
 
