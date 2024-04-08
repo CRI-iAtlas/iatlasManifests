@@ -1,0 +1,100 @@
+Component,HTAN Participant ID,Days to Follow Up,Adverse Event,Progression or Recurrence,Barretts Esophagus Goblet Cells Present,BMI,Cause of Response,Comorbidity,Comorbidity Method of Diagnosis,Days to Adverse Event,Days to Comorbidity,Diabetes Treatment Type,Disease Response,DLCO Ref Predictive Percent,ECOG Performance Status,FEV1 FVC Post Bronch Percent,FEV 1 FVC Pre Bronch Percent,FEV1 Ref Post Bronch Percent,FEV1 Ref Pre Bronch Percent,Height,Hepatitis Sustained Virological Response,HPV Positive Type,Karnofsky Performance Status,Menopause Status,Pancreatitis Onset Year,Reflux Treatment Type,Risk Factor,Risk Factor Treatment,Viral Hepatitis Serologies,Weight,Adverse Event Grade,AIDS Risk Factors,Body Surface Area,CD4 Count,CDC HIV Risk Factors,Days to Imaging,Evidence of Recurrence Type,HAART Treatment Indicator,HIV Viral Load,Hormonal Contraceptive Use,Hysterectomy Margins Involved,Hysterectomy Type,Imaging Result,Imaging Type,Immunosuppressive Treatment Type,Nadir CD4 Count,Pregnancy Outcome,Recist Targeted Regions Number,Recist Targeted Regions Sum,Scan Tracer Used,entityId,Id,Days to Progression,Days to Progression Free,Days to Recurrence,Progression or Recurrence Anatomic Site,Progression or Recurrence Type
+FollowUp,HTA8_1023,26249,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983684,3afe8a87-35ce-43d6-8ad5-65d164a82758,,,25585.0,,
+FollowUp,HTA8_1024,26245,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983685,fe1e367a-ac36-42ae-af4d-c9d2f292d6f9,,,25526.0,,
+FollowUp,HTA8_1025,29418,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983686,d1ffdefa-44e4-40ce-b9a6-86f3c169e3d0,,,,,
+FollowUp,HTA8_1026,21089,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983687,c165c66f-46e6-4476-92c5-219ebc77f72c,,,19386.0,,
+FollowUp,HTA8_1027,23377,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983689,febb9060-1f5e-4720-983f-30a18b69d2bf,,,22073.0,,
+FollowUp,HTA8_1001,30133,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983690,6823099b-76d4-4391-b5c5-cb6d8ed3036b,,,,,
+FollowUp,HTA8_1002,24229,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983691,fd270f07-da3f-4f48-85ae-eed71dd12cf4,,,,,
+FollowUp,HTA8_1003,27549,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983692,584b11fc-0db7-41eb-b08b-78827a8ac102,,,,,
+FollowUp,HTA8_1004,27515,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983693,f895f102-e422-4ea4-bdae-7278bb64aa5e,,,27361.0,,
+FollowUp,HTA8_1005,29177,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983694,a534a547-e0ac-44c5-8456-e617832c993b,,,29037.0,,
+FollowUp,HTA8_1006,24461,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983695,22724955-2219-40b1-8864-998af90dec87,,,,,
+FollowUp,HTA8_1007,23200,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983696,e8956a1a-8151-453d-b467-efb4ff9beedf,,,23024.0,,
+FollowUp,HTA8_1008,23275,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983697,98285ee3-890d-47f3-8339-264d818981cb,,,22210.0,,
+FollowUp,HTA8_1009,24677,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983698,b18575ec-2c61-4ad9-a3cb-70321b19d20d,,,,,
+FollowUp,HTA8_1010,27623,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983699,83df057c-5e42-4aa8-b5a7-d92182185256,,,,,
+FollowUp,HTA8_1011,28322,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983700,561facfc-d6a9-4622-a92e-9dfb7f20f546,,,27994.0,,
+FollowUp,HTA8_1012,23457,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983701,3ea88d2d-b620-4776-920a-3cb70b954033,,,22133.0,,
+FollowUp,HTA8_1013,20504,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983702,54f5c3bd-1bc2-48ef-965d-e540441c2de4,,,,,
+FollowUp,HTA8_1014,28800,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983703,7241cb67-6c27-4556-a27a-1e4d9e15233e,,,,,
+FollowUp,HTA8_1015,23977,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983704,4a4860f6-f5d1-4ab4-a1b9-b8e4915944fd,,,23923.0,,
+FollowUp,HTA8_1016,25884,,unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983705,06907c03-1475-4d28-a72b-8b3d88e3b992,,,,,
+FollowUp,HTA8_1017,23643,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983706,354b5a03-d0e1-4b69-9223-e9dd1e4311b5,,,,,
+FollowUp,HTA8_1018,25930,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983707,465bf49d-cfdc-4b8c-b857-012c86711ab7,,,24738.0,,
+FollowUp,HTA8_1019,28652,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983708,c75a230c-bd38-42b9-ac3d-6970d2dc5c68,,,,,
+FollowUp,HTA8_1020,25172,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983709,ddb22975-2476-4879-948d-ffc2d6f8a013,,,,,
+FollowUp,HTA8_1021,14922,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983710,89ff2126-1785-4e08-ba39-4ff9d489d911,,,13801.0,,
+FollowUp,HTA8_1022,30140,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983711,ecd9f07d-d39c-453e-95c1-d48ca0bf08a0,,,29584.0,,
+FollowUp,HTA8_2001,24341,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983712,fb62c270-e864-4a1d-ad21-38646b6c53f4,,,23608.0,,
+FollowUp,HTA8_2002,24792,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983713,260aff9a-29d6-422a-a9eb-433f8df596c0,,,24736.0,,
+FollowUp,HTA8_2003,26685,,unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983714,ce141e40-b3a9-46c2-887a-3af80e05ef3b,,,,,
+FollowUp,HTA8_2004,19463,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983715,4d5b2c5b-d8cc-4764-a7cb-a52f09063b45,,,19302.0,,
+FollowUp,HTA8_2005,16945,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983716,3cdd7278-4c2a-489d-a573-75987eabfb3c,,,14711.0,,
+FollowUp,HTA8_2006,23740,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983717,a2f804e8-b7a7-424e-a078-98c71c23fd28,,,23662.0,,
+FollowUp,HTA8_2007,22967,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983718,a1c09c4c-0245-40d2-8e27-38d275143327,,,22365.0,,
+FollowUp,HTA8_2008,26927,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983719,e79f2104-3a92-4d2b-ad0c-6de035d1e58d,,,,,
+FollowUp,HTA8_2009,25767,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983720,a6a64a14-afac-412c-809c-cb4252d24d8c,,,25698.0,,
+FollowUp,HTA8_2010,21842,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983721,681f7930-49df-4a76-a12c-cc6d01b082c9,,,21842.0,,
+FollowUp,HTA8_2011,24570,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983722,c5f1c00d-8d16-4ea0-8a75-152c31b819ed,,,23677.0,,
+FollowUp,HTA8_2012,26866,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983723,be95e7b0-4b09-42e6-b069-40171f274823,,,26864.0,,
+FollowUp,HTA8_2013,25861,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983724,3ea12f18-be8e-4353-8526-7fd568a3c53e,,,,,
+FollowUp,HTA8_2014,26609,,unknown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983725,0e50d1b8-a86b-4f6f-812d-3b9abfcd4062,,,,,
+FollowUp,HTA8_2015,19488,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983726,5094cac1-3e6f-4f8e-b7ee-670a546dc8db,,,19452.0,,
+FollowUp,HTA8_2016,27917,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983727,6a7afac3-a0ee-492c-82ed-365c2e35baaf,,,27500.0,,
+FollowUp,HTA8_2017,24802,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983728,45b86f17-0e06-47bc-a044-5dd15670f0b7,,,24226.0,,
+FollowUp,HTA8_2018,23050,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983729,b2d62b15-a596-48f2-8363-0595bd38a77e,,,22267.0,,
+FollowUp,HTA8_2019,29068,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983730,4d90ab72-6f9f-4d5b-937e-e03056e04944,,,28547.0,,
+FollowUp,HTA8_3001,25884,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983731,33e0d267-33b4-40f2-b69d-517146e28c4c,,,,,
+FollowUp,HTA8_3002,28652,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983732,fd43cef9-9f2c-437b-987e-f112f7451a23,,,,,
+FollowUp,HTA8_3003,25172,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983733,28508204-10b9-4d90-8a26-e15455a9fa56,,,,,
+FollowUp,HTA8_3004,29740,,No,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,syn24983734,08b0e6e9-2f77-4d33-96fd-6526007a3861,,,,,
+FollowUp,HTA8_2020,26000,,Yes - Progression or Recurrence,,21.9,,,,,,,,,,,,,,162.0,,,,,,,,,,57.6,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485408,f2c5056c-f2dd-4c3b-99e6-bba2336952a6,25482.0,25482.0,25482.0,Brain NOS,Distant
+FollowUp,HTA8_2021,28101,,Yes - Progression or Recurrence,,25.6,,,,,,,,,,,,,,136.0,,,,,,,,,,47.4,,,,,,,,,,,,,,,,,,,,,syn26485409,5cff440e-4b70-4a09-82ff-41f519efa12b,28037.0,28037.0,28037.0,Brain NOS,Distant
+FollowUp,HTA8_2022,21135,,Yes - Progression or Recurrence,,32.4,,,,,,,,,,,,,,174.0,,,,,,,,,,98.1,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485410,175f0fc3-06ee-4792-b792-28f95afa4e32,20967.0,20967.0,20967.0,Spinal meninges,Distant
+FollowUp,HTA8_2023,25669,,No,,27.2,,,,,,,,,,,,,,185.5,,,,,,,,,,93.5,,,,,,,,,,,,,,,,,,,,,syn26485411,303dd676-a06f-45b8-8de4-ab2c30a5f95c,,,,,
+FollowUp,HTA8_2024,26192,,Yes - Progression or Recurrence,,20.3,,,,,,,,,,,,,,178.4,,,,,,,,,,64.7,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485412,24fca7c2-f576-4425-b885-15245c4370d8,25940.0,25940.0,25940.0,Lymph node NOS,Regional
+FollowUp,HTA8_2025,19942,,Yes - Progression or Recurrence,,23.3,,,,,,,,,,,,,,158.0,,,,,,,,,,58.2,,,,,,,,,,,,,,,,,,,,,syn26485413,77ff5b99-5259-427b-8f3b-2b358292d7c4,19157.0,19157.0,19157.0,Lymph nodes of head face and neck,Distant
+FollowUp,HTA8_2026,25934,,No,,17.7,,,,,,,,,,,,,,156.0,,,,,,,,,,43.0,,,,,,,,,,,,,,,,,,,,,syn26485414,4ae9f8eb-6b46-445b-8dc4-9c9215315343,,,,,
+FollowUp,HTA8_2027,21923,,Yes - Progression or Recurrence,,19.8,,,,,,,,,,,,,,157.5,,,,,,,,,,49.0,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485415,f15f7e7b-290a-4323-8de3-3cd381c5661d,21679.0,21679.0,21679.0,Lymph node NOS,Regional
+FollowUp,HTA8_2028,25347,,No,,22.7,,,,,,,,,,,,,,170.0,,,,,,,,,,65.5,,,,,,,,,,,,,,,,,,,,,syn26485416,12384914-4506-420e-b738-bf84700c222a,,,,,
+FollowUp,HTA8_2029,24530,,Yes - Progression or Recurrence,,18.0,,,,,,,,,,,,,,169.0,,,,,,,,,,51.3,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485417,c6b3dc75-9370-406f-8939-4d0d52494c48,24274.0,24274.0,24274.0,Lymph node NOS,Regional
+FollowUp,HTA8_2030,29455,,Yes - Progression or Recurrence,,25.8,,,,,,,,,,,,,,151.0,,,,,,,,,,58.8,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485418,1dc46d02-22be-498d-9c67-9c333a9b2fa3,28748.0,28748.0,28748.0,Lung NOS,Local
+FollowUp,HTA8_2031,27304,,Yes - Progression or Recurrence,,34.8,,,,,,,,,,,,,,156.0,,,,,,,,,,84.8,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485419,93a3162d-d298-4628-8ef2-1a16bd3e6cc1,25342.0,25342.0,25342.0,Lung NOS,Local
+FollowUp,HTA8_2032,20852,,Yes - Progression or Recurrence,,31.2,,,,,,,,,,,,,,152.2,,,,,,,,,,73.2,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485420,1ff8d6c3-f4e0-425e-ae8c-75e0b320ffcc,20575.0,20575.0,20575.0,Brain NOS,Distant
+FollowUp,HTA8_2033,29140,,Not Reported,,36.6,,,,,,,,,,,,,,169.0,,,,,,,,,,104.4,,,,,,,,,,,,,,,,,,,,,syn26485421,cc9f89fd-25d5-4c37-a4c6-956b6195114b,,,,,
+FollowUp,HTA8_2034,21759,,Yes - Progression or Recurrence,,28.7,,,,,,,,,,,,,,172.0,,,,,,,,,,84.9,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485422,9e2c338d-f94e-4e48-b307-c59330f96f9f,21733.0,21733.0,21733.0,Abdomen NOS,Distant
+FollowUp,HTA8_2035,24705,,Yes - Progression or Recurrence,,27.2,,,,,,,,,,,,,,187.5,,,,,,,,,,95.7,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485423,f4b03b18-d69e-44e4-845b-167b041000aa,24647.0,24647.0,24647.0,Abdomen NOS,Distant
+FollowUp,HTA8_2036,28225,,Yes - Progression or Recurrence,,28.9,,,,,,,,,,,,,,152.0,,,,,,,,,,66.7,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485424,0977aea1-fb4a-4751-aec3-aca25a99e746,27376.0,27376.0,27376.0,Adrenal gland NOS,Distant
+FollowUp,HTA8_2037,34320,,Yes - Progression or Recurrence,,27.7,,,,,,,,,,,,,,166.0,,,,,,,,,,76.3,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485425,8d8ff6ff-dbfe-4227-b5fa-04f11bb0d133,34136.0,34136.0,34136.0,Pleura NOS,Local
+FollowUp,HTA8_2038,26134,,No,,56.2,,,,,,,,,,,,,,144.0,,,,,,,,,,116.5,,,,,,,,,,,,,,,,,,,,,syn26485426,fdcd6ebb-ae6b-40f2-989c-ed43b1364335,,,,,
+FollowUp,HTA8_2039,22507,,Yes - Progression or Recurrence,,27.5,,,,,,,,,,,,,,188.0,,,,,,,,,,97.1,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485427,bb455feb-8430-4890-9a3d-ddbf6a26f562,22300.0,22300.0,22300.0,Brain NOS,Distant
+FollowUp,HTA8_2040,27148,,No,,24.04,,,,,,,,,,,,,,178.0,,,,,,,,,,76.2,,,,,,,,,,,,,,,,,,,,,syn26485428,39627225-833a-4b76-8a36-e28fc71e6191,,,,,
+FollowUp,HTA8_2041,26421,,Yes - Progression or Recurrence,,24.6,,,,,,,,,,,,,,162.0,,,,,,,,,,64.5,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485429,289aaca2-915f-4f30-b437-275762610182,26080.0,26080.0,26080.0,Lung NOS,Distant
+FollowUp,HTA8_2042,27046,,No,,24.3,,,,,,,,,,,,,,154.0,,,,,,,,,,57.7,,,,,,,,,,,,,,,,,,,,,syn26485430,25e947f6-ba25-45f6-b42b-9b77bb4d6833,,,,,
+FollowUp,HTA8_2043,27034,,Yes - Progression or Recurrence,,23.2,,,,,,,,,,,,,,179.0,,,,,,,,,,74.4,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485431,e55fa294-5a64-4235-b8de-71f0e30d4a55,26800.0,26800.0,26800.0,Brain NOS,Distant
+FollowUp,HTA8_2044,23931,,Yes - Progression or Recurrence,,21.2,,,,,,,,,,,,,,154.0,,,,,,,,,,50.3,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485432,34331002-62a3-477a-93f5-b499d131c1dd,21691.0,21691.0,21691.0,Lung NOS,Local
+FollowUp,HTA8_2045,26761,,No,,29.7,,,,,,,,,,,,,,162.0,,,,,,,,,,77.9,,,,,,,,,,,,,,,,,,,,,syn26485433,a9f06118-9024-4191-8fc4-403208c324e0,,,,,
+FollowUp,HTA8_2046,23591,,unknown,,24.0,,,,,,,,,,,,,,155.0,,,,,,,,,,57.6,,,,,,,,,,,,,,,,,,,,,syn26485434,8ea701e9-ac7d-4758-8c20-c879b18b4e1b,,,,,
+FollowUp,HTA8_2047,27205,,Yes - Progression or Recurrence,,30.7,,,,,,,,,,,,,,174.0,,,,,,,,,,93.0,,,,,,,,,,,,,,,,,,,,,syn26485435,0b56a88d-612d-4f2c-9bdc-5c95aa5a49ef,26379.0,26379.0,26379.0,Liver,Distant
+FollowUp,HTA8_2048,26822,,No,,37.8,,,,,,,,,,,,,,182.0,,,,,,,,,,125.1,,,,,,,,,,,,,,,,,,,,,syn26485436,7672193f-6290-46fc-9abf-046b19efa2ab,,,,,
+FollowUp,HTA8_2049,24488,,Yes - Progression or Recurrence,,15.5,,,,,,,,,,,,,,174.0,,,,,,,,,,46.9,,,,,,,,,,,,,,,,,,,,,syn26485437,ec572d22-daa6-4883-88a2-89eaa6f8057c,23324.0,23324.0,23324.0,Brain NOS,Distant
+FollowUp,HTA8_2050,29407,,Yes - Progression or Recurrence,,31.3,,,,,,,,,,,,,,175.0,,,,,,,,,,96.0,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485438,f8b00084-c4d7-4c49-83c2-acbb59317073,29360.0,29360.0,29360.0,Lung NOS,Distant
+FollowUp,HTA8_2051,24781,,No,,30.1,,,,,,,,,,,,,,149.7,,,,,,,,,,67.5,,,,,,,,,,,,,,,,,,,,,syn26485439,df5b1d76-1f46-476d-8818-f936842537e0,,,,,
+FollowUp,HTA8_2052,23981,,Yes - Progression or Recurrence,,32.0,,,,,,,,,,,,,,156.5,,,,,,,,,,78.4,,,,,,,,,,,,,,,,,,,,,syn26485440,728dc86b-faca-46c2-95cc-3103e6d9d710,21725.0,21725.0,21725.0,Lung NOS,Local
+FollowUp,HTA8_2053,26704,,Yes - Progression or Recurrence,,19.5,,,,,,,,,,,,,,171.0,,,,,,,,,,56.9,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485441,6b5a33a1-3b2a-48d8-89f8-890b0d1c6d3e,26582.0,26582.0,26582.0,Liver,Distant
+FollowUp,HTA8_2054,25222,,Yes - Progression or Recurrence,,31.6,,,,,,,,,,,,,,155.3,,,,,,,,,,76.1,,,,,,,Biopsy with Histologic Confirmation,,,,,,,,,,,,,,syn26485442,ef20021e-c1d5-48ed-86a1-7fef483b705c,24809.0,24809.0,24809.0,Lung NOS,Distant
+FollowUp,HTA8_2055,24808,,Yes - Progression or Recurrence,,31.3,,,,,,,,,,,,,,175.0,,,,,,,,,,96.0,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485443,8b1b4a5d-a5d3-4c2e-bc77-cd54a5f5b739,24373.0,24373.0,24373.0,Brain NOS,Distant
+FollowUp,HTA8_2056,24631,,Yes - Progression or Recurrence,,28.8,,,,,,,,,,,,,,180.0,,,,,,,,,,93.4,,,,,,,Convincing Image Source,,,,,,,,,,,,,,syn26485444,ab655cee-9394-4774-a83f-1cfe381eca53,24390.0,24390.0,24390.0,Lymph node NOS,Regional
+FollowUp,HTA8_2057,25000,,No,,36.59,,,,,,,,,,,,,,171.0,,,,,,,,,,107.0,,,,,,,,,,,,,,,,,,,,,syn38834000,7c11a444-3360-40d2-8f1d-0b4fc2e32322,,,,,
+FollowUp,HTA8_2058,28450,,No,,24.6,,,,,,,,,,,,,,159.0,,,,,,,,,,62.1,,,,,,,,,,,,,,,,,,,,,syn38834001,0acf49c6-742f-49db-beb4-1d85fb20ed5b,,,,,
+FollowUp,HTA8_1028,17981,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,161.0,,,,,,,,,,68.3,,,,,,,,,,,,,,,,,,,,,,5c398785-3010-42bb-ae65-9463bffd1705,15774.0,15774.0,15774.0,,
+FollowUp,HTA8_1029,21568,,No,,,,,,,,,,,,,,,,176.9,,,,,,,,,,70.3,,,,,,,,,,,,,,,,,,,,,,228a4c5f-69b7-4cbc-809a-e8fa8d8b5c9f,,,,,
+FollowUp,HTA8_1030,21121,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,176.0,,,,,,,,,,74.0,,,,,,,,,,,,,,,,,,,,,,79cad9c8-8f76-4019-91b1-932da90a181a,20242.0,20242.0,20242.0,Brain NOS,Distant
+FollowUp,HTA8_1031,20379,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,164.0,,,,,,,,,,68.5,,,,,,,,,,,,,,,,,,,,,,9b79e15d-8607-4207-8de9-3fe19a099b63,18866.0,18866.0,18866.0,Lung NOS,Local
+FollowUp,HTA8_1032,20905,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,170.8,,,,,,,,,,66.9,,,,,,,,,,,,,,,,,,,,,,bebd6103-cdee-4e4a-b261-fe848b9f12f3,19393.0,19393.0,19393.0,,
+FollowUp,HTA8_1033,28363,,No,,,,,,,,,,,,,,,,148.0,,,,,,,,,,54.1,,,,,,,,,,,,,,,,,,,,,,b54fc4d8-f726-424d-a675-9757de87c86a,,,,,
+FollowUp,HTA8_1034,22144,,No,,,,,,,,,,,,,,,,169.0,,,,,,,,,,71.2,,,,,,,,,,,,,,,,,,,,,,da07f4fb-e583-49fc-bbd9-1c3388f7e861,,,,,
+FollowUp,HTA8_1035,23945,,Yes - Progression or Recurrence,,,,,,,,,,,,,,,,154.0,,,,,,,,,,45.7,,,,,,,,,,,,,,,,,,,,,,eb4f4881-3a31-45f9-9da6-af6a9b5c5037,23716.0,23716.0,23716.0,Lung NOS,Local
+FollowUp,HTA8_1036,23092,,No,,,,,,,,,,,,,,,,180.1,,,,,,,,,,92.5,,,,,,,,,,,,,,,,,,,,,,f6544ed7-550e-4a17-990e-14c65c47f64c,,,,,
+FollowUp,HTA8_1037,24270,,unknown,,,,,,,,,,,,,,,,179.3,,,,,,,,,,80.9,,,,,,,,,,,,,,,,,,,,,,17daebfa-1bbb-4e0b-944a-682a15a1200c,,,,,
