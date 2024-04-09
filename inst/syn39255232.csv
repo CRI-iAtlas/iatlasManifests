@@ -1,0 +1,356 @@
+Component,HTAN Participant ID,Treatment or Therapy,Treatment Type,Treatment Effect,Treatment Outcome,Days to Treatment End,Treatment Anatomic Site,Days to Treatment Start,Initial Disease Status,Regimen or Line of Therapy,Therapeutic Agents,Treatment Intent Type,Chemo Concurrent to Radiation,Number of Cycles,Reason Treatment Ended,Treatment Arm,Treatment Dose,Treatment Dose Units,Treatment Effect Indicator,Treatment Frequency,entityId,Id
+Therapy,HTA8_1023,Yes,Surgery,,,25102.0,Upper lobe lung,25102.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988264,3bf6af82-5c22-428c-8026-9f0e66405dc2
+Therapy,HTA8_1023,Yes,Chemotherapy,,,25062.0,Upper lobe lung,24999.0,Initial Diagnosis,neoadjuvant,carboplatin+pemetrexed,Neoadjuvant,No,,Disease Progression,,,,,,syn24988265,11938abb-0888-4e5a-a3ed-6e08bb7e528e
+Therapy,HTA8_1023,Yes,Chemotherapy,,,25692.0,Upper lobe lung,25650.0,Recurrent Disease,1,carboplatin+paclitaxel,Cancer Control,No,,Other,,,,,,syn24988266,416b858c-14bf-47b8-aa20-4dca4ce7850f
+Therapy,HTA8_1024,Yes,Surgery,,,25102.0,Upper lobe lung,25102.0,Initial Diagnosis,,surgery,Cure,No,,Course of Therapy Completed,,,,,,syn24988267,e98b01c2-0f8c-45af-b678-46bc3fb35bbe
+Therapy,HTA8_1025,Yes,Surgery,,,28797.0,Upper lobe lung,28797.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988268,4644c90e-0255-4cfb-a832-b48b0eee61e2
+Therapy,HTA8_1025,Yes,Targeted Molecular Therapy,,,29274.0,Upper lobe lung,28684.0,Initial Diagnosis,neoadjuvant,osimertinib,Neoadjuvant,No,,Other,,,,,,syn24988269,865c4147-ce48-4b26-b4f6-f04d758b2068
+Therapy,HTA8_1025,Yes,Chemotherapy,,,29274.0,Upper lobe lung,28845.0,Initial Diagnosis,adjuvant,carboplatin+pemetrexed,Adjuvant,No,,Other,,,,,,syn24988270,cbd8eae2-8cf3-4180-8efa-8108eaf50727
+Therapy,HTA8_1026,Yes,Radiation External Beam,,,20109.0,Cerebellum NOS,20103.0,Initial Diagnosis,,radiation,Cancer Control,,,Course of Therapy Completed,,,,,,syn24988271,05309507-da07-4bd1-b668-4580c8e4ae22
+Therapy,HTA8_1026,Yes,Chemotherapy,,,19124.0,Lung NOS,19124.0,Initial Diagnosis,1,cisplatin+docetaxel,Cancer Control,No,,Adverse Therapy Event,,,,,,syn24988272,3db10d31-af8e-492a-91a1-420e64099f2b
+Therapy,HTA8_1026,Yes,Chemotherapy,,,19152.0,Lung NOS,19152.0,Progressive Disease,2,cisplatin+paclitaxel,Cancer Control,Yes,,Disease Progression,,,,,,syn24988273,4def423b-0b85-462f-a7a6-528b772ded48
+Therapy,HTA8_1026,Yes,Targeted Molecular Therapy,,,19386.0,Lung NOS,19161.0,Progressive Disease,3,erlotinib,Cancer Control,,,Disease Progression,,,,,,syn24988274,172a23e4-09f6-409d-814d-60e214195d3a
+Therapy,HTA8_1026,Yes,Chemotherapy,,,19724.0,Lung NOS,19442.0,Progressive Disease,4,carboplatin+premetrexed,Cancer Control,No,,Disease Progression,,,,,,syn24988275,58c1fe8c-6db2-4eeb-a4fb-1603d76b7e8b
+Therapy,HTA8_1026,Yes,Chemotherapy,,,19920.0,Lung NOS,19752.0,Progressive Disease,5,premetrexed+bevacizumab,Cancer Control,No,,Disease Progression,,,,,,syn24988276,49317869-fcc6-41ee-b515-cb7b5aa4923b
+Therapy,HTA8_1026,Yes,Chemotherapy,,,20140.0,Lung NOS,20140.0,Progressive Disease,6,cetuximab,Cancer Control,No,,Disease Progression,,,,,,syn24988277,5749cc96-48db-4346-b163-0481c632f4fd
+Therapy,HTA8_1026,Yes,Chemotherapy,,,20579.0,Lung NOS,20161.0,Progressive Disease,7,paclitaxel+trastuzumab,Cancer Control,No,,Disease Progression,,,,,,syn24988278,4e84d9a9-0049-4731-a44e-df5bb5f4c90b
+Therapy,HTA8_1026,Yes,Chemotherapy,,,20802.0,Lung NOS,20601.0,Progressive Disease,8,gemcitabine+trastuzumab,Cancer Control,No,,Disease Progression,,,,,,syn24988279,f668a3b4-d6e8-4cc0-bd81-e16d34fe9d6f
+Therapy,HTA8_1026,Yes,Targeted Molecular Therapy,,,21042.0,Lung NOS,20823.0,Progressive Disease,9,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988280,eeb8ce2c-d306-4473-ab67-ede8e2d2fff2
+Therapy,HTA8_1026,Yes,Chemotherapy,,,21042.0,Lung NOS,21000.0,Progressive Disease,10,ado-trastuzumab emtanisine,Cancer Control,No,,Disease Progression,,,,,,syn24988281,749e9654-d2e4-4d0d-88a5-fb87281a8556
+Therapy,HTA8_1027,Yes,Targeted Molecular Therapy,,,22196.0,Lung NOS,21590.0,Initial Diagnosis,1,erlotinib,Cancer Control,,,Disease Progression,,,,,,syn24988282,da27cfe1-8e23-4c18-957f-5b539e370185
+Therapy,HTA8_1027,Yes,Chemotherapy,,,22210.0,Lung NOS,22091.0,Progressive Disease,2,carboplatin+pemetrexed,Cancer Control,No,,Disease Progression,,,,,,syn24988283,e8e96521-de9a-49b1-a05b-d263c9154db2
+Therapy,HTA8_1027,Yes,Targeted Molecular Therapy,,,22653.0,Lung NOS,22219.0,Progressive Disease,3,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988284,08c45bac-6c1b-495c-90de-ea93554064c8
+Therapy,HTA8_1027,Yes,Targeted Molecular Therapy,,,22738.0,Lung NOS,22654.0,Progressive Disease,4,erlotinib+trametinib,Cancer Control,,,Disease Progression,,,,,,syn24988285,8742287f-1c24-4181-a86e-6ef011d06aa0
+Therapy,HTA8_1027,Yes,Chemotherapy,,,23368.0,Lung NOS,22773.0,Progressive Disease,5,docetaxcel+ramucirumab,Cancer Control,No,,Disease Progression,,,,,,syn24988286,20c4d7f9-a7cb-4081-a5b1-c1974d563252
+Therapy,HTA8_1027,Yes,Targeted Molecular Therapy,,,23368.0,Lung NOS,22920.0,Progressive Disease,5,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988287,790aac8d-d0b1-4fee-bc03-2b9bfd6d9982
+Therapy,HTA8_1027,Yes,Radiation External Beam,,,22129.0,Bone NOS,22118.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988288,d7e766cf-1293-469b-a8ac-76ae97d6a154
+Therapy,HTA8_1027,Yes,Radiation External Beam,,,22706.0,Bone NOS,22700.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988289,959f7203-40d5-43cd-a39b-34a880e45955
+Therapy,HTA8_1027,Yes,Radiation External Beam,,,22798.0,Brain NOS,22792.0,Progressive Disease,,radiation,Cancer Control,No,,Course of Therapy Completed,,,,,,syn24988290,4c290d0d-b9ac-4b6d-91fa-5c072a30de93
+Therapy,HTA8_1001,Yes,Surgery,,,29537.0,Upper lobe lung,29537.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988291,63935f47-282d-45ba-b390-cd44a913a736
+Therapy,HTA8_1002,Yes,Surgery,,,23472.0,Upper lobe lung,23472.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988292,d9dcf01b-e0bb-4b1e-bd7f-d7dc6fd1fdc2
+Therapy,HTA8_1002,Yes,Chemotherapy,,,23996.0,Upper lobe lung,23509.0,Initial Diagnosis,adjuvant,cisplatin+pemetrexed,Adjuvant,No,,Course of Therapy Completed,,,,,,syn24988293,96b575fc-b05c-45d9-ac36-6f3c2d204e51
+Therapy,HTA8_1003,Yes,Surgery,,,26798.0,Lung NOS,26798.0,Initial Diagnosis,,surgery,Cancer Control,,,Course of Therapy Completed,,,,,,syn24988294,a44afc18-203f-462c-a922-2487cc51eae7
+Therapy,HTA8_1003,Yes,Chemotherapy,,,27322.0,Lung NOS,27031.0,Progressive Disease,1,carboplatin+paclitaxel,Cancer Control,No,,Other,,,,,,syn24988295,db9ffe12-f446-47de-be10-03d59328b9c4
+Therapy,HTA8_1004,Yes,Surgery,,,27161.0,Lower lobe lung,27161.0,Initial Diagnosis,,surgery,Cure,No,,Course of Therapy Completed,,,,,,syn24988296,a64a69a6-8789-4b70-98f3-fef4e916f1fa
+Therapy,HTA8_1005,Yes,Surgery,,,28548.0,Upper lobe lung,28548.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988297,fbcca05c-04f4-4aac-b63b-aea9de9874f3
+Therapy,HTA8_1005,Yes,Chemotherapy,,,28501.0,Upper lobe lung,28459.0,Initial Diagnosis,adjuvant,carboplatin+pemetrexed,Adjuvant,No,,Disease Progression,,,,,,syn24988298,9dbd263d-ba4f-46aa-9614-05439a1883f1
+Therapy,HTA8_1005,Yes,Radiation External Beam,,,29137.0,Lung NOS,29094.0,Recurrent Disease,,radiation,Cancer Control,,,Course of Therapy Completed,,,,,,syn24988299,8b631438-3a1b-4b97-abea-a1cdb14479ce
+Therapy,HTA8_1006,Yes,Surgery,,,23823.0,Upper lobe lung,23823.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988300,c7e2bdeb-f84c-459e-9971-45ca0533bf76
+Therapy,HTA8_1006,Yes,Immunotherapy (Including Vaccines),,,23803.0,Upper lobe lung,23782.0,Initial Diagnosis,neoadjuvant,atezolizumab,Neoadjuvant,No,,Course of Therapy Completed,,,,,,syn24988301,ed1432f3-ce1d-4d35-94d6-98c6ce5d2683
+Therapy,HTA8_1006,Yes,Chemotherapy,,,23915.0,Upper lobe lung,23873.0,Initial Diagnosis,adjuvant,carboplatin+pemetrexed,Adjuvant,Yes,,Other,,,,,,syn24988302,1384e652-1580-4e8c-a99f-0b47a29cac77
+Therapy,HTA8_1007,Yes,Surgery,,,22884.0,Upper lobe lung,22884.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988303,b54b8fcb-1949-4701-a3ca-4fb29d8cf8c4
+Therapy,HTA8_1007,Yes,Chemotherapy,,,23024.0,Upper lobe lung,22945.0,Initial Diagnosis,adjuvant,carboplatin+pemetrexed,Adjuvant,No,,Disease Progression,,,,,,syn24988304,f00fc741-0c84-4e0b-9257-ad4036d41041
+Therapy,HTA8_1007,Yes,Immunotherapy (Including Vaccines),,,23200.0,Upper lobe lung,23053.0,Progressive Disease,1,pembrolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988305,2b1968fd-ea46-4c58-852d-c699e2d9cbfb
+Therapy,HTA8_1007,Yes,Radiation External Beam,,,23051.0,Lung NOS,23045.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988306,1416ddae-7f52-4d8b-b28e-dd12a15a7081
+Therapy,HTA8_1007,Yes,Radiation External Beam,,,23072.0,Lung NOS,23066.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988307,4906f83b-593b-4e4f-bfd5-ab6b25cc0bb7
+Therapy,HTA8_1007,Yes,Radiation External Beam,,,23173.0,Bone NOS,23169.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988308,ba63413f-bfe7-48aa-969a-81f05ba3fd10
+Therapy,HTA8_1008,Yes,Immunotherapy (Including Vaccines),,,22210.0,Lung NOS,22167.0,Initial Diagnosis,1,pembrolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988309,34effcbc-36ac-4298-bc73-d5e3caaf3748
+Therapy,HTA8_1008,Yes,Targeted Molecular Therapy,,,22611.0,Lung NOS,22225.0,Initial Diagnosis,2,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988310,550372d9-8339-494e-90ad-70d58cef0d69
+Therapy,HTA8_1008,Yes,Chemotherapy,,,23318.0,Lung NOS,22604.0,Progressive Disease,3,carboplatin+pemetrexed,Cancer Control,,,Disease Progression,,,,,,syn24988311,ea331254-11d4-4fff-b7aa-a2aaa5959c1f
+Therapy,HTA8_1008,Yes,Targeted Molecular Therapy,,,23318.0,Lung NOS,22762.0,Progressive Disease,4,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988312,ef70a8b3-b94b-47ef-b65d-d660ebec8c70
+Therapy,HTA8_1008,Yes,Radiation External Beam,,,22925.0,Brain NOS,23284.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988313,dba35219-5148-45cd-bfdb-75d8d7467ee8
+Therapy,HTA8_1008,Yes,Radiation External Beam,,,23045.0,Liver,23041.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988314,b24841ac-7b54-4a54-a6fa-4df82ab2a4fb
+Therapy,HTA8_1009,Yes,Surgery,,,24089.0,Upper lobe lung,24089.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988315,50030388-f549-4ca6-8f20-1b5279e82062
+Therapy,HTA8_1010,Yes,Chemotherapy,,,27061.0,Upper lobe lung,26998.0,Initial Diagnosis,neoadjuvant,cisplatin+pemetrexed,Neoadjuvant,Yes,,Course of Therapy Completed,,,,,,syn24988316,e4827c7e-2b8d-4aa2-814c-8f7b6ae70d0c
+Therapy,HTA8_1011,Yes,Chemotherapy,,,27982.0,Lung NOS,27959.0,Initial Diagnosis,1,carboplatin+etoposide,Cancer Control,No,,Disease Progression,,,,,,syn24988317,ba7ab230-3cef-4be1-ae07-cc7ab8737514
+Therapy,HTA8_1011,Yes,Immunotherapy (Including Vaccines),,,28183.0,Lung NOS,28035.0,Progressive Disease,2,nivolumab,Cancer Control,,,Other,,,,,,syn24988318,2e90dd1d-d6fb-44dc-924e-bf54f995758a
+Therapy,HTA8_1012,Yes,Surgery,,,21484.0,Lower lobe lung,21484.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988319,74a07389-bbd3-4495-a025-e65ca7734f0e
+Therapy,HTA8_1012,Yes,Chemotherapy,,,22133.0,Lung NOS,21541.0,Initial Diagnosis,adjuvant,cisplatin+vinorelbine,Adjuvant,No,,Disease Progression,,,,,,syn24988320,9110f61e-6738-4f00-a430-76a88c74dcd7
+Therapy,HTA8_1012,Yes,Targeted Molecular Therapy,,,23269.0,Lung NOS,22352.0,Progressive Disease,1,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988321,df861f84-d3ad-4916-b99c-1a8d2e592f97
+Therapy,HTA8_1012,Yes,Radiation External Beam,,,22178.0,Brain NOS,22173.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988322,37ffc0c0-3693-4be8-b250-b60ad7a8e930
+Therapy,HTA8_1013,Yes,Surgery,,,19356.0,Lung NOS,19356.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988323,3ca8226f-6132-49e5-bd41-12f8ebc349f1
+Therapy,HTA8_1014,Yes,Surgery,,,27514.0,Upper lobe lung,27514.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988324,c317d793-ef54-407a-b9df-2b7ed12e1c6e
+Therapy,HTA8_1015,Yes,Targeted Molecular Therapy,,,23837.0,Lung NOS,23837.0,Initial Diagnosis,1,afatinib,Cancer Control,,,Disease Progression,,,,,,syn24988325,c6801b64-4b1d-453c-ac85-0daa95495556
+Therapy,HTA8_1015,Yes,Chemotherapy,,,23905.0,Lung NOS,23870.0,Progressive Disease,2,carboplatin+pemetrexed,Cancer Control,,,Disease Progression,,,,,,syn24988326,935f3909-fe35-450d-ab57-10801dbcc695
+Therapy,HTA8_1015,Yes,Radiation External Beam,,,23581.0,Bone NOS,23575.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988327,2622ca8e-e6ee-4d59-9bb4-848b74b62e03
+Therapy,HTA8_1016,Yes,Surgery,,,25609.0,Lung NOS,25609.0,Initial Diagnosis,,surgery,Cancer Control,,,Course of Therapy Completed,,,,,,syn24988328,4d64cfd1-91cd-4b97-adc4-ac78cf861e85
+Therapy,HTA8_1016,Yes,Targeted Molecular Therapy,,,25762.0,Lung NOS,25640.0,Residual Disease,1,erlotinib,Cancer Control,,,Other,,,,,,syn24988329,8a75f89f-2496-43d5-a6ea-6b1bc05d42a0
+Therapy,HTA8_1017,Yes,Surgery,,,22364.0,Lung NOS,22364.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988330,281744c9-7f0f-4b45-aff4-13531e157d07
+Therapy,HTA8_1018,Yes,Chemotherapy,,,24738.0,Lung NOS,23820.0,Initial Diagnosis,adjuvant,cisplatin+vinorelbine,Adjuvant,Yes,,Disease Progression,,,,,,syn24988331,4ce5acb8-69f7-46c4-b687-a6bf27b1a14a
+Therapy,HTA8_1018,Yes,Surgery,,,23771.0,Lung NOS,23771.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988332,af375db6-e671-4ab6-b7c2-5597e5869ad0
+Therapy,HTA8_1018,Yes,Radiation External Beam,,,25584.0,Brain NOS,25580.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988333,6472420d-8938-4f22-9b4f-8b3adfeb0b14
+Therapy,HTA8_1018,Yes,Radiation External Beam,,,25678.0,Brain NOS,25667.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988334,efa791fc-1066-4099-8c0b-55696e68ff00
+Therapy,HTA8_1019,Yes,Surgery,,,27517.0,Lung NOS,27517.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988335,120ec448-b5e5-4175-a248-c101cec5d3cf
+Therapy,HTA8_1020,Yes,Surgery,,,24193.0,Lung NOS,24193.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988336,705233d6-5d6f-4f4f-a0cc-77bfe1c1e701
+Therapy,HTA8_1021,Yes,Chemotherapy,,,13811.0,Lung NOS,13740.0,Initial Diagnosis,1,carboplatin+paclitaxel,Cancer Control,,,Disease Progression,,,,,,syn24988337,f8cc2fab-d52e-414d-81c7-e97917a01730
+Therapy,HTA8_1021,Yes,Immunotherapy (Including Vaccines),,,14088.0,Lung NOS,13828.0,Progressive Disease,2,tremelimumab+durvalumab,Cancer Control,,,Disease Progression,,,,,,syn24988338,d9d962f5-2bb6-4f52-8119-933d8d161b67
+Therapy,HTA8_1021,Yes,Immunotherapy (Including Vaccines),,,14922.0,Lung NOS,14125.0,Progressive Disease,3,nivolumab,Cancer Control,,,Disease Progression,,,,,,syn24988339,7379742f-a6ac-421d-a0ff-cbbd4021460a
+Therapy,HTA8_1021,Yes,Radiation External Beam,,,14049.0,Adrenal gland NOS,14041.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988340,d8a13e70-eb65-48a7-8af7-3b8a377aa35f
+Therapy,HTA8_1021,Yes,Radiation External Beam,,,14139.0,Adrenal gland NOS,14132.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988341,0507ea90-eb70-4d13-8806-7f3f7ee0ee5a
+Therapy,HTA8_1022,Yes,Surgery,,,28469.0,Upper lobe lung,28469.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988342,a828b36b-eabd-4ecd-9bdc-49af9ed12b0f
+Therapy,HTA8_1022,Yes,Chemotherapy,,,28442.0,Lung NOS,28379.0,Initial Diagnosis,neoadjuvant,carboplatin+pemetrexed,Neoadjuvant,No,,Course of Therapy Completed,,,,,,syn24988343,4340e6f8-a7ea-48c8-8c4a-f8df0eab06e3
+Therapy,HTA8_1022,Yes,Targeted Molecular Therapy,,,29885.0,Lung NOS,28533.0,Initial Diagnosis,adjuvant,erlotinib,Adjuvant,No,,Disease Progression,,,,,,syn24988344,c5cab542-ae61-4b28-97a7-bd0d7a63d5a3
+Therapy,HTA8_1022,Yes,Targeted Molecular Therapy,,,30120.0,Lung NOS,29906.0,Progressive Disease,1,osimertinib,Cancer Control,,,Disease Progression,,,,,,syn24988345,6b48a69a-2451-4bae-b9b1-22cb235d2068
+Therapy,HTA8_1022,Yes,Radiation External Beam,,,29634.0,Brain NOS,29630.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988346,559eabd8-ae3c-401e-a72e-79a08affb834
+Therapy,HTA8_1022,Yes,Radiation External Beam,,,30047.0,Nervous system NOS,30045.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988347,85c491bc-9eab-4340-a978-8bc4fbeaaeb2
+Therapy,HTA8_2001,Yes,Chemotherapy,,,23388.0,Lung NOS,23284.0,Initial Diagnosis,1,carboplatin+etoposide,Cancer Control,,,Disease Progression,,,,,,syn24988348,a5bf6192-9d0c-4915-ad01-1155d09c4984
+Therapy,HTA8_2001,Yes,Immunotherapy (Including Vaccines),,,23647.0,Lung NOS,23633.0,Progressive Disease,2,ipilimumab+nivolumab,Cancer Control,,,Disease Progression,,,,,,syn24988349,04003d5c-b2dc-4e65-8384-938e1d10de77
+Therapy,HTA8_2001,Yes,Chemotherapy,,,23867.0,Lung NOS,23718.0,Progressive Disease,3,temozolomide,Cancer Control,,,Disease Progression,,,,,,syn24988350,56047a5c-d21a-499f-958d-28c36f751d57
+Therapy,HTA8_2001,Yes,Targeted Molecular Therapy,,,24018.0,Lung NOS,23880.0,Progressive Disease,4,oral etoposide,Cancer Control,,,Disease Progression,,,,,,syn24988351,be1a5126-b1c7-4ca3-8cbf-f12b7a0a9f3b
+Therapy,HTA8_2001,Yes,Chemotherapy,,,24067.0,Lung NOS,24067.0,Progressive Disease,5,pemetrexed+bevacizumab,Cancer Control,,,Disease Progression,,,,,,syn24988352,18fb601e-20ec-4aec-b364-52081459d62d
+Therapy,HTA8_2001,Yes,Targeted Molecular Therapy,,,24183.0,Lung NOS,24112.0,Progressive Disease,6,oral topotecan,Cancer Control,,,Disease Progression,,,,,,syn24988353,46bb2080-a4f9-4531-9ed0-05dbb7371c1d
+Therapy,HTA8_2001,Yes,Chemotherapy,,,24231.0,Lung NOS,24202.0,Progressive Disease,7,gemcitabine,Cancer Control,,,Disease Progression,,,,,,syn24988354,e6e13188-aa37-42b6-a572-62bda2eae1cf
+Therapy,HTA8_2001,Yes,Chemotherapy,,,24263.0,Lung NOS,24246.0,Progressive Disease,8,temozolomide,Cancer Control,,,Disease Progression,,,,,,syn24988355,8b575029-3bc2-47e2-aaee-d8228a5d6385
+Therapy,HTA8_2001,Yes,Chemotherapy,,,24312.0,Lung NOS,24266.0,Progressive Disease,9,paclitaxel,Cancer Control,,,Disease Progression,,,,,,syn24988356,8d126c8b-d421-4c4a-9a5d-2216621dd130
+Therapy,HTA8_2001,Yes,Radiation External Beam,,,23441.0,Lung NOS,23427.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988357,62bf62e3-a17b-4d4c-9cf3-9f9409f4136c
+Therapy,HTA8_2001,Yes,Radiation External Beam,,,24190.0,Lung NOS,24181.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988358,05299bd8-5bf3-4f93-adb2-06b27db604dd
+Therapy,HTA8_2001,Yes,Radiation External Beam,,,24293.0,Lung NOS,24287.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988359,19a1539f-946c-4bc8-8cc5-29169eb2d936
+Therapy,HTA8_2002,Yes,Other,,,24738.0,Lung NOS,24498.0,Initial Diagnosis,1,cisplatin+etoposide+atezolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988360,26112d26-0c15-4ac7-b51f-d153de0b0a2f
+Therapy,HTA8_2002,Yes,Targeted Molecular Therapy,,,24763.0,Lung NOS,24763.0,Progressive Disease,2,valemetostat+irinotecan,Cancer Control,,,Disease Progression,,,,,,syn24988361,15bde0cd-95f3-43f4-af47-793738682d37
+Therapy,HTA8_2002,Yes,Radiation External Beam,,,24673.0,Lung NOS,24659.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988362,a623fe2e-8d6b-4aec-95a0-9f1d094feebb
+Therapy,HTA8_2002,Yes,Radiation External Beam,,,24673.0,Brain NOS,24659.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988363,95761bc6-b879-416c-9e74-960722441793
+Therapy,HTA8_2003,Yes,Surgery,,,26250.0,Lung NOS,26250.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988364,d67dc3ea-c062-4edf-8859-8349767477f8
+Therapy,HTA8_2003,Yes,Chemotherapy,,,26666.0,Lung NOS,26285.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,No,,Other,,,,,,syn24988365,6e990a50-4808-45e9-a772-2ea2d368673c
+Therapy,HTA8_2004,Yes,Other,,,19300.0,Lung NOS,18970.0,Initial Diagnosis,1,carboplatin+etoposide+atezolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988366,3e3888a2-7f28-4deb-ae88-a5afac3f5e97
+Therapy,HTA8_2004,Yes,Chemotherapy,,,19319.0,Lung NOS,19319.0,Progressive Disease,2,temozolomide,Cancer Control,,,Disease Progression,,,,,,syn24988367,d066d0cc-9e5c-400e-a6bf-6efe81020a1e
+Therapy,HTA8_2004,Yes,Chemotherapy,,,19392.0,Lung NOS,19371.0,Progressive Disease,3,irinotecan,Cancer Control,,,Disease Progression,,,,,,syn24988368,bb01f933-9fe5-4995-bccc-6e77594dc371
+Therapy,HTA8_2004,Yes,Radiation External Beam,,,19145.0,Lung NOS,19130.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988369,816a0cb3-cbdb-4a78-84dc-1cd91fc55107
+Therapy,HTA8_2005,Yes,Concurrent Chemoradiation,,,14481.0,Lung NOS,14400.0,Initial Diagnosis,chemoRT,cisplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn24988370,bfef7ef6-6adc-4c77-9d16-1a936de62bdb
+Therapy,HTA8_2005,Yes,Chemotherapy,,,14754.0,Lung NOS,14729.0,Progressive Disease,1,carboplatin+etoposide (rechallenge),Cancer Control,,,Disease Progression,,,,,,syn24988371,df86ae86-509d-456b-8cc1-019575f61e18
+Therapy,HTA8_2005,Yes,Chemotherapy,,,15067.0,Lung NOS,14771.0,Progressive Disease,2,temozolomide+ABT888,Cancer Control,,,Disease Progression,,,,,,syn24988372,fa084e4f-654a-44b6-afb6-d8d50c193548
+Therapy,HTA8_2005,Yes,Chemotherapy,,,15283.0,Lung NOS,15067.0,Progressive Disease,3,temozolomide alone,Cancer Control,,,Disease Progression,,,,,,syn24988373,94ad1f1f-93d5-443a-be88-3779df261345
+Therapy,HTA8_2005,Yes,Chemotherapy,,,16297.0,Lung NOS,15949.0,Progressive Disease,4,temozolomide (rechallenge),Cancer Control,,,Disease Progression,,,,,,syn24988374,0a85e68a-e589-4450-9761-c3b02030d991
+Therapy,HTA8_2005,Yes,Immunotherapy (Including Vaccines),,,16731.0,Lung NOS,16710.0,Progressive Disease,5,ipilimumab+nivolumab,Cancer Control,,,Disease Progression,,,,,,syn24988375,0bef4e4a-e2a1-4f4f-82a5-bed7d31de208
+Therapy,HTA8_2005,Yes,Chemotherapy,,,16920.0,Lung NOS,16913.0,Progressive Disease,6,irinotecan,Cancer Control,,,Disease Progression,,,,,,syn24988376,03bcb3dd-0a3e-4c80-824a-a7880f122751
+Therapy,HTA8_2005,Yes,Radiation External Beam,,,14747.0,Brain NOS,14736.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988377,60b53432-3b69-4a68-ab89-5aa5e5085350
+Therapy,HTA8_2005,Yes,Radiation External Beam,,,15180.0,Lung NOS,15170.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988378,c0dd8d97-2d8c-4327-ba6b-3b0906b7949b
+Therapy,HTA8_2005,Yes,Radiation External Beam,,,15354.0,Abdomen NOS,15348.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988379,7a17615a-a604-408a-81ad-6ce902cab49b
+Therapy,HTA8_2005,Yes,Radiation External Beam,,,16643.0,Adrenal gland NOS,16636.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988380,d9381d4f-2d26-4784-930e-a065bdf60249
+Therapy,HTA8_2005,Yes,Radiation External Beam,,,16845.0,Brain NOS,16840.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988381,166f4977-0df8-4955-b7f9-9c8073adc946
+Therapy,HTA8_2006,Yes,Other,,,23662.0,Lung NOS,23515.0,Initial Diagnosis,1,carboplatin+etoposide+atezolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988382,1c675357-9eb5-441c-a538-4a3021e82a40
+Therapy,HTA8_2006,Yes,Chemotherapy,,,23732.0,Lung NOS,23689.0,Progressive Disease,2,valemetostat+irinotecan,Cancer Control,,,Disease Progression,,,,,,syn24988383,543e6f4d-9edd-40e3-b68a-1538551bf758
+Therapy,HTA8_2007,Yes,Concurrent Chemoradiation,,,21317.0,Lung NOS,21202.0,Initial Diagnosis,chemoRT,cis-carboplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn24988384,a1800815-2e03-4646-99dc-2bfda423daac
+Therapy,HTA8_2007,Yes,Chemotherapy,,,22445.0,Lung NOS,22377.0,Progressive Disease,1,carboplatin+etoposide,Cancer Control,,,Disease Progression,,,,,,syn24988385,1019ffcf-f729-44f2-96c7-b2d475bd5cdb
+Therapy,HTA8_2008,Yes,Surgery,,,26319.0,Upper lobe lung,26319.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988386,b78df475-b64c-43eb-ba7c-73d226e174c4
+Therapy,HTA8_2008,Yes,Chemotherapy,,,26808.0,Lung NOS,26354.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,No,,Other,,,,,,syn24988387,ab204bc4-8bc6-4ccd-b158-e87b2492fede
+Therapy,HTA8_2009,Yes,Other,,,25698.0,Lung NOS,25232.0,Initial Diagnosis,1,carboplatin+etoposide+atezolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988388,c21816e2-5f18-4e17-a2ff-436b8abdb8b2
+Therapy,HTA8_2009,Yes,Chemotherapy,,,25742.0,Lung NOS,25712.0,Progressive Disease,2,carboplatin+etoposide,Cancer Control,,,Disease Progression,,,,,,syn24988389,b8cadafe-b3a1-4593-95b2-856c382d6465
+Therapy,HTA8_2009,Yes,Radiation External Beam,,,25422.0,Lung NOS,25411.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988390,79eb2ef2-5062-4b2f-b74e-246d6c2f614b
+Therapy,HTA8_2009,Yes,Radiation External Beam,,,25559.0,Lymph node NOS,25546.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988391,0a83228e-5a67-40a4-acb5-794aec3f5923
+Therapy,HTA8_2009,Yes,Radiation External Beam,,,25642.0,Abdomen NOS,25636.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988392,0e3c7146-1068-4394-b3f8-6c40ca6482fc
+Therapy,HTA8_2010,Yes,Surgery,,,21822.0,Upper lobe lung,21822.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988393,7b1a72ca-3d72-4ef1-ac29-148838947412
+Therapy,HTA8_2010,Yes,Chemotherapy,,,21788.0,Lung NOS,21760.0,Initial Diagnosis,neoadjuvant,cisplatin+etoposide,Neoadjuvant,No,,Disease Progression,,,,,,syn24988394,cf2fc102-b8fa-46aa-89c5-8683d5161456
+Therapy,HTA8_2011,Yes,Concurrent Chemoradiation,,,23677.0,Upper lobe lung,23420.0,Initial Diagnosis,chemoRT,carboplatin+etoposide,Cure,Yes,,Disease Progression,,,,,,syn24988395,bfe3dfc9-eb55-4bd1-8b96-39359deed68f
+Therapy,HTA8_2011,Yes,Chemotherapy,,,23855.0,Lung NOS,23713.0,Progressive Disease,1,carboplatin+etoposide (rechallenge),Cancer Control,,,Disease Progression,,,,,,syn24988396,6da47cf8-59ae-48de-875f-f70b6733c554
+Therapy,HTA8_2011,Yes,Surgery,,,24553.0,Lung NOS,24553.0,Progressive Disease,,surgery,Cancer Control,,,Course of Therapy Completed,,,,,,syn24988397,70165175-1824-4f92-a25e-3af2fcf504b3
+Therapy,HTA8_2011,Yes,Immunotherapy (Including Vaccines),,,24535.0,Lung NOS,23909.0,Progressive Disease,2,ipilimumab+nivolumab,Cancer Control,,,Disease Progression,,,,,,syn24988398,b5f2eeed-44c0-42b8-8ad4-e40936dc46d9
+Therapy,HTA8_2011,Yes,Radiation External Beam,,,23519.0,Brain NOS,23508.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988399,0b2949cd-629f-4e8c-a134-a8a252e4334c
+Therapy,HTA8_2011,Yes,Radiation External Beam,,,24528.0,Lung NOS,24153.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988400,e28bd85f-d5fa-41f8-a505-42dbdfb43461
+Therapy,HTA8_2012,Yes,Other,,,26864.0,Lung NOS,26679.0,Initial Diagnosis,1,carboplatin+etoposide+atezolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988401,2441380a-f9b9-43b3-9ccc-43ec0f005723
+Therapy,HTA8_2013,Yes,Surgery,,,25433.0,Lower lobe lung,25433.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988402,c82de19d-0a7f-4273-a8a3-cf5b56e42c6a
+Therapy,HTA8_2013,Yes,Chemotherapy,,,25558.0,Lung NOS,25483.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,No,,Other,,,,,,syn24988403,f8386717-180a-4ba8-b9d4-ad5455104b17
+Therapy,HTA8_2014,Yes,Concurrent Chemoradiation,,,26489.0,Lung NOS,26385.0,Initial Diagnosis,chemoRT,cisplatin+etoposide,Cure,Yes,,Other,,,,,,syn24988404,a30c7958-fd03-411c-97f2-e91f9182bd83
+Therapy,HTA8_2015,Yes,Other,,,19386.0,Lung NOS,19320.0,Initial Diagnosis,1,carboplatin+etoposide+atezolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988405,6cf5e65d-7e87-4531-96c6-3926ac65bb5f
+Therapy,HTA8_2015,Yes,Other,,,19484.0,Lung NOS,19462.0,Progressive Disease,2,valemetostat+irinotecan,Cancer Control,,,Disease Progression,,,,,,syn24988406,6d375cdd-77b7-414e-96c1-c3afc924d75d
+Therapy,HTA8_2016,Yes,Concurrent Chemoradiation,,,26685.0,Lung NOS,26611.0,Initial Diagnosis,chemoRT,carbplatin+etoposide,Cure,Yes,,Disease Progression,,,,,,syn24988407,c6ebaf66-23a7-4496-8703-a35fcb1bdf96
+Therapy,HTA8_2016,Yes,Chemotherapy,,,27631.0,Lung NOS,27542.0,Progressive Disease,1,carboplatin+etoposide (rechallenge),Cancer Control,,,Disease Progression,,,,,,syn24988408,0d22e4f7-69e0-4c33-8c2b-9d82be2761f8
+Therapy,HTA8_2017,Yes,Chemotherapy,,,24211.0,Lung NOS,24097.0,Initial Diagnosis,1,carboplatin+etoposide,Cancer Control,,,Disease Progression,,,,,,syn24988409,b7f6069e-2868-469b-9cb5-6f50c802809d
+Therapy,HTA8_2017,Yes,Immunotherapy (Including Vaccines),,,24489.0,Lung NOS,24258.0,Progressive Disease,2,ipilimumab+nivolumab,Cancer Control,,,Disease Progression,,,,,,syn24988410,f796bece-317f-4af7-8a42-fbb9d0aaa4a6
+Therapy,HTA8_2017,Yes,Chemotherapy,,,24762.0,Lung NOS,24582.0,Progressive Disease,3,irinotecan,Cancer Control,,,Disease Progression,,,,,,syn24988411,126b6415-0184-45e8-9406-46a638ba84eb
+Therapy,HTA8_2017,Yes,Radiation External Beam,,,24297.0,Lymph nodes of axilla or arm,24293.0,Residual Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988412,dfb98d1a-f456-4592-8ee8-c0dcc5ce9c8c
+Therapy,HTA8_2018,Yes,Surgery,,,22861.0,Upper lobe lung,22861.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988413,6840acb4-2be9-4b67-83ef-1f0bebbbe909
+Therapy,HTA8_2018,Yes,Chemotherapy,,,22969.0,Lung NOS,22887.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Cure,No,,Disease Progression,,,,,,syn24988414,6403a234-49f0-49f5-af7e-2ed36036d4d8
+Therapy,HTA8_2018,Yes,Immunotherapy (Including Vaccines),,,23001.0,Lung NOS,23001.0,Progressive Disease,1,nivolumab,Cancer Control,,,Disease Progression,,,,,,syn24988415,d89dee9f-d903-4bd4-be4a-f8859808800e
+Therapy,HTA8_2018,Yes,Chemotherapy,,,23044.0,Lung NOS,23044.0,Progressive Disease,2,cyclophosphamide+doxorubicin+vincristine,Cancer Control,,,Disease Progression,,,,,,syn24988416,7a040ee9-cf26-4d2d-8667-85f5dde4bb48
+Therapy,HTA8_2019,Yes,Other,,,28547.0,Lung NOS,28295.0,Initial Diagnosis,1,carboplatin+etoposide+pembrolizumab,Cancer Control,,,Disease Progression,,,,,,syn24988417,3059f047-b849-4e71-b3fa-31b6e19beed9
+Therapy,HTA8_2019,Yes,Radiation External Beam,,,28990.0,Liver,28984.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988418,41c354ef-5bf2-494a-8d25-84d884d58b48
+Therapy,HTA8_2019,Yes,Radiation External Beam,,,29059.0,Mediastinum NOS,29046.0,Progressive Disease,,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn24988419,dba4af53-4730-4b40-8b2b-56d0f1499b2d
+Therapy,HTA8_3001,No,,,,,,,,,,,,,,,,,,,syn24988420,09f0d1c0-9311-4662-9b2e-c6168e117cab
+Therapy,HTA8_3002,No,,,,,,,,,,,,,,,,,,,syn24988421,44ddb2f0-e7a6-4d34-b559-0db4fcf5c395
+Therapy,HTA8_3003,No,,,,,,,,,,,,,,,,,,,syn24988422,eccd715e-bb76-4ff6-86e4-4032843d66db
+Therapy,HTA8_3004,Yes,Surgery,,,28466.0,Upper lobe lung,28466.0,Initial Diagnosis,,surgery,Cure,,,Course of Therapy Completed,,,,,,syn24988423,34fe3020-b8f4-4938-8718-134a50c684eb
+Therapy,HTA8_2020,Yes,Chemotherapy,,,25473.0,Lung NOS,25293.0,Initial Diagnosis,1,cisplatin+etoposide+LDE225,Cancer Control,No,,Disease Progression,,,,,,syn26485736,b11efcc2-ab2b-4f89-8c90-7ff1bcdf22f2
+Therapy,HTA8_2020,Yes,Stereotactic Radiosurgery,,,25516.0,Brain NOS,25516.0,Progressive Disease,palliative RT,radiation,Palliative,No,,Course of Therapy Completed,,,,,,syn26485737,260e03ec-5b05-49be-83ac-95253092d2dd
+Therapy,HTA8_2020,Yes,unknown,,,25763.0,Lung NOS,25536.0,Progressive Disease,2,rovalpituzumab,Cancer Control,No,,Disease Progression,,,,,,syn26485738,bb66f75a-f91f-41e2-bae2-8acd7544d8f0
+Therapy,HTA8_2020,Yes,Surgery,,,25951.0,Lung NOS,25951.0,Progressive Disease,surgery,,Cancer Control,No,,Course of Therapy Completed,,,,,,syn26485739,8b5a6978-6498-4e29-84ab-ea8eec8a1c94
+Therapy,HTA8_2021,Yes,Surgery,,,28000.0,Upper lobe lung,28000.0,Initial Diagnosis,surgery,,Cure,No,,Course of Therapy Completed,,,,,,syn26485740,ef35c3c6-14a9-4824-9303-6ff6b7992a62
+Therapy,HTA8_2022,Yes,Concurrent Chemoradiation,,,20899.0,Lung NOS,20771.0,Initial Diagnosis,chemoRT,carboplatin+etoposide,Cure,Yes,,Disease Progression,,,,,,syn26485741,013e4e7f-29b0-40e4-947a-16c18d188954
+Therapy,HTA8_2022,Yes,External Beam Radiation,,,20811.0,Lung NOS,20790.0,Initial Diagnosis,definitive RT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485742,39fc50d2-8d27-4f29-9da0-c06de4a479dc
+Therapy,HTA8_2022,Yes,External Beam Radiation,,,20927.0,Brain NOS,20916.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485743,933add6b-f287-4800-93ee-a4739c2108b8
+Therapy,HTA8_2022,Yes,Chemotherapy,,,21130.0,Lung NOS,20983.0,Progressive Disease,1,temozolomide,Cancer Control,,,Death,,,,,,syn26485744,bfbfa0de-d09f-4305-b3ee-e957a6b04bf9
+Therapy,HTA8_2022,Yes,External Beam Radiation,,,20975.0,Spinal cord,20968.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485745,b730d1e1-94fc-45a0-a1f6-30d70717cc38
+Therapy,HTA8_2022,Yes,External Beam Radiation,,,20982.0,Spinal cord,20976.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485746,6092b63b-d313-4892-93b8-1790c58a183c
+Therapy,HTA8_2022,Yes,External Beam Radiation,,,21032.0,Spinal cord,21028.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485747,7b0d7286-9091-4ed2-b637-e7271a2d39b2
+Therapy,HTA8_2022,Yes,External Beam Radiation,,,21030.0,Spinal cord,21025.0,Progressive Disease,palliative RT,radiation,,,,Course of Therapy Completed,,,,,,syn26485748,46b725ce-0eff-435a-a076-701b16d01eb5
+Therapy,HTA8_2023,Yes,Surgery,,,23024.0,Lung NOS,23024.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485749,3a6a354b-7533-480a-879b-21c278de8d14
+Therapy,HTA8_2023,Yes,Concurrent Chemoradiation,,,23148.0,Lung NOS,23076.0,Initial Diagnosis,chemoRT,carboplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485750,d536c246-8b74-4a3c-bd57-d172288b6275
+Therapy,HTA8_2023,Yes,External Beam Radiation,,,23120.0,Lung NOS,23099.0,Initial Diagnosis,definitive RT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485751,a0c6f252-8163-4a7e-9026-9797cff36127
+Therapy,HTA8_2023,Yes,External Beam Radiation,,,23209.0,Brain NOS,23196.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485752,dbfa6cc0-15b3-46a6-9a87-f24347faf272
+Therapy,HTA8_2024,Yes,Chemotherapy,,,25760.0,Lung NOS,25688.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Cure,No,,Course of Therapy Completed,,,,,,syn26485753,6bc3d613-c7d6-46c0-bc29-33b8f5553422
+Therapy,HTA8_2024,Yes,External Beam Radiation,,,25830.0,Brain NOS,25819.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485754,a70598d7-797b-470e-b406-8561b370dd3d
+Therapy,HTA8_2024,Yes,Chemotherapy,,,25980.0,Lung NOS,25959.0,Progressive Disease,1,cyclophosphamide+vincristine+doxorubicin,Cancer Control,No,,Disease Progression,,,,,,syn26485755,529164c4-575a-4da3-918f-d58c56071dd0
+Therapy,HTA8_2024,Yes,Chemotherapy,,,26052.0,Lung NOS,26031.0,Progressive Disease,2,temozolomide,Cancer Control,No,,,,,,,,syn26485756,3e7a3411-710e-46a9-a662-7ff425f69dd0
+Therapy,HTA8_2024,Yes,External Beam Radiation,,,26060.0,Brain NOS,26060.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485757,b4c14b70-faaf-470f-86eb-512e27fc4cab
+Therapy,HTA8_2024,Yes,External Beam Radiation,,,26086.0,Lymph nodes of multiple regions,26072.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485758,ea5735f6-08ad-4066-9149-5f83213d6732
+Therapy,HTA8_2024,Yes,External Beam Radiation,,,26130.0,Brain NOS,26117.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485759,31443e87-3f88-42fe-bd9c-2add41de2694
+Therapy,HTA8_2025,Yes,Chemotherapy,,,19034.0,Lung NOS,18976.0,Initial Diagnosis,chemoRT,cisplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485760,06037de1-acb8-463a-b0d1-f59ccf0c3c46
+Therapy,HTA8_2025,Yes,External Beam Radiation,,,19009.0,Lung NOS,18976.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485761,8cdfef3d-6979-4a8c-89c9-2a1abd364211
+Therapy,HTA8_2025,Yes,External Beam Radiation,,,,Brain NOS,,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485762,2df49a18-5bc8-42af-a57d-464e10718900
+Therapy,HTA8_2025,Yes,Immunotherapy (Including Vaccines),,,19310.0,Lung NOS,19188.0,Recurrent Disease,1,ipilimumab+nivolumab,Cancer Control,No,,Disease Progression,,,,,,syn26485763,66b4421e-098b-4c04-8aea-6f7d75fdeaaa
+Therapy,HTA8_2025,Yes,Targeted Molecular Therapy,,,19491.0,Lung NOS,19400.0,Progressive Disease,2,osimertinib,Cancer Control,No,,Disease Progression,,,,,,syn26485764,4582f1fd-8bee-4e0c-92bb-e787a5cd66bc
+Therapy,HTA8_2025,Yes,Chemotherapy,,,19583.0,Lung NOS,19553.0,Progressive Disease,3,topotecan,Cancer Control,No,,Disease Progression,,,,,,syn26485765,b100b0fa-94fe-4a0d-9229-ff3e02251265
+Therapy,HTA8_2025,Yes,Other,,,19675.0,Lung NOS,19614.0,Progressive Disease,4,carboplatin+etoposide+atezolizumab,Cancer Control,No,,Disease Progression,,,,,,syn26485766,1df8a47a-3976-4f7d-a3bf-a514d09d7cab
+Therapy,HTA8_2025,Yes,Chemotherapy,,,19765.0,Lung NOS,19734.0,Progressive Disease,5,temozolomide,Cancer Control,No,,Disease Progression,,,,,,syn26485767,280d5078-374d-4298-9f63-56d23511a6da
+Therapy,HTA8_2026,Yes,Surgery,,,23560.0,Lung NOS,23560.0,Initial Diagnosis,surgery,,Cure,No,,Course of Therapy Completed,,,,,,syn26485768,8c1480ed-76d9-44c5-8f95-fc8865c826d1
+Therapy,HTA8_2026,Yes,Chemotherapy,,,23679.0,Lung NOS,23614.0,Initial Diagnosis,adjuvant,cis-carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485769,f0b9e5b6-ce8d-43c0-9615-c031f40c9460
+Therapy,HTA8_2026,Yes,External Beam Radiation,,,23733.0,Brain NOS,23720.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485770,8dbc3e57-ec28-4a44-8112-3a5b1fcf0337
+Therapy,HTA8_2027,Yes,Chemotherapy,,,21580.0,Lung NOS,21515.0,Initial Diagnosis,1,cisplatin+etoposide,Cancer Control,No,,Disease Progression,,,,,,syn26485771,d1c849e2-8439-4d1a-9316-d45318f6922f
+Therapy,HTA8_2027,Yes,External Beam Radiation,,,21620.0,Brain NOS,21607.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485772,ff3b6656-c0a7-43e9-865c-b84ad7c88a61
+Therapy,HTA8_2027,Yes,External Beam Radiation,,,21634.0,Lung NOS,21621.0,Residual Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485773,75070513-983a-4f86-bbf0-2b3ad88802e2
+Therapy,HTA8_2027,Yes,Pharmaceutical Therapy NOS,,,21755.0,Lung NOS,21707.0,Progressive Disease,2,SC16LD6.5,Cancer Control,,,Disease Progression,,,,,,syn26485774,8f3150d5-4a93-434b-a826-a205a7d51e0c
+Therapy,HTA8_2027,Yes,Chemotherapy,,,21894.0,Lung NOS,21837.0,Progressive Disease,3,temozolomide,Cancer Control,,,Death,,,,,,syn26485775,b44f156c-2329-478a-95f1-1f78aeeaf1c9
+Therapy,HTA8_2028,Yes,Surgery,,,24876.0,Lung NOS,24876.0,Initial Diagnosis,surgery,,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485776,fc682a22-179a-4b17-a6dd-f57cf33f2176
+Therapy,HTA8_2028,Yes,Chemotherapy,,,24994.0,Lung NOS,24924.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,Yes,,Course of Therapy Completed,,,,,,syn26485777,a22dc046-0ae0-4bc3-9bcd-96db668a33b0
+Therapy,HTA8_2028,Yes,External Beam Radiation,,,25051.0,Brain NOS,25038.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485778,cd5d12d8-40b9-44e3-801b-4495f76fc684
+Therapy,HTA8_2028,Yes,External Beam Radiation,,,25094.0,Lung NOS,25056.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485779,b82786c1-1393-443f-8969-8d0832f00a8d
+Therapy,HTA8_2029,Yes,Surgery,,,24175.0,Lung NOS,24175.0,Initial Diagnosis,surgery,,Cure,No,,Course of Therapy Completed,,,,,,syn26485780,0d598446-5925-4aec-8bc8-c75674764562
+Therapy,HTA8_2030,Yes,Chemotherapy,,,28776.0,Lung NOS,28335.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,Yes,,Disease Progression,,,,,,syn26485781,d7dc2c99-4cd0-4c52-9613-988d909971c2
+Therapy,HTA8_2030,Yes,Chemotherapy,,,29197.0,,29076.0,Progressive Disease,2,temozolomide,Cancer Control,No,,Disease Progression,,,,,,syn26485782,39afa2e8-a9c3-418b-a57b-10c29cbb8e0c
+Therapy,HTA8_2030,Yes,Pharmaceutical Therapy NOS,,,29351.0,Lung NOS,29267.0,Progressive Disease,3,SC16LD6.5,,,,Disease Progression,,,,,,syn26485783,08214823-d4c1-426b-8034-0a4b066c41c2
+Therapy,HTA8_2030,Yes,Surgery,,,28299.0,Lung NOS,28299.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485784,16048f96-3406-4d6a-8bbe-cbbd9ea892e3
+Therapy,HTA8_2030,Yes,External Beam Radiation,,,28910.0,Lung NOS,28889.0,Recurrent Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485785,a0f92420-edef-44f6-b0b8-d02ff004a404
+Therapy,HTA8_2030,Yes,Chemotherapy,,,28925.0,Lung NOS,28859.0,Recurrent Disease,1,carboplatin+etoposide,Cancer Control,Yes,,Disease Progression,,,,,,syn26485786,34e0481b-7fa5-46a1-8a98-3dc9b0b1d4cd
+Therapy,HTA8_2031,Yes,Chemotherapy,,,25099.0,Lung NOS,25027.0,Initial Diagnosis,chemoRT,carboplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485787,22d1db5a-ea58-4475-945a-1d48dc250797
+Therapy,HTA8_2031,Yes,External Beam Radiation,,,25109.0,Lung NOS,25078.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485788,5c9e1e65-e418-4ea7-94ce-3b4a277af85a
+Therapy,HTA8_2031,Yes,External Beam Radiation,,,25491.0,Brain NOS,25475.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485789,fcbbf1b7-7ed3-4953-b9a0-ae24064944d1
+Therapy,HTA8_2031,Yes,Surgery,,,25370.0,Lung NOS,25370.0,Residual Disease,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485790,37e4e29e-9448-4806-bbd6-98296354abb1
+Therapy,HTA8_2031,Yes,Chemotherapy,,,25805.0,Lung NOS,25761.0,Residual Disease,adjuvant,carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485791,789aaa46-b860-47eb-8a86-6769b6859acf
+Therapy,HTA8_2032,Yes,Surgery,,,20176.0,,20176.0,Initial Diagnosis,surgery,,Cure,No,,Course of Therapy Completed,,,,,,syn26485792,7d1122f6-37ac-438e-b9f5-70bd00f636d4
+Therapy,HTA8_2032,Yes,Chemotherapy,,,20280.0,Lung NOS,20215.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485793,5ecf6d33-ff98-4db1-b022-5ceaa42529e2
+Therapy,HTA8_2032,Yes,External Beam Radiation,,,20339.0,Brain NOS,20327.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485794,0de6ceec-09d5-4fde-bec7-8252a14e4211
+Therapy,HTA8_2032,Yes,External Beam Radiation,,,20672.0,Brain NOS,20672.0,Recurrent Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485795,7b905a41-4756-475d-a1c0-f235c15d61e5
+Therapy,HTA8_2033,Yes,Surgery,,,29109.0,Lung NOS,29109.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485796,7ffd1dcf-24a5-4930-b628-624862a4bc7b
+Therapy,HTA8_2034,Yes,Chemotherapy,,,21600.0,Lung NOS,21528.0,Initial Diagnosis,chemoRT,cisplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485797,8e76f3d4-838e-4c0a-89ff-803255ccee74
+Therapy,HTA8_2034,Yes,External Beam Radiation,,,21567.0,Lung NOS,21549.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485798,6117fafe-41ca-4601-ac75-a8d7dff95549
+Therapy,HTA8_2034,Yes,External Beam Radiation,,,21641.0,Brain NOS,21628.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485799,d13eb3b9-0b00-4ded-b151-4b08f840affd
+Therapy,HTA8_2035,Yes,Surgery,,,23904.0,Lower lobe lung,23904.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485800,898bf5e0-4c4b-46e5-8b93-698ebc67396d
+Therapy,HTA8_2035,Yes,Chemotherapy,,,24045.0,Lung NOS,23931.0,Initial Diagnosis,chemoRT,cis-carboplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485801,075e8ef9-40b3-44df-be84-982f42d724c5
+Therapy,HTA8_2035,Yes,External Beam Radiation,,,24088.0,Lung NOS,24077.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485802,b37dbcff-d2a6-4f62-b8d1-2ceb6184fdfc
+Therapy,HTA8_2035,Yes,External Beam Radiation,,,24088.0,Brain NOS,24077.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485803,18e681a8-5b64-473a-8d1d-1e892246f6e8
+Therapy,HTA8_2035,Yes,External Beam Radiation,,,24703.0,Lung NOS,24697.0,Recurrent Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485804,59b21e94-6296-496a-b810-0943e82c68b6
+Therapy,HTA8_2035,Yes,Immunotherapy (Including Vaccines),,,24680.0,Lung NOS,24659.0,Recurrent Disease,1,ipilimumab+nivolumab,Cancer Control,,,Death,,,,,,syn26485805,5cf81e4f-3c4d-4de7-ab54-67513e0be0b4
+Therapy,HTA8_2036,Yes,Surgery,,,26347.0,Lung NOS,26347.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485806,b0e94910-d918-460a-b8e6-a606075601d3
+Therapy,HTA8_2036,Yes,Chemotherapy,,,26455.0,Lung NOS,26383.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485807,1565ab4b-da38-4d8d-b545-a525b6a8893b
+Therapy,HTA8_2036,Yes,External Beam Radiation,,,26536.0,Mediastinum NOS,26502.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485808,0d60e397-ea5a-4ec5-bae3-d45982000413
+Therapy,HTA8_2036,Yes,Chemotherapy,,,27538.0,Lung NOS,27426.0,Recurrent Disease,1,carboplatin+etoposide,Cancer Control,,,Other,,,,,,syn26485809,88e448d7-0686-4213-a4d6-7fd8665d1443
+Therapy,HTA8_2037,Yes,Surgery,,,33284.0,Lung NOS,33284.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485810,1dd48906-9848-460a-8a31-8bc8c127137d
+Therapy,HTA8_2038,Yes,Chemotherapy,,,24297.0,Lung NOS,24176.0,Initial Diagnosis,chemoRT,carboplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485811,e691721f-de22-4cfe-9488-18b6a2c53350
+Therapy,HTA8_2038,Yes,External Beam Radiation,,,24244.0,Lung NOS,24203.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485812,d001c290-cb9b-491c-9bf6-bf7d568a7ebf
+Therapy,HTA8_2039,Yes,Surgery,,,22063.0,Lung NOS,22063.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485813,497c06b4-aecf-4357-8e7f-6866ff8591e0
+Therapy,HTA8_2039,Yes,Chemotherapy,,,22189.0,Lung NOS,22110.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485814,4b0139a5-2b1c-46f2-ae68-f61b291c2753
+Therapy,HTA8_2039,Yes,External Beam Radiation,,,22314.0,Brain NOS,22303.0,Recurrent Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485815,dd2943d9-8d66-493d-8997-dfd140336101
+Therapy,HTA8_2040,Yes,Chemotherapy,,,26173.0,Lung NOS,26124.0,Initial Diagnosis,neoadjuvant,gemcitabine+cisplatin,Neoadjuvant,No,,Course of Therapy Completed,,,,,,syn26485816,c30f350a-154c-48e4-b11e-cb3b04c3461f
+Therapy,HTA8_2040,Yes,Surgery,,,26206.0,Lung NOS,26206.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485817,d0148b47-26a8-42df-9f2b-a283cb54e00b
+Therapy,HTA8_2040,Yes,Chemotherapy,,,26278.0,Lung NOS,26255.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485818,4c686383-3483-459e-ac73-ab334ebf8a56
+Therapy,HTA8_2041,Yes,Surgery,,,25574.0,Lung NOS,25574.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485819,c29c2581-a2d5-4912-858e-394c6979d284
+Therapy,HTA8_2041,Yes,Chemotherapy,,,25708.0,Lung NOS,25647.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485820,61d2b0d1-8341-4a70-bfce-26681ed673ff
+Therapy,HTA8_2041,Yes,External Beam Radiation,,,25830.0,Brain NOS,25816.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485821,2c417a1a-e909-47fd-b06a-269896b14f03
+Therapy,HTA8_2042,Yes,Surgery,,,25456.0,Lung NOS,25456.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485822,0e90a051-51b4-4a75-87d0-eb1101e519b1
+Therapy,HTA8_2042,Yes,Chemotherapy,,,25575.0,Lung NOS,25496.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485823,1376de7a-2d44-44a2-8d37-26e96e78c64c
+Therapy,HTA8_2043,Yes,Surgery,,,26597.0,Brain NOS,26597.0,Initial Diagnosis,surgery,,Cancer Control,,,Course of Therapy Completed,,,,,,syn26485824,693f38d9-047f-474d-ae39-35565542b63b
+Therapy,HTA8_2043,Yes,Chemotherapy,,,,Brain NOS,,Residual Disease,1,carboplatin+etoposide,Cancer Control,,,Disease Progression,,,,,,syn26485825,7b70024e-a307-4e1f-8f8d-1eef15877061
+Therapy,HTA8_2043,Yes,Stereotactic Radiosurgery,,,26815.0,Brain NOS,26815.0,Residual Disease,palliative RT,radiation,Cancer Control,,,Course of Therapy Completed,,,,,,syn26485826,04d3127e-af51-4386-8e50-a42c9ab64e42
+Therapy,HTA8_2043,Yes,Stereotactic Radiosurgery,,,26866.0,Brain NOS,26866.0,Residual Disease,palliative RT,radiation,Cancer Control,,,Course of Therapy Completed,,,,,,syn26485827,c7d6bbbd-dda3-428b-9a70-3076d9d59f0e
+Therapy,HTA8_2044,Yes,Chemotherapy,,,21235.0,Lung NOS,21146.0,Initial Diagnosis,chemoRT,cisplatin+etoposide,,Yes,,Course of Therapy Completed,,,,,,syn26485828,52de29c6-65c1-4d64-bc84-cfe826a7abaa
+Therapy,HTA8_2044,Yes,External Beam Radiation,,,21237.0,,21146.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485829,5932227b-5b2b-4696-9bb3-735f8fd933c7
+Therapy,HTA8_2044,Yes,External Beam Radiation,,,21281.0,Brain NOS,21270.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485830,f721e0df-b029-490c-843f-30cecd59899f
+Therapy,HTA8_2044,Yes,Chemotherapy,,,21785.0,Lung NOS,21724.0,Recurrent Disease,1,carboplatin+etoposide,Cancer Control,Yes,,Other,,,,,,syn26485831,5c652fdb-dfc5-4863-8f58-5af934f570f7
+Therapy,HTA8_2044,Yes,External Beam Radiation,,,,Mediastinum NOS,,Recurrent Disease,palliative RT,radiation,Cancer Control,Yes,,Course of Therapy Completed,,,,,,syn26485832,4cf2183c-1f47-4086-a6dd-6187a477bbfe
+Therapy,HTA8_2045,Yes,Chemotherapy,,,22507.0,Lung NOS,22436.0,Initial Diagnosis,chemoRT,cisplatin+etoposide,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485833,1fd570c7-a7fe-407a-bf59-be7aa3942685
+Therapy,HTA8_2045,Yes,External Beam Radiation,,,22484.0,Lung NOS,22463.0,Initial Diagnosis,chemoRT,radiation,Cancer Control,Yes,,Course of Therapy Completed,,,,,,syn26485834,fb8d68dc-afed-4ddc-bfc0-cbd5b90dfba9
+Therapy,HTA8_2045,Yes,Surgery,,,22411.0,Lung NOS,22411.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485835,3181397f-5dfc-4ef2-87c4-34bee392a030
+Therapy,HTA8_2046,No,,,,,,,,,,,,,,,,,,,syn26485836,ae820fd2-12b3-4b14-8fb8-3794a38f62a7
+Therapy,HTA8_2047,Yes,Surgery,,,26183.0,Lung NOS,26183.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485837,4019eca3-95c6-47b9-8901-1785826b9ab5
+Therapy,HTA8_2047,Yes,Chemotherapy,,,26268.0,Lung NOS,26207.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,Yes,,Course of Therapy Completed,,,,,,syn26485838,bf867ac2-09ea-40d8-9cf3-01ecad3b67cc
+Therapy,HTA8_2047,Yes,External Beam Radiation,,,26333.0,Brain NOS,26322.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485839,6a623af8-3eb4-46f5-a0ea-00a6b108033f
+Therapy,HTA8_2047,Yes,External Beam Radiation,,,26633.0,Lung NOS,26572.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485840,8a31484b-5605-48bb-ade5-ab9eb1aba237
+Therapy,HTA8_2048,Yes,Surgery,,,24443.0,Lung NOS,24443.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485841,49dc1b5f-826b-46cf-8deb-284040e0c4a1
+Therapy,HTA8_2048,Yes,Chemotherapy,,,24542.0,Lung NOS,24463.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485842,0e13cf00-4209-4ead-b67e-bdcebd93e15a
+Therapy,HTA8_2049,Yes,Surgery,,,23115.0,Lung NOS,23115.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485843,a807b46d-db8d-4186-a886-3eb9e0ec5e4d
+Therapy,HTA8_2049,Yes,Chemotherapy,,,23221.0,Lung NOS,23149.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,,,Disease Progression,,,,,,syn26485844,70c8f9a0-7dcb-41ee-a7a4-8a8ece7c94ee
+Therapy,HTA8_2049,Yes,External Beam Radiation,,,23372.0,Brain NOS,23359.0,Recurrent Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485845,8259310c-aaf1-42ca-b461-6fed3be741f5
+Therapy,HTA8_2049,Yes,Chemotherapy,,,24409.0,Lung NOS,24339.0,Progressive Disease,1,pemetrexed,Cancer Control,,,Death,,,,,,syn26485846,63f5b85b-cdc9-4b3a-b19c-29a5b8cce8d8
+Therapy,HTA8_2050,Yes,Surgery,,,29136.0,Lung NOS,29136.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485847,0aa5616b-f05f-49f2-bfd7-07a37743b2a9
+Therapy,HTA8_2050,Yes,Chemotherapy,,,29258.0,Lung NOS,29194.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,Yes,,Course of Therapy Completed,,,,,,syn26485848,692f45f6-2274-4da6-9ab7-e9c8d7d71b63
+Therapy,HTA8_2050,Yes,External Beam Radiation,,,29326.0,Lung NOS,29286.0,Initial Diagnosis,,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485849,e0fed64d-3826-46cb-b0b1-7c91101e3a05
+Therapy,HTA8_2051,Yes,Surgery,,,23248.0,Lung NOS,23248.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485850,5ecbe1dd-ac79-4869-9870-7bab7ad29b7f
+Therapy,HTA8_2051,Yes,Chemotherapy,,,23409.0,Lung NOS,23325.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485851,facbaaa6-6d77-4605-94d2-e00d1510e8f6
+Therapy,HTA8_2052,Yes,Surgery,,,22012.0,Lung NOS,22012.0,Recurrent Disease,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485852,5f0a051d-7eee-4a52-b05e-15ed47fd171f
+Therapy,HTA8_2052,Yes,Chemotherapy,,,21524.0,Lung NOS,21403.0,Initial Diagnosis,neoadjuvant,cisplatin+etoposide,Cure,,,Disease Progression,,,,,,syn26485853,06cdbc5f-2331-49db-94f7-c4d095dfc8bf
+Therapy,HTA8_2052,Yes,Chemotherapy,,,21804.0,Lung NOS,21739.0,Recurrent Disease,1,cisplatin+etoposide,Cancer Control,Yes,,Course of Therapy Completed,,,,,,syn26485854,eb9674fb-cf8e-4dcb-9ae2-6e7f44bf3054
+Therapy,HTA8_2052,Yes,External Beam Radiation,,,21447.0,Lung NOS,21431.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485855,cc90ac4f-eeaf-4d8d-b34e-523ddbc15d57
+Therapy,HTA8_2052,Yes,External Beam Radiation,,,21573.0,Brain NOS,21553.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485856,a2656936-c9d5-4941-8e4b-a016d67b09b0
+Therapy,HTA8_2052,Yes,External Beam Radiation,,,21867.0,Lung NOS,21858.0,Recurrent Disease,palliative RT,radiation,Cancer Control,Yes,,Course of Therapy Completed,,,,,,syn26485857,cfcb13cc-43c0-4f45-b9ca-7a5bb0aa65ef
+Therapy,HTA8_2053,Yes,Surgery,,,26089.0,Lung NOS,26089.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485858,60c7605d-6c7f-4e92-8023-19fe3e372424
+Therapy,HTA8_2053,Yes,Chemotherapy,,,26220.0,Lung NOS,26141.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,Yes,,Course of Therapy Completed,,,,,,syn26485859,1f4b0e5a-332e-48ba-8d27-d1b5263f2ada
+Therapy,HTA8_2053,Yes,External Beam Radiation,,,26326.0,Lung NOS,26283.0,Initial Diagnosis,chemoRT,radiation,Cure,Yes,,Course of Therapy Completed,,,,,,syn26485860,442bce00-b92a-4c18-bff1-5e7e3189b0ff
+Therapy,HTA8_2054,Yes,Surgery,,,24465.0,Lung NOS,24465.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485861,a2cfd209-69a6-49cf-afb5-68af5e655dde
+Therapy,HTA8_2054,Yes,Chemotherapy,,,24609.0,Lung NOS,24522.0,Initial Diagnosis,adjuvant,cisplatin+etoposide,Adjuvant,No,,Course of Therapy Completed,,,,,,syn26485862,469ec7cf-7abe-4108-93c0-b16858864088
+Therapy,HTA8_2054,Yes,Chemotherapy,,,25027.0,Lung NOS,24837.0,Recurrent Disease,1,carboplatin+etoposide,Cancer Control,Yes,,Disease Progression,,,,,,syn26485863,e0f9a04c-6367-414e-8dd3-68a9cdbb3c07
+Therapy,HTA8_2054,Yes,Chemotherapy,,,25075.0,Lung NOS,25054.0,Progressive Disease,2,temozolomide,Cancer Control,,,Disease Progression,,,,,,syn26485864,ad76d41f-5078-4c3c-bbf8-ae4a1363fcbb
+Therapy,HTA8_2054,Yes,External Beam Radiation,,,25155.0,Lung NOS,25140.0,Progressive Disease,palliative RT,radiation,Palliative,,,Course of Therapy Completed,,,,,,syn26485865,3bfa710a-0c20-4b55-837d-f21c3f286a41
+Therapy,HTA8_2055,Yes,Surgery,,,24217.0,Lung NOS,24217.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485866,09d3d073-9ed7-43dc-ab98-5203f06c2ff2
+Therapy,HTA8_2055,Yes,Chemotherapy,,,24317.0,Lung NOS,24252.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,Yes,,Course of Therapy Completed,,,,,,syn26485867,35160cef-6345-41ec-9f34-f790b7b8f774
+Therapy,HTA8_2055,Yes,Chemotherapy,,,24625.0,Lung NOS,24504.0,Recurrent Disease,1,carboplatin+etoposide,Cancer Control,,,Disease Progression,,,,,,syn26485868,ec3b3fe7-658b-4cf7-a69a-2eca77f0d9ec
+Therapy,HTA8_2055,Yes,External Beam Radiation,,,24291.0,Lung NOS,24273.0,Initial Diagnosis,chemoRT,radiation,Cancer Control,Yes,,Course of Therapy Completed,,,,,,syn26485869,13676169-ea35-4e32-a407-4e794a60b079
+Therapy,HTA8_2055,Yes,External Beam Radiation,,,24400.0,Brain NOS,24387.0,Recurrent Disease,palliative RT,radiation,Cancer Control,,,Course of Therapy Completed,,,,,,syn26485870,e3693ef8-2805-459f-8e99-1be023db2373
+Therapy,HTA8_2055,Yes,External Beam Radiation,,,24737.0,Brain NOS,24724.0,Progressive Disease,palliative RT,radiation,Cancer Control,,,Course of Therapy Completed,,,,,,syn26485871,ef61d80e-e298-49dd-99b7-10c965bdab82
+Therapy,HTA8_2056,Yes,Surgery,,,23996.0,Lung NOS,23996.0,Initial Diagnosis,surgery,,Cure,,,Course of Therapy Completed,,,,,,syn26485872,ccbe289e-d7cf-400f-b292-ca6e400618b4
+Therapy,HTA8_2056,Yes,Chemotherapy,,,24070.0,Lung NOS,24026.0,Initial Diagnosis,adjuvant,carboplatin+etoposide,Adjuvant,Yes,,Adverse Therapy Event,,,,,,syn26485873,0202e4cf-59ea-4050-80a4-512c3d3f1046
+Therapy,HTA8_2056,Yes,External Beam Radiation,,,24064.0,Lung NOS,24026.0,Initial Diagnosis,chemoRT,radiation,Cure,,,Course of Therapy Completed,,,,,,syn26485874,80a69115-588d-4382-9e3e-d30cc49f646d
+Therapy,HTA8_2056,Yes,Chemotherapy,,,24446.0,Lung NOS,24396.0,Recurrent Disease,1,temozolomide,Cancer Control,,,Disease Progression,,,,,,syn26485875,1db21850-65dd-401b-8203-b2d1d7e56a19
+Therapy,HTA8_2056,Yes,Immunotherapy (Including Vaccines),,,24467.0,Lung NOS,24455.0,Progressive Disease,2,nivolumab,Cancer Control,,,Disease Progression,,,,,,syn26485876,333d8a3d-56f0-41fb-a093-69b1b7d3b5b0
+Therapy,HTA8_2056,Yes,External Beam Radiation,,,24226.0,Brain NOS,24215.0,Initial Diagnosis,prophylactic cranial irradiation,radiation,Prevention,,,Course of Therapy Completed,,,,,,syn26485877,fc05093d-c53a-4b9f-b55b-86bc1e139386
+Therapy,HTA8_1028,Yes,Radiation Stereotactic/Gamma Knife/SRS,,,15124.0,Brain NOS,15124.0,Initial Diagnosis,1,radiation therapy,unknown,No,,,,,,,,,f4d6fc97-8118-4560-850e-127d1daa6ca3
+Therapy,HTA8_1028,Yes,Targeted Molecular Therapy,,,,Lung NOS,15138.0,Initial Diagnosis,1,osimertinib,Prevention,No,,,,,,,,,f2e7ad6c-4485-469c-87c5-4f44a95859c4
+Therapy,HTA8_1028,Yes,Surgery,,,15319.0,Brain NOS,15319.0,Progressive Disease,surgery,,Cancer Control,,,,,,,,,,bdcf045d-2fef-4fc2-b634-544a979330f3
+Therapy,HTA8_1028,Yes,Surgery,,,15319.0,Brain NOS,15319.0,Progressive Disease,,surgery,Cancer Control,,,,,,,,,,e3f568ed-199d-42b7-bac7-4da116a40f40
+Therapy,HTA8_1028,Yes,Radiation Stereotactic/Gamma Knife/SRS,,,15829.0,Brain NOS,15829.0,Progressive Disease,,radiation therapy,Cancer Control,No,,,,,,,,,2b078461-eaa6-4883-a9b5-d63b243b0f64
+Therapy,HTA8_1028,Yes,Immunotherapy (Including Vaccines),,,,Lung NOS,16280.0,Progressive Disease,2,,unknown,No,,,,,,,,,2f12ab6e-c728-41d0-bfe6-bb9ef2e94331
+Therapy,HTA8_1028,Yes,Radiation Therapy NOS,,,17312.0,Lymph node NOS,17301.0,Progressive Disease,,radiation therapy,unknown,No,,,,,,,,,d10ce875-0dca-4e49-b676-74c57d8128c4
+Therapy,HTA8_1028,Yes,Radiation Therapy NOS,,,17308.0,Esophagus NOS,17302.0,Progressive Disease,,radiation therapy,Cancer Control,No,,,,,,,,,cb2ed25d-a9db-4586-adc8-27bf297acb4a
+Therapy,HTA8_1028,Yes,Chemotherapy,,,17909.0,Lung NOS,17841.0,Progressive Disease,3,cisplatin+pemetrexed+bevacizumab,Prevention,No,3.0,,,,,,,,846c58e5-649d-4232-85c6-3b45a9206ccf
+Therapy,HTA8_1028,Yes,Immunotherapy (Including Vaccines),,,,Lung NOS,17954.0,Progressive Disease,4,osimertinib,Palliative,No,,,,,,,,,91d581ab-c352-4f66-94b3-5b64073121e3
+Therapy,HTA8_1029,Yes,Targeted Molecular Therapy,unknown,,,Lung NOS,20591.0,Initial Diagnosis,1,osimertinib,Neoadjuvant,No,,,,,,,,,9f654633-3440-4eeb-bb83-761d624b4c3e
+Therapy,HTA8_1029,Yes,Surgery,unknown,,20696.0,Upper lobe lung,20696.0,Initial Diagnosis,surgery,,,,,,,,,,,,0909fdac-0f12-4c2e-98b0-d90ddfd663d4
+Therapy,HTA8_1029,Yes,Chemotherapy,unknown,,20808.0,Lung NOS,20738.0,Initial Diagnosis,2,cisplatin+pemetrexed,Adjuvant,No,4.0,Course of Therapy Completed,,,,,,,3ae232d6-f7e3-4f47-bee5-720c3f5bc649
+Therapy,HTA8_1030,Yes,Surgery,unknown,Stable Disease,20242.0,Brain NOS,20242.0,unknown,surgery,,Cancer Control,,,,,,,,,,41d233d2-b469-4c22-ba84-52ac4a788b6c
+Therapy,HTA8_1030,Yes,Stereotactic Radiosurgery,unknown,,20265.0,Brain NOS,20265.0,Residual Disease,surgery,,,,,,,,,,,,3880dbac-4076-470b-8773-a23fcdd3a502
+Therapy,HTA8_1030,Yes,Targeted Molecular Therapy,unknown,,20316.0,Lung NOS,20288.0,Residual Disease,1,osimertinib,Cancer Control,No,,,,,,,,,258ce994-11fe-41b1-b901-4a8244943adc
+Therapy,HTA8_1030,Yes,Chemotherapy,unknown,,20382.0,Lung NOS,20337.0,unknown,2,cisplatin+osimertinib+etoposide,Cancer Control,No,,,,,,,,,d77768bf-b24b-4b5a-a41f-fec3d1b68263
+Therapy,HTA8_1030,Yes,Chemotherapy,unknown,,21009.0,Lung NOS,20399.0,Progressive Disease,3,carboplatin+pemetrexed+bevacizumab,Cancer Control,No,,,,,,,,,3ca0ca5a-347b-42b9-8b9a-9c7b05d5f279
+Therapy,HTA8_1030,Yes,Stereotactic Radiosurgery,unknown,,20795.0,Brain NOS,20795.0,,,surgery,,,,,,,,,,,64962ad9-10bd-4c75-bf02-074415f90b38
+Therapy,HTA8_1030,Yes,Chemotherapy,unknown,,,Lung NOS,21030.0,Residual Disease,4,gemcitabine+vinorelbine+osimertinib,Cancer Control,No,,,,,,,,,9cfce11e-a1d4-4bc0-b272-352f8fb41985
+Therapy,HTA8_1031,Yes,Surgery,unknown,,18035.0,Lung NOS,18035.0,Initial Diagnosis,,surgery,Cure,,,,,,,,,,82ae4004-7709-4d4a-8519-28b0e4688d1c
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,,18221.0,Lung NOS,18097.0,Initial Diagnosis,1,cisplatin+vinorelbine,Adjuvant,No,4.0,,,,,,,,ebd16162-9321-45e0-bd40-939ccc1b7173
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,,,Lung NOS,,Progressive Disease,2,afatanib,Cancer Control,,,,,,,,,,c5650825-b3b0-45c5-bfd0-b4b250a685d5
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,,18834.0,Lung NOS,18630.0,Progressive Disease,3,cetuximab,Cancer Control,No,,,,,,,,,7054a74d-d697-4050-9d45-2da69850b162
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,,18908.0,Lung NOS,18880.0,Recurrent Disease,4,erlotinib+trametinib,Cancer Control,No,,,,,,,,,72025291-52f9-44ff-9338-23932318edbe
+Therapy,HTA8_1031,Yes,Targeted Molecular Therapy,unknown,,19630.0,Lung NOS,19392.0,Recurrent Disease,5,U3-1402,Cancer Control,No,2.0,,,,,,,,cd671171-ba5d-4523-bdb6-10406f59abe1
+Therapy,HTA8_1031,Yes,Targeted Molecular Therapy,unknown,,19371.0,Lung NOS,18921.0,Recurrent Disease,6,osimertinib,Cancer Control,No,,,,,,,,,31d3d2b6-e5a8-4d06-880c-47d952d63bca
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,Partial Response,19877.0,Lung NOS,19772.0,Progressive Disease,7,carboplatin+pemetrexed+bevacizumab,Cancer Control,,2.0,,,,,,,,c5f158a3-3273-4de4-8f29-ddab3eb2fe6b
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,Progressive Disease,19975.0,Lung NOS,19933.0,Progressive Disease,7,gemcitabine,Cancer Control,,,,,,,,,,ed99a86c-6c6d-46ee-9342-384de0515cc8
+Therapy,HTA8_1031,Yes,Targeted Molecular Therapy,unknown,unknown,20085.0,Lung NOS,20001.0,Progressive Disease,9,EGF816+TNO155,,,,,,,,,,,bc8adcd8-c777-40c5-9311-5a28d4b97c47
+Therapy,HTA8_1031,Yes,Targeted Molecular Therapy,unknown,,20350.0,Lung NOS,20085.0,Progressive Disease,10,osimertinib,,,,,,,,,,,9ee5b397-3464-49d3-a883-082cde4dddfd
+Therapy,HTA8_1031,Yes,Chemotherapy,unknown,,20232.0,Lung NOS,20099.0,Progressive Disease,10,docetaxel+ramucirumab,,,,,,,,,,,9e26b26a-cea7-4eab-97fa-fbf89782f57c
+Therapy,HTA8_1031,Yes,Targeted Molecular Therapy,unknown,,20352.0,Lung NOS,20337.0,Progressive Disease,,osimertinib,,,,,,,,,,,642cff87-b5e2-4d4d-8b86-6b12ad72bda8
+Therapy,HTA8_1032,Yes,Targeted Molecular Therapy,unknown,,20648.0,Lung NOS,19437.0,Initial Diagnosis,1,osimertinib+bevacizumab,,,,,,,,,,,5c76be99-4c52-46f4-89e7-46dd45b97900
+Therapy,HTA8_1032,Yes,Surgery,unknown,,20556.0,Lung NOS,20556.0,Progressive Disease,surgery,,,,,,,,,,,,b8dcbadf-53b8-412c-a2c2-f2d656150d02
+Therapy,HTA8_1032,Yes,Targeted Molecular Therapy,unknown,,20648.0,Lung NOS,20590.0,unknown,2,osimertinib+dacomitinib,,,,,,,,,,,4f5c76a4-62f7-417d-84f8-79a9eca8046c
+Therapy,HTA8_1032,Yes,Chemotherapy,unknown,,20695.0,Lung NOS,20653.0,,3,cisplatin+pemetrexed+pembrolizumab,,,,,,,,,,,ccf50fd4-216a-4817-8ecc-b3c1e515edb6
+Therapy,HTA8_1032,Yes,Radiation External Beam,unknown,,20764.0,Brain NOS,20750.0,Progressive Disease,radiation therapy,,,,,,,,,,,,c769c460-514c-4f78-92ae-661bd86a5fc1
+Therapy,HTA8_1032,Yes,Radiation External Beam,unknown,,20765.0,Spinal cord,20758.0,Recurrent Disease,radiation therapy,,,,,,,,,,,,824a42f6-3365-47b2-ae17-d141074eab23
+Therapy,HTA8_1032,Yes,Radiation External Beam,unknown,,20869.0,Lung NOS,20849.0,Recurrent Disease,radiation therapy,,,,,,,,,,,,25c303e3-b769-4bf5-b131-d73679f3192e
+Therapy,HTA8_1033,Yes,Chemotherapy,unknown,,27194.0,Lung NOS,27150.0,Initial Diagnosis,1,carboplatin+pemetrexed,Neoadjuvant,,,,,,,,,,69deb98a-d730-4f31-b60e-220bc6d29add
+Therapy,HTA8_1033,Yes,Surgery,unknown,,27228.0,Lower lobe lung,27228.0,Initial Diagnosis,,surgery,Cure,No,,,,,,,,,4ea59a51-8327-4579-a640-6f332e67ac10
+Therapy,HTA8_1034,Yes,Surgery,unknown,,20653.0,Lower lobe lung,20653.0,Initial Diagnosis,,surgery,Cure,,,,,,,,,,e1cadafe-36f2-4296-bff5-7eae0419f85c
+Therapy,HTA8_1035,Yes,Surgery,unknown,,23068.0,Lung NOS,23068.0,Initial Diagnosis,,surgery,,,,,,,,,,,561aa47e-214a-450d-9a35-e341de02d4ac
+Therapy,HTA8_1035,Yes,Radiation External Beam,unknown,,23796.0,Lung NOS,23792.0,Initial Diagnosis,,radiation therapy,,,,,,,,,,,5faff122-424c-482c-87f1-c87e6f413baf
+Therapy,HTA8_1036,Yes,Chemotherapy,unknown,,22023.0,Lung NOS,21961.0,Initial Diagnosis,1,cisplatin+pemetrexed+pembrolizumab,Neoadjuvant,,,,,,,,,,ce401733-da7c-4257-afe6-4f2b440b04b5
+Therapy,HTA8_1036,Yes,Surgery,unknown,,22064.0,Upper lobe lung,22064.0,Initial Diagnosis,,surgery,,,,,,,,,,,eb695648-5b83-47ec-91bc-e0c50e215d41
+Therapy,HTA8_1036,Yes,Chemotherapy,unknown,,22150.0,Lung NOS,22115.0,Residual Disease,2,carboplatin+paclitaxel,Adjuvant,Yes,6.0,Course of Therapy Completed,,,,,,,a435a4ee-3141-4bfd-a878-d63aee0130e6
+Therapy,HTA8_1036,Yes,Radiation External Beam,unknown,,22163.0,Lung NOS,22122.0,Residual Disease,,radiation therapy,,Yes,,,,,,,,,a4bfedcf-65dd-4505-8b09-b75d97f23885
+Therapy,HTA8_1036,Yes,Radiation Cyberknife,unknown,,,Brain NOS,22368.0,Recurrent Disease,,radiation therapy,,,,,,,,,,,d1f4197f-e0cf-47fd-a456-0b1c96451414
+Therapy,HTA8_1036,Yes,Radiation External Beam,unknown,,22380.0,Spinal cord,22374.0,Recurrent Disease,,radiation therapy,Prevention,,,,,,,,,,e369e32f-5e5b-4ff3-9db8-b57e637fecfa
+Therapy,HTA8_1037,Yes,Chemotherapy,unknown,,24085.0,Lung NOS,24064.0,Initial Diagnosis,1,atezolizumab,Neoadjuvant,No,,,,,,,,,72c7ceeb-18bc-418e-a663-5aa19c8e8eac
+Therapy,HTA8_1037,Yes,Surgery,unknown,,24116.0,Upper lobe lung,24116.0,Initial Diagnosis,,surgery,,,,,,,,,,,c62d9cc5-70ea-42f9-b687-b5380e141dea
