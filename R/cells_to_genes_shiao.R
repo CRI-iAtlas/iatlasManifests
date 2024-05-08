@@ -21,9 +21,7 @@ cells_to_genes_shiao <- function() {
                      "syn59069032", "syn59069033", "syn59069034", "syn59069035", "syn59069037",
                      "syn59069802", "syn59069803")
 
-    entity <- "/Users/heimann/.synapseCache/388/140385388/Shiao_2024_norm_expr.tsv" #syn$get("syn59059670")
-    # > nrow(x)
-    # [1] 493170958
+    entity <- syn$get("syn59059670")
     chunk_size <- 22500000
 
     for(i in 16:21){
@@ -31,7 +29,7 @@ cells_to_genes_shiao <- function() {
       print(folders_ids[i+1])
 
       #get expression values
-      cells_to_genes <- data.table::fread(entity, nrows = chunk_size, skip = chunk_size*i, col.names = c("Row", "Column", "Value")) %>%
+      cells_to_genes <- data.table::fread(entity.path, nrows = chunk_size, skip = chunk_size*i, col.names = c("Row", "Column", "Value")) %>%
         dplyr::filter(Column %in% genes_to_add$hgnc_id) %>%
         dplyr::filter(Value>0) %>%
         dplyr::select(
