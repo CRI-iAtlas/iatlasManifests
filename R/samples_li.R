@@ -15,11 +15,11 @@ samples_li <- function(){
     synapse_tsv_id_to_tbl(syn, "syn60085493") %>%
     dplyr::select(
       "patient",
-      "summaryDescription"
+      "orig.ident"
     ) %>%
     dplyr::distinct() %>%
     dplyr::mutate(
-      "name" = paste("Li_ccRCC", patient, summaryDescription, sep = "_"),
+      "name" = paste("Li_ccRCC", patient, orig.ident, sep = "_"),
       "patient_name" = paste0("Li_ccRCC_", patient)
     ) %>%
     dplyr::inner_join(patients, by = "patient_name") %>%
@@ -31,9 +31,6 @@ samples_li <- function(){
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "samples"
     )
-
-  samples$name <- gsub(" ", "_", samples$name)
-  samples$name <- gsub("-", "_", samples$name)
 
   synapse_store_table_as_csv(
     syn,
