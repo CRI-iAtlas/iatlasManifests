@@ -15,6 +15,11 @@ tags_htan <- function() {
   #load the current ici tags
   db_tags <- iatlasGraphQLClient::query_tags_with_parent_tags()
 
+  synapse_tags <-
+    synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici tags
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn51080176")  #add tags from TCGA
+    )
   #1. ADDING NEW PARENT GROUP
 
   #check if we added a new parent group
@@ -44,7 +49,7 @@ tags_htan <- function() {
                    "tag_type"= "parent_group",
                    "order"= 24)
 
-  #2. ADDINNG NEW GROUPS
+  #2. ADDING NEW GROUPS
 
   #check if we have new levels
   htan_categories <- htan_tags %>%
@@ -54,7 +59,11 @@ tags_htan <- function() {
 
   #new levels that need to be added
   new_categories <- htan_categories %>%
-    dplyr::filter(!tag %in% db_tags$tag_name)
+    dplyr::filter(!tag %in% synapse_tags$name)
+
+  #save table for future use
+  readr::write_csv(new_categories, "htan_vanderbilt_new_tags.csv", na = "")
+  synapse_store_file(syn, "htan_vanderbilt_new_tags.csv", "syn52118831", "tags")
 
   description_templates <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
@@ -121,10 +130,10 @@ tags_htan <- function() {
         dplyr::filter(parent_group == category) %>%
         nrow()
 
-      group_colors <- db_tags %>%
-        dplyr::filter(stringr::str_detect(tag_name, tolower(category))) %>%
-        dplyr::filter(!is.na(tag_color)) %>%
-        dplyr::pull(tag_color)
+      group_colors <- synapse_tags %>%
+        dplyr::filter(stringr::str_detect(name, tolower(category))) %>%
+        dplyr::filter(!is.na(color)) %>%
+        dplyr::pull(color)
 
       if(length(group_colors)>0){
         add_new_color(n_groups, group_colors)
@@ -181,8 +190,7 @@ tags_htan <- function() {
       "color" = dplyr::case_when(
         long_display == "Not available" ~ "#868A88",
         long_display == "Unknown" ~ "#6D7575",
-        TRUE ~ color),
-      "description" = dplyr::if_else(long_display == "Not available", "Not available", color)
+        TRUE ~ color)
     ) %>%
     dplyr::select(
       "name" = tag,
