@@ -7,7 +7,7 @@ dataset_krishna <- function(){
 
   datasets <-
     dplyr::tibble("display" = character(), "dataset_type" = character()) %>%
-    dplyr::add_row("display" = "Krishna 2021 - ccRCC, PD-1", "dataset_type" = "analysis") %>%
+    dplyr::add_row("display" = "Krishna 2021 - ccRCC, PD-1", "dataset_type" = "scrna") %>%
     dplyr::mutate("name" = "Krishna_2021") %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
