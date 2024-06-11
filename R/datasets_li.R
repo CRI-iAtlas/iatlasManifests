@@ -8,7 +8,7 @@ dataset_li <- function(){
 
   datasets <-
     dplyr::tibble("display" = character(), "dataset_type" = character()) %>%
-    dplyr::add_row("display" = "Li 2022 - ccRCC", "dataset_type" = "analysis") %>%
+    dplyr::add_row("display" = "Li 2022 - ccRCC", "dataset_type" = "scrna") %>%
     dplyr::mutate("name" = "Li_2022") %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
