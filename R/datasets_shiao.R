@@ -7,7 +7,7 @@ dataset_shiao <- function(){
 
   datasets <-
     dplyr::tibble("display" = character(), "dataset_type" = character()) %>%
-    dplyr::add_row("display" = "Shiao 2024 - BRCA, PD-1", "dataset_type" = "analysis") %>%
+    dplyr::add_row("display" = "Shiao 2024 - BRCA, PD-1", "dataset_type" = "scrna") %>%
     dplyr::mutate("name" = "Shiao_2024") %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
