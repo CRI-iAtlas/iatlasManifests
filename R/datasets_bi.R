@@ -8,7 +8,7 @@ dataset_bi <- function(){
 
   datasets <-
     dplyr::tibble("display" = character(), "dataset_type" = character()) %>%
-    dplyr::add_row("display" = "Bi 2021 - ccRCC - PD-1", "dataset_type" = "analysis") %>%
+    dplyr::add_row("display" = "Bi 2021 - ccRCC - PD-1", "dataset_type" = "scrna") %>%
     dplyr::mutate("name" = "Bi_2021") %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
