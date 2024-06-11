@@ -5,7 +5,7 @@ dataset_htan <- function(){
 
   datasets <-
     dplyr::tibble("display" = character(), "dataset_type" = character()) %>%
-    dplyr::add_row("display" = "Vanderbilt - colon polyps", "dataset_type" = "analysis") %>%
+    dplyr::add_row("display" = "Vanderbilt - colon polyps", "dataset_type" = "scrna") %>%
     dplyr::mutate("name" = "Vanderbilt") %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
