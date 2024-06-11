@@ -109,7 +109,9 @@ samples_to_tags_li <- function() {
     ) %>%
     dplyr::mutate( #these categories are defined by the study protocol
       "Polyp_Histology" = "na_polyp_histology",
+      "Sample_Treatment" = "pre_sample_treatment",
       "Response" = "na_response",
+      "Responder" = "na_responder",
       "Clinical_Benefit" = "na_clinical_benefit",
       "Progression" = "na_progression",
       "Cancer_Tissue" = "kidney_cancer_tissue",
@@ -122,6 +124,7 @@ samples_to_tags_li <- function() {
       "Non_ICI_Rx" = "surgery_non_ici_rx",
       "Prior_ICI_Rx" = "none_prior_ici_rx",
       "Prior_Rx" = "none_prior_rx",
+      "Subsq_Rx" = "na_subsq_rx",
       "Subsq_ICI_Rx" = "none_subsq_ici_rx",
       "TCGA_Study" = "RCC"
     ) %>%
