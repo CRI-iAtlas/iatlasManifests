@@ -8,12 +8,14 @@ single_cell_pseudobulk_features_krishna <- function(){
   dataset_id <- synapse_csv_id_to_tbl(syn, "syn59195251") %>%
     dplyr::pull(id)
 
-  pseudobulk_features <- synapse_csv_id_to_tbl(syn, "syn59473427") %>%
+  pseudobulk_features <- synapse_csv_id_to_tbl(syn, "syn59473428") %>%
     tidyr::separate_wider_regex("...1", c(sample_name = ".*", "_", cell_type = ".*")) %>%
     dplyr::mutate(
       "sample_name" = paste0("Krishna_ccRCC_", sample_name)
     ) %>%
-    tidyr::pivot_longer(-c("sample_name", "cell_type"), names_to = "feature_name", values_to =  "value")
+    tidyr::pivot_longer(-c("sample_name", "cell_type"), names_to = "feature_name", values_to =  "value") %>%
+    dplyr::filter(!cell_type %in% c("Ambiguous", "Ambiguous/Dead", "TAM/TCR (Ambiguos)")) %>%
+    dplyr::filter(value != "Inf")
 
 
   #getting ids

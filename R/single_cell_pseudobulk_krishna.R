@@ -11,7 +11,8 @@ single_cell_pseudobulk_krishna <- function(){
     dplyr::mutate(
       "sample_name" = paste0("Krishna_ccRCC_", sample_name)
     ) %>%
-    tidyr::pivot_longer(-c("sample_name", "cell_type"), names_to = "feature_name", values_to =  "single_cell_seq_sum")
+    tidyr::pivot_longer(-c("sample_name", "cell_type"), names_to = "feature_name", values_to =  "single_cell_seq_sum")%>%
+    dplyr::filter(!cell_type %in% c("Ambiguous", "Ambiguous/Dead", "TAM/TCR (Ambiguos)"))
 
   #getting ids
   tcga_genes <- synapse_csv_id_to_tbl(syn, "syn50896922") %>%
@@ -43,10 +44,14 @@ single_cell_pseudobulk_krishna <- function(){
 
   synapse_store_table_as_csv(
     syn,
-    single_cell_pseudobulk,
+    single_cell_pseudobulk[1:(nrow(single_cell_pseudobulk)/2),],
     "syn59473513",
     "single_cell_pseudobulk"
   )
-
-
+  synapse_store_table_as_csv(
+    syn,
+    single_cell_pseudobulk[(1+nrow(single_cell_pseudobulk)/2):(nrow(single_cell_pseudobulk)),],
+    "syn61483806",
+    "single_cell_pseudobulk"
+  )
 }
