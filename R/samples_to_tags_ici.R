@@ -32,6 +32,13 @@ samples_to_tags_ici <- function() {
     dplyr::add_row(
       synapse_feather_id_to_tbl(syn, "syn27790795") #replace data from nanostring datasets
     ) %>%
+    dplyr::add_row(
+      synapse_tsv_id_to_tbl(syn, "syn61455453") %>%
+        dplyr::select(
+          "sample" = "Sample_ID",
+          "tag" = "Subtype_Immune_Model_Based"
+        )#add immune subtypes
+    ) %>%
     tidyr::drop_na() %>%
     dplyr::left_join(tag_names, by = "tag", relationship = "many-to-many") %>%
     dplyr::mutate(
