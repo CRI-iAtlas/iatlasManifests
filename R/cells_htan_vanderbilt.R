@@ -11,6 +11,13 @@ cells_htan_vanderbilt <- function(){
       "name" = "...1",
       "cell_type"
     ) %>%
+    dplyr::mutate( #we need to first clean up the cell names
+      "cell_type" = dplyr::if_else(
+        cell_type == "endothelial cell",
+        "endothelium",
+        cell_type
+      )
+    ) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "cells"
