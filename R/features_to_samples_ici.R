@@ -12,7 +12,7 @@ samples_tcga <- function(){
     ) %>%
     dplyr::add_row(
       synapse_csv_id_to_tbl(syn, "syn50944340") %>%
-        dplyr::filter(.data$feature_class != "Clinical") %>%
+        #dplyr::filter(.data$feature_class != "Clinical") %>%
         dplyr::select(
           "feature_name" =  "name",
           "feature_id" = "id"
@@ -26,10 +26,27 @@ samples_tcga <- function(){
       "sample_id" = "id"
     )
 
+  clinical_features <-
+    synapse_tsv_id_to_tbl(syn, "syn26560788") %>%
+    dplyr::select(
+      "sample" = "Run_ID",
+      "age_at_diagnosis" = "Age"
+    ) %>%
+    dplyr::bind_rows(
+      synapse_tsv_id_to_tbl(syn, "syn46885846") %>%
+        dplyr::select(
+          "sample" = "Run_ID",
+          "age_at_diagnosis" = "Age"
+        )
+    ) %>%
+    dplyr::distinct() %>%
+    tidyr::pivot_longer(-sample, names_to = "feature", values_to = "value")
+
   features_to_samples <-
     synapse_feather_id_to_tbl(syn, "syn26033314") %>%  #cibersort #original
     #dplyr::add_row(synapse_feather_id_to_tbl(syn, "syn26033315")) %>% #epic #original
     #dplyr::add_row(synapse_feather_id_to_tbl(syn, "syn26033316")) %>% #mcpcounter #original
+    dplyr::add_row(clinical_features) %>%
     dplyr::add_row(synapse_feather_id_to_tbl(syn, "syn25981855")) %>% #features to samples #replace
     dplyr::add_row(synapse_feather_id_to_tbl(syn, "syn27790752")) %>% #features to samples nanostring #replace
     dplyr::filter(feature %in% features$feature_name) %>%
