@@ -1,4 +1,4 @@
-samples_tcga <- function(){
+features_to_samples_ici <- function(){
 
   require(magrittr)
   require(rlang)
