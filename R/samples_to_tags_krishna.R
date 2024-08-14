@@ -38,13 +38,15 @@ samples_to_tags_krishna <- function() {
     purrr::pluck("path") %>%
     openxlsx::read.xlsx(., sheet = 1) %>%
     dplyr::as_tibble() %>%
-    dplyr::select(-c("manuscript_name", "patient_name", "Age", "gender", "race", "ethnicity", "OS", "OS_time", "PFI", "PFI_time", "Dataset"))
+    dplyr::select(-c("manuscript_name", "patient_name", "Age", "race", "ethnicity", "OS", "OS_time", "PFI", "PFI_time", "Dataset"))
 
 
   #consolidating
   samples_to_tags <- clinical_df %>%
     dplyr::mutate( #these categories are defined by the study protocol
       "sample_name" = trimws(paste0("Krishna_ccRCC_", sample_name)),
+      "race" = "na_race",
+      "ethnicity" = "na_ethnicity",
       "Sample_Collection_Timepoint" = paste0(Sample.Collection.Timepoint, "_sample_treatment"),
       "ICI_Rx" = dplyr::if_else(ICI.Drug == "none", "none_ICI_Rx", "nivolumab"),
       "ICI_Pathway" = dplyr::if_else(ICI.Pathway == "none", "none_ici_pathway", "pd1_ici_pathway"),
@@ -85,6 +87,9 @@ samples_to_tags_krishna <- function() {
     ) %>%
     dplyr::select(
       "sample_name",
+      "gender",
+      "race",
+      "ethnicity",
       "Sample_Collection_Timepoint",
       "ICI_Rx",
       "ICI_Pathway",
@@ -115,8 +120,7 @@ samples_to_tags_krishna <- function() {
     dplyr::inner_join(tags, by = "tag_name") %>%
     dplyr::select("tag_id", "sample_id") %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(
