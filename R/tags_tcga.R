@@ -41,7 +41,7 @@ tags_tcga <- function() {
                      "Race of the patient", "Race of the patient is White", "Race of the patient is Black or African American",
                      "Race of the patient is Asian", "Race of the patient is Native Hawaiian or other Pacific Islander", "Race of the patient is American Indian or Alaska native",
                      "Ethnicity of the patient", "Ethnicity of the patient is not available",  "Patients is not Hispanic or Latino", "Patients is Hispanic or Latino"),
-    "tag_type" = c("parent_group","group", "group", "parent_group", "group", "group", "parent_group", "group", "group", "parent_group", "group", "group", "group")
+    "tag_type" = c("parent_group","group", "group", "parent_group", "group", "group", "group", "group", "group", "parent_group", "group", "group", "group")
   ) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n()),

@@ -23,14 +23,16 @@ cohorts_tcga <- function(){
     "TCGA",                 "TCGA",   NA,
     "TCGA_Immune_Subtype",  "TCGA",   "Immune_Subtype",
     "TCGA_TCGA_Subtype",    "TCGA",   "TCGA_Subtype",
-    "TCGA_TCGA_Study",      "TCGA",   "TCGA_Study"
+    "TCGA_TCGA_Study",      "TCGA",   "TCGA_Study",
+    "TCGA_gender",          "TCGA",   "gender",
+    "TCGA_race",            "TCGA",   "race",
+    "TCGA_ethnicity",       "TCGA",   "ethnicity",
   ) %>%
     dplyr::left_join(tags, by = "tag_name") %>%
     dplyr::inner_join(datasets, by = "dataset_name") %>%
     dplyr::select(-c("tag_name", "dataset_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "cohorts"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(

@@ -8,7 +8,7 @@ cohorts_krishna <- function(){
     synapse_csv_id_to_tbl(syn, "syn53605383") %>% #table with consolidated annotation that was created with htan_create_wide_table_vanderbilt.R
     colnames()
 
-  tags_from_tcga <- c("TCGA_Study", "TCGA_Subtype", "BRCA_subtypes")
+  tags_from_tcga <- c("TCGA_Study", "TCGA_Subtype", "gender", "race", "ethnicity")
 
   parent_tags <-
     synapse_csv_id_to_tbl(syn, "syn53698018") %>% #msk tags
