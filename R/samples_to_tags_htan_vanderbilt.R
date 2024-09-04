@@ -19,7 +19,24 @@ samples_to_tags_htan_vanderbilt <- function() {
     synapse_csv_id_to_tbl(syn, "syn53678312") %>%
     dplyr::select(
       "sample_name" = "name",
-      "sample_id" = "id"
+      "sample_id" = "id",
+      "patient_id"
+    )
+
+
+  patients <- synapse_csv_id_to_tbl(syn, "syn53678270") %>%
+    dplyr::select("patient_id" = "id", "ethnicity", "gender", "race") %>%
+    dplyr::inner_join(samples, by = "patient_id") %>%
+    dplyr::mutate(
+      race = paste0(gsub(" ", "_", race), "_race"),
+      ethnicity = paste0(gsub(" ", "_", ethnicity), "_ethnicity")
+    ) %>%
+    tidyr::pivot_longer(-c("sample_name", "patient_id", "sample_id"),
+                        names_to = "parent_tag",
+                        values_to = "tag") %>%
+    dplyr::select(
+      "sample" = "sample_name",
+      "tag"
     )
 
   tags <-
@@ -42,7 +59,7 @@ samples_to_tags_htan_vanderbilt <- function() {
 
 
   samples_to_tags <-
-    tags_htan %>%
+    rbind(tags_htan, patients) %>%
     dplyr::left_join(tag_names, by = "tag", relationship = "many-to-many") %>%
     dplyr::mutate(
       "new_tag" = dplyr::if_else(
@@ -57,8 +74,7 @@ samples_to_tags_htan_vanderbilt <- function() {
     dplyr::inner_join(samples, by = "sample_name") %>%
     dplyr::select(-c("sample_name", "tag_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(

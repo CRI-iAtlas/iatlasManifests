@@ -35,19 +35,27 @@ samples_to_tags_pcawg <- function() {
   samples_to_immune_subtype <- samples_to_immune_subtype_tags %>%
     dplyr::mutate(tag = "Immune_Subtype")
 
+  samples_to_gender_tags <-
+    synapse_csv_id_to_tbl(syn, "syn51088152") %>%
+    dplyr::select("sample" = "name", "tag" = "gender")
+
+  samples_to_gender <- samples_to_gender_tags %>%
+    dplyr::mutate(tag = "gender")
+
   samples_to_tags <-
     dplyr::bind_rows(
       samples_to_pcawg_study_tags,
       samples_to_immune_subtype_tags,
+      samples_to_gender_tags,
       samples_to_pcawg_study,
-      samples_to_immune_subtype
+      samples_to_immune_subtype,
+      samples_to_gender
     ) %>%
     dplyr::inner_join(tags, by = "tag") %>%
     dplyr::inner_join(samples, by = "sample") %>%
     dplyr::select(-c("sample", "tag")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(

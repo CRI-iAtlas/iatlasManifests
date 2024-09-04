@@ -60,6 +60,11 @@ samples_to_tags_bi <- function() {
   samples_to_tags <- samples %>%
     dplyr::inner_join(patient_info, by = "sample_name") %>%
     dplyr::mutate(
+      "gender" = dplyr::if_else(
+        Sex == "F",
+        "female",
+        "male"
+      ),
       "Clinical_Stage" = dplyr::case_when(
         Stage == "IV" ~ "iv_clinical_stage",
         Stage == "I" ~ "i_clinical_stage"
@@ -128,6 +133,7 @@ samples_to_tags_bi <- function() {
     ) %>%
     dplyr::select(
       sample_id,
+      gender,
       Clinical_Stage,
       Metastasized,
       TCGA_Subtype,
@@ -142,6 +148,8 @@ samples_to_tags_bi <- function() {
       Non_ICI_Rx
     ) %>%
     dplyr::mutate( #these categories are defined by the study protocol
+      "race" = "na_race",
+      "ethnicity" = "na_ethnicity",
       "Tumor_tissue_type" = "na_tumor_tissue_type",
       "Tissue_subtype" = "na_tissue_subtype",
       "Polyp_Histology" = "na_polyp_histology",
@@ -165,7 +173,7 @@ samples_to_tags_bi <- function() {
   synapse_store_table_as_csv(
     syn,
     samples_to_tags,
-    "syn60157474",
+    "syn60530047",
     "samples_to_tags"
   )
 

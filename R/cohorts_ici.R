@@ -1,4 +1,4 @@
-cohorts_tcga <- function(){
+cohorts_ici <- function(){
 
   require(magrittr)
   require(rlang)
@@ -16,6 +16,7 @@ cohorts_tcga <- function(){
 
   tags <-
     synapse_csv_id_to_tbl(syn, "syn51613683") %>%
+    dplyr::bind_rows(synapse_csv_id_to_tbl(syn, "syn51080176")) %>% #tcga tags
     dplyr::filter(tag_type == "parent_group") %>%
     dplyr::select(
       "tag_name" = "name",
@@ -40,8 +41,7 @@ cohorts_tcga <- function(){
     dplyr::inner_join(datasets, by = "dataset_name") %>%
     dplyr::select(-c("tag_name", "dataset_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "cohorts"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(
