@@ -8,7 +8,7 @@ single_cell_pseudobulk_features_shiao <- function(){
   dataset_id <- synapse_csv_id_to_tbl(syn, "syn58399200") %>%
     dplyr::pull(id)
 
-  pseudobulk_features <- synapse_csv_id_to_tbl(syn, "syn55273016") %>%
+  pseudobulk_features <- synapse_csv_id_to_tbl(syn, "syn55273014") %>%
     tidyr::separate_wider_regex("...1", c(sample_name = ".*", "_", cell_type = ".*")) %>%
     dplyr::mutate( #we need to clean up the cell names
       "cell_type" = dplyr::case_when(
