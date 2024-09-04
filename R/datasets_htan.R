@@ -13,5 +13,12 @@ dataset_htan <- function(){
       "Component" = "datasets"
     )
 
+  # synapse_store_table_as_csv(
+  #   syn,
+  #   ici_datasets,
+  #   "", #replace
+  #   "datasets"
+  # )
+
 }
 
