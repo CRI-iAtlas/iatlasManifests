@@ -49,7 +49,7 @@ features_tcga <- function(){
         .data$method_tag
       )
     ) %>%
-    dplyr::filter(!is.na(.data$method_tag)) %>%
+    #dplyr::filter(!is.na(.data$method_tag)) %>% #commenting it out because this filter removes all TIL Maps features and age, weight, height
     dplyr::add_row(
       "name" = "Tumor_fraction",
       "display" = "Tumor Fraction",
