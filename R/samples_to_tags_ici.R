@@ -54,8 +54,7 @@ samples_to_tags_ici <- function() {
     dplyr::inner_join(samples, by = "sample_name") %>%
     dplyr::select(-c("sample_name", "tag_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(

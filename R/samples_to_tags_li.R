@@ -22,6 +22,12 @@ samples_to_tags_li <- function() {
       "Histology"
     )
 
+  patient_gender <- synapse_csv_id_to_tbl(syn, "syn60085481") %>%
+    dplyr::select(
+      "patient_id" = "id",
+      "gender"
+    )
+
   # Biopsy site info from the obs table in the h5ad file
   li_obs <- synapse_tsv_id_to_tbl(syn, "syn60085493") %>%
     dplyr::select("orig.ident", "patient", "summaryDescription") %>%
@@ -33,7 +39,8 @@ samples_to_tags_li <- function() {
     synapse_csv_id_to_tbl(syn, "syn60085711") %>%
     dplyr::select(
       "sample_name" = "name",
-      "sample_id" = "id"
+      "sample_id" = "id",
+      "patient_id"
     ) %>%
     dplyr::mutate(
       "orig.ident" = gsub(".*_(.*)", "\\1", sample_name),
@@ -68,6 +75,7 @@ samples_to_tags_li <- function() {
   #consolidating
   samples_to_tags <- samples %>%
     dplyr::inner_join(patient_info, by = "patient_key") %>%
+    dplyr::inner_join(patient_gender, by = "patient_id") %>%
     dplyr::mutate(
       "Clinical_Stage" = dplyr::case_when(
         stage %in% c("1a", "1b") ~ "i_clinical_stage",
@@ -101,6 +109,7 @@ samples_to_tags_li <- function() {
     ) %>%
     dplyr::select(
       sample_id,
+      gender,
       Clinical_Stage,
       Metastasized,
       TCGA_Subtype,
@@ -108,6 +117,8 @@ samples_to_tags_li <- function() {
       Tumor_tissue_type
     ) %>%
     dplyr::mutate( #these categories are defined by the study protocol
+      "race" = "na_race",
+      "ethnicity" = "na_ethnicity",
       "Polyp_Histology" = "na_polyp_histology",
       "Sample_Treatment" = "pre_sample_treatment",
       "Response" = "na_response",

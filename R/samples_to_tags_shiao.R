@@ -55,7 +55,7 @@ samples_to_tags_shiao <- function() {
     synapse_csv_id_to_tbl(syn, "syn58433237") %>%
     dplyr::select(
       "sample_name" = "name",
-      "sample_id" = "id"
+      "sample_id" = "id",
     )
 
   tags <-
@@ -81,6 +81,9 @@ samples_to_tags_shiao <- function() {
   samples_to_tags <-samples %>%
     dplyr::inner_join(shiao_obs, by = "sample_name") %>%
     dplyr::mutate( #these categories are defined by the study protocol
+      "gender" = "female",
+      "race" = "na_race",
+      "ethnicity" = "na_ethnicity",
       "Polyp_Histology" = "na_polyp_histology",
       "Tumor_tissue_type" = "primary_tumor_tissue_type",
       "Response" = "na_response",
@@ -108,8 +111,7 @@ samples_to_tags_shiao <- function() {
     dplyr::inner_join(tags, by = "tag_name") %>%
     dplyr::select("tag_id", "sample_id") %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(

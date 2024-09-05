@@ -1,22 +1,19 @@
-samples_to_features_krishna <- function(){
+samples_to_features_shiao <- function(){
 
   require(magrittr)
   require(rlang)
   syn <- create_synapse_login()
 
-  os_data <-
-    syn$get("syn59202673") %>%
-    purrr::pluck("path") %>%
-    openxlsx::read.xlsx(., sheet = 1) %>%
-    dplyr::as_tibble() %>%
-    dplyr::mutate(
-      "sample_name" = trimws(paste0("Krishna_ccRCC_", sample_name))
+  patient_info <- synapse_csv_id_to_tbl(syn, "syn58416567") %>%
+    dplyr::select(
+      "patient_name" = "name",
+      "age_at_diagnosis"
     ) %>%
-    dplyr::select("sample_name", "OS", "OS_time", "age_at_diagnosis" = "Age") %>%
-    tidyr::pivot_longer(-sample_name, names_to = "feature_name", values_to = "feature_to_sample_value")
+    tidyr::pivot_longer(age_at_diagnosis, names_to = "feature_name", values_to = "feature_to_sample_value")
+
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "syn59204288") %>%
+    synapse_csv_id_to_tbl(syn, "syn58433237") %>%
     dplyr::select(
       "sample_name" = "name",
       "sample_id" = "id"
@@ -28,7 +25,15 @@ samples_to_features_krishna <- function(){
       "feature_id" = "id"
     )
 
-  features_to_samples <-os_data %>%
+  features_to_samples <- synapse_csv_id_to_tbl(syn, "syn55273095") %>%
+    dplyr::select(cohort,
+                  patient_treatment) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+      sample_name = paste0("Shiao_BRCA_", patient_treatment),
+      patient_name = paste0("Shiao_BRCA_", gsub("T[[:digit:]]$", "", cohort))
+    ) %>%
+    dplyr::inner_join(patient_info, by = "patient_name")  %>%
     dplyr::inner_join(features, by = dplyr::join_by("feature_name")) %>%
     dplyr::inner_join(samples, by = dplyr::join_by("sample_name")) %>%
     dplyr::filter(!is.na(feature_to_sample_value)) %>%
@@ -45,7 +50,7 @@ samples_to_features_krishna <- function(){
   synapse_store_table_as_csv(
     syn,
     features_to_samples,
-    "syn59473632",
+    "syn62014284",
     "features_to_samples"
   )
 }
