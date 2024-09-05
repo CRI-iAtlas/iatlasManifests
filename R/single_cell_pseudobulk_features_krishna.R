@@ -46,14 +46,13 @@ single_cell_pseudobulk_features_krishna <- function(){
     ) %>%
     dplyr::mutate(
       "dataset_id" = dataset_id,
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "single_cell_pseudobulk_features"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(
     syn,
     single_cell_pseudobulk_features,
-    "syn58865002",
+    "syn62828209",
     "single_cell_pseudobulk_features"
   )
 
