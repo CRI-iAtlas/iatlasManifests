@@ -8,10 +8,36 @@ tags_prince <- function() {
   #we will use a table with consolidated prince annotation that was created with prince_tags_function.R
   #load wide table with clinical annotation for PRINCE
   prince_tags <- synapse_csv_id_to_tbl(syn, "syn52349216")
-  prince_labels <- synapse_csv_id_to_tbl(syn, "syn52366476")
+  prince_labels <- synapse_csv_id_to_tbl(syn, "syn52366476") %>%
+    dplyr::mutate(
+      "name" = dplyr::if_else(
+        short_display == "PDAC",
+        "PDAC",
+        name
+      )
+    )
 
   #load the current ici tags
-  ici_tags <- synapse_csv_id_to_tbl(syn, "syn51613683") # tags_ici
+  ici_tags <- synapse_csv_id_to_tbl(syn, "syn53698018") %>% #msk tags
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn60157438") #li tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn58896103") #shiao tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn59210643") #krishna tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn53697423") #vanderbilt tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn51613683") #ici tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn51080176")  #add tags from TCGA
+    )
+
 
   #check if we added a new parent group
   new_parent_groups <- colnames(prince_tags)[!colnames(prince_tags) %in%ici_tags$name]
@@ -19,7 +45,7 @@ tags_prince <- function() {
 
   #check if we have new levels
   prince_categories <- prince_tags %>%
-    tidyr::pivot_longer(-c("sample.id", "subject.id", "timepoint.relative.order"), names_to = "parent_group", values_to = "tag") %>%
+    tidyr::pivot_longer(-c("Run_ID", "ph", "sample_key", "sample.id", "subject.id", "timepoint.relative.order"), names_to = "parent_group", values_to = "tag") %>%
     dplyr::select(parent_group, tag) %>%
     dplyr::distinct()
 
@@ -115,14 +141,13 @@ tags_prince <- function() {
       "order"
     ) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(
     syn,
-    tags,
-    "", #replace
+    full_tags,
+    "syn63327063",
     "tags"
   )
 

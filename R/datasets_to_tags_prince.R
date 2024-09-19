@@ -6,16 +6,42 @@ datasets_to_tags_prince <- function(){
 
   parent_tags <-
     synapse_csv_id_to_tbl(syn, "syn52349216") %>% #table with consolidated prince annotation that was created with prince_tags_function.R
+    dplyr::select(
+      -c("Run_ID", "ph", "sample_key", "sample.id", "subject.id", "timepoint.relative.order")
+    ) %>%
     colnames()
 
   tags_from_tcga <- c("Immune_Subtype", "TCGA_Study")
 
+  tags_from_patients <- c("ethnicity", "gender", "race", "TIDE_Responder", "TIDE_No_Benefits")
+
+  parent_groups <- c(parent_tags, tags_from_tcga, tags_from_patients)
+
   tags <-
-    synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici tags
-    dplyr::filter(name %in% parent_tags) %>%
+    synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
     dplyr::add_row(
-      synapse_csv_id_to_tbl(syn, "syn51080176") %>% #add tags from TCGA
-        dplyr::filter(name %in% tags_from_tcga)
+      synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn53698018") #msk tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn60157438") #li tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn58896103") #shiao tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn59210643") #krishna tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn53697423") #vanderbilt tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn63389543") #PRINCE specific
+    ) %>%
+    dplyr::filter(
+      name %in% parent_groups
     ) %>%
     dplyr::select(
       "tag_name" = "name",
@@ -23,8 +49,7 @@ datasets_to_tags_prince <- function(){
     )
 
   datasets <-
-    dataset_ici_table() %>% #PRINCE REPLACE
-    dplyr::filter(name == "PRINCE") %>%
+    synapse_csv_id_to_tbl(syn, "syn63329595") %>%
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -34,14 +59,13 @@ datasets_to_tags_prince <- function(){
     tidyr::crossing(tags, datasets) %>%
     dplyr::select(-c("tag_name", "dataset_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "datasets_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(
     syn,
     datasets_to_tags,
-    "",#PRINCE REPLACE
+    "syn63327067",
     "datasets_to_tags"
   )
 

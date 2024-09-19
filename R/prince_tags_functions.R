@@ -162,7 +162,7 @@ prince_build_tag_table <- function(){
     dplyr::inner_join(
       key_df, by = dplyr::join_by(subject.therapies == "Arm")
     ) %>%
-    dplyr::inner_join(
+    dplyr::left_join(
       pre_post_treatment, by = dplyr::join_by(subject.id == "Subject ID" )
     ) %>%
     dplyr::mutate(
@@ -306,11 +306,11 @@ prince_build_tag_table <- function(){
       )
 
   readr::write_csv(prince_tags, "prince_tags_wide.csv", na = "")
-  file_entity <- synapseclient$File("prince_tags_wide.csv", parent = "syn52349167")
+  file_entity <- syn$File("prince_tags_wide.csv", parent = "syn52349167")
   syn$store(file_entity)
 
   #writing key short labels
   readr::write_csv(tags_info, "prince_tags_labels.csv", na = "")
-  file_entity <- synapseclient$File("prince_tags_labels.csv", parent = "syn52349167")
+  file_entity <- syn$File("prince_tags_labels.csv", parent = "syn52349167")
   syn$store(file_entity)
 }
