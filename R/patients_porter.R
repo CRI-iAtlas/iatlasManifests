@@ -18,7 +18,8 @@ patients_ici <- function(){
       "ethnicity" = dplyr::case_when(
         Ethnicity == "Hispanic or Latino" ~ "hispanic_or_latino_ethnicity",
         Ethnicity == "Not Hispanic or Latino" ~ "not_hispanic_or_latino_ethnicity",
-      )
+      ),
+      "gender" = "male"
     ) %>%
     dplyr::select(
       "name" = "Subject ID",

@@ -4,71 +4,96 @@ samples_to_tags_porter <- function() {
   require(rlang)
   syn <- create_synapse_login()
 
-  samples <-
-    synapse_csv_id_to_tbl(syn, "syn51589463") %>%
-    dplyr::select(
-      "sample_name" = "name",
-      "sample_id" = "id"
-    )
+  clinical_df <- synapse_csv_id_to_tbl(syn, "syn54031467")
 
-  tags <-
-    synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
-    dplyr::add_row(
-      synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
-    ) %>%
-    dplyr::select(
-      "tag_name" = "name",
-      "tag_id" = "id"
-    )
+  ffpe_tumor_annotation <- synapse_tsv_id_to_tbl(syn, "syn54022320")
 
-  tag_names <- #keep this from samples_to_tags_tcga
-    synapse_feather_id_to_tbl(syn, "syn23545011" ) %>%
-    dplyr::select("tag" = "old_name", "new_tag" = "name") %>%
-    tidyr::drop_na()
+  # samples <-
+  #   synapse_csv_id_to_tbl(syn, "syn51589463") %>%
+  #   dplyr::select(
+  #     "sample_name" = "name",
+  #     "sample_id" = "id"
+  #   )
+  #
+  # tags <-
+  #   synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
+  #   dplyr::add_row(
+  #     synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
+  #   ) %>%
+  #   dplyr::select(
+  #     "tag_name" = "name",
+  #     "tag_id" = "id"
+  #   )
+  #
+  # tag_names <- #keep this from samples_to_tags_tcga
+  #   synapse_feather_id_to_tbl(syn, "syn23545011" ) %>%
+  #   dplyr::select("tag" = "old_name", "new_tag" = "name") %>%
+  #   tidyr::drop_na()
 
 
   samples_to_tags <- clinical_df %>%
-    dplyr::mutate( #these categories are defined by the study protocol
-      "sample_name" = trimws(paste0("Krishna_ccRCC_", sample_name)),
-      "race" = "na_race",
-      "ethnicity" = "na_ethnicity",
-      "Sample_Collection_Timepoint" = paste0(Sample.Collection.Timepoint, "_sample_treatment"),
-      "ICI_Rx" = dplyr::if_else(ICI.Drug == "none", "none_ICI_Rx", "nivolumab"),
-      "ICI_Pathway" = dplyr::if_else(ICI.Pathway == "none", "none_ici_pathway", "pd1_ici_pathway"),
-      "ICI_Target" = dplyr::if_else(ICI.Pathway == "none", "none_ICI_Target", "pd1_ici_target"),
+    dplyr::mutate(
+      #"sample_name" = trimws(paste0("Krishna_ccRCC_", sample_name)),
+      "race" = dplyr::case_when(
+        Race == "Asian" ~ "asian_race",
+        Race == "White" ~ "white_race",
+        Race == "Other" ~ "other_race",
+        Race == "Black or African American" ~ "black_or_african_american_race",
+      ),
+      "ethnicity" = dplyr::case_when(
+        Ethnicity == "Hispanic or Latino" ~ "hispanic_or_latino_ethnicity",
+        Ethnicity == "Not Hispanic or Latino" ~ "not_hispanic_or_latino_ethnicity",
+      ),
+      "gender" = "male",
+      "Response" = dplyr::case_when(
+        `Best Overall Response` == "PROGRESSIVE DISEASE" ~ "progressive_disease_response",
+        `Best Overall Response` == "STABLE DISEASE" ~ "stable_disease_response",
+        `Best Overall Response` == "PARTIAL RESPONSE" ~ "partial_response_response",
+        `Best Overall Response` == "NOT EVALUABLE" ~ "na_response",
+      ),
+      "Responder" = dplyr::case_when(
+        `Best Overall Response` %in% c("PROGRESSIVE DISEASE", "STABLE DISEASE") ~ "false_responder",
+        `Best Overall Response` == "PARTIAL RESPONSE" ~ "true_responder",
+        `Best Overall Response` == "NOT EVALUABLE" ~ "na_responder",
+      ),
+      "Progression" = dplyr::case_when(
+        `Best Overall Response` %in% c("PARTIAL RESPONSE", "STABLE DISEASE") ~ "false_progression",
+        `Best Overall Response` == "PROGRESSIVE DISEASE" ~ "true_progression",
+        `Best Overall Response` == "NOT EVALUABLE" ~ "na_progression",
+      ),
+      "Clinical_Benefit" = dplyr::case_when(
+        `Best Overall Response` %in% c("PARTIAL RESPONSE", "STABLE DISEASE") ~ "true_clinical_benefit",
+        `Best Overall Response` == "PROGRESSIVE DISEASE" ~ "false_clinical_benefit",
+        `Best Overall Response` == "NOT EVALUABLE" ~ "na_clinical_benefit",
+      ),
+      "Metastasized" = "true_metastasized",
+      "TCGA_Study" = "CRPC",
+      "TCGA_Subtype" = "CRPC_mCRPC",
+      "ICI_Rx" = "nivolumab",
+      "ICI_Pathway" =  "pd1_ici_pathway",
+      "ICI_Target" = "pd1_ici_target",
       "Non_ICI_Rx" = dplyr::case_when(
-        `Non-ICI.drugs.during.treatment` == "na" ~ "na_non_ici_rx",
-        `Non-ICI.drugs.during.treatment` == "none" ~ "none_non_ici_rx",
-        `Non-ICI.drugs.during.treatment` == "surgery" ~ "surgery_non_ici_rx"
+        Treatment == "NKTR-214 + Nivolumab" ~ "NKTR_214_non_ici_rx",
+        Treatment == "SBRT + CDX-301 + poly-ICLC + Nivolumab" ~ "SBRT_CDX_301_poly_ICLC_non_ici_rx",
+        Treatment == "CDX-301 + INO-5151 + Nivolumab" ~ "CDX_301_INO_5151_non_ici_rx"
       ),
-      "NeoICI_Rx" = dplyr::if_else(ICI.as.Neoadjuvant == "none", "none_neoici_rx", "nivolumab_neoici_rx"),
-      "Prior_Rx" = dplyr::if_else(Treatment.prior.to.ICI == "none", "none_prior_rx", "surgery_prior_rx"),
-      "Prior_ICI_Rx" = dplyr::case_when(
-        Prior.treatment.with.ICI == "none" ~ "none_prior_ici_rx",
-        Prior.treatment.with.ICI == "nivo" ~ "nivolumab_prior_ici_rx",
-        Prior.treatment.with.ICI == "ipi/nivo" ~ "ipilimumab_nivolumab_prior_ici_rx",
-        Prior.treatment.with.ICI == "sunitinib, ipi/nivo" ~ "sunitinib_ipilimumab_nivolumab_prior_ici_rx",
-      ),
-      "Subsq_Rx" = dplyr::if_else(Treatment.after.ICI == "none", "none_subsq_rx", "surgery_subsq_rx"),
-      "Subsq_ICI_Rx" = dplyr::if_else(Post.treatment.with.ICI == "none", "none_subsq_ici_rx", "ipilimumab_nivolumab_subsq_ici_rx"),
-      "Cancer_Tissue" = "kidney_cancer_tissue",
+      "NeoICI_Rx" = "none_neoici_rx",
+      "Prior_Rx" = "unnamed_prior_rx",
+      "Prior_ICI_Rx" = "unknown_prior_ici_rx",
+      "Subsq_Rx" = 'unknown_subsq_rx',
+      "Subsq_ICI_Rx" = "unknown_subsq_ici_rx",
+      "Cancer_Tissue" = "prostate_cancer_tissue",
       "Tissue_Subtype" = "na_tissue_subtype",
-      "Metastasized" = Metastasized,
-      "Clinical_Stage" = Clinical.Stage,
-      "Biopsy_Site" = Biopsy.Site,
-      "Tumor_tissue_type" = dplyr::case_when(
-        Tumor_tissue_type == "tumor" ~ "primary_tumor_tissue_type",
-        Tumor_tissue_type == "normal_tumor_tissue_type" ~ "normal_tumor_tissue_type",
-        is.na(Tumor_tissue_type) ~ "na_tumor_tissue_type"
-      ),
-      "FFPE" = "false_ffpe",
-      "Responder" = dplyr::if_else(Responder == "na", "na_responder", Responder),
-      "Response" = "na_response",
+      "Clinical_Stage" = "na_clinical_stage",
+      "Sample_Collection_Timepoint" = "na_sample_treatment",
+      # "Biopsy_Site" = Biopsy.Site, #these 3 are in the original metadata for each batch syn54019614, syn54028226
+      # "Tumor_tissue_type" = dplyr::case_when(
+      #   Tumor_tissue_type == "tumor" ~ "primary_tumor_tissue_type",
+      #   Tumor_tissue_type == "normal_tumor_tissue_type" ~ "normal_tumor_tissue_type",
+      #   is.na(Tumor_tissue_type) ~ "na_tumor_tissue_type"
+      # ),
+      # "FFPE" = "false_ffpe",
       "Polyp_Histology" = "na_polyp_histology",
-      "Clinical_Benefit" = "na_clinical_benefit",
-      "Progression" = "na_progression",
-      "TCGA_Study" = "RCC",
-      "TCGA_Subtype" = "RCC_ccRCC"
     ) %>%
     dplyr::select(
       "sample_name",
@@ -110,40 +135,12 @@ samples_to_tags_porter <- function() {
 
 
 
-  # samples_to_tags <-
-  #   synapse_feather_id_to_tbl(syn, "syn25999169") %>% #replace
-  #   dplyr::add_row(
-  #     synapse_feather_id_to_tbl(syn, "syn27790795") #replace data from nanostring datasets
-  #   ) %>%
-  #   dplyr::add_row(
-  #     synapse_tsv_id_to_tbl(syn, "syn61455453") %>%
-  #       dplyr::select(
-  #         "sample" = "Sample_ID",
-  #         "tag" = "Subtype_Immune_Model_Based"
-  #       )#add immune subtypes
-  #   ) %>%
-  #   tidyr::drop_na() %>%
-  #   dplyr::left_join(tag_names, by = "tag", relationship = "many-to-many") %>%
-  #   dplyr::mutate(
-  #     "new_tag" = dplyr::if_else(
-  #       is.na(.data$new_tag),
-  #       .data$tag,
-  #       .data$new_tag
-  #     )
-  #   ) %>%
-  #   dplyr::select(-"tag") %>%
-  #   dplyr::rename("tag_name" = "new_tag", "sample_name" = "sample") %>%
-  #   dplyr::inner_join(tags, by = "tag_name") %>%
-  #   dplyr::inner_join(samples, by = "sample_name") %>%
-  #   dplyr::select(-c("sample_name", "tag_name")) %>%
-  #   dplyr::mutate(
-  #     "id" = uuid::UUIDgenerate(n = dplyr::n())
-  #   )
+
 
   synapse_store_table_as_csv(
     syn,
     samples_to_tags,
-    "syn52282785",
+    "",
     "samples_to_tags"
   )
 
