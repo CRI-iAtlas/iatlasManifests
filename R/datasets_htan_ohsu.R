@@ -1,4 +1,4 @@
-dataset_htan <- function(){
+dataset_htan_ohsu <- function(){
 
   require(magrittr)
   require(rlang)
