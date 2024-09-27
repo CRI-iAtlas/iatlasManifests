@@ -1,4 +1,4 @@
-tags_htan <- function() {
+tags_htan_ohsu <- function() {
 
   require(magrittr)
   require(iatlasGraphQLClient)
@@ -23,7 +23,7 @@ tags_htan <- function() {
 
   #check if we have new levels
   htan_categories <- htan_tags %>%
-    tidyr::pivot_longer(-c("HTAN.Biospecimen.ID", "HTAN.Parent.ID", "Timepoint_Relative_Order"), names_to = "parent_group", values_to = "tag") %>%
+    tidyr::pivot_longer(-c("HTAN.Biospecimen.ID", "HTAN.Parent.ID"), names_to = "parent_group", values_to = "tag") %>%
     dplyr::select(parent_group, tag) %>%
     dplyr::distinct()
 
