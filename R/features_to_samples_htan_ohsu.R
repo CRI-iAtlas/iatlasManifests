@@ -1,4 +1,4 @@
-samples_tcga <- function(){
+features_to_samples_htan_ohsu <- function(){
 
   require(magrittr)
   require(rlang)
@@ -7,13 +7,33 @@ samples_tcga <- function(){
   #biospecimen file
   ohsu <- "syn39141309"
 
-  samples <- samples_htan() %>%
+  samples <- synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
     dplyr::select("sample_name" = "name",
-                  "sample_id" = "id")
+                  "sample_id" = "id",
+                  "age_at_diagnosis"
+    )
 
-  features <- features_htan() %>%
-    dplyr::select("feature_name" = "name",
-                  "feature_id" = "id")
+  TIDE_df <-
+    synapse_tsv_id_to_tbl(syn, "syn63542972") %>%
+    dplyr::select(
+      "HTAN.Biospecimen.ID" = "...1",
+      "feature_value" = "TIDE"
+    ) %>%
+    dplyr::mutate("feature_name" = "TIDE")
+
+  features <-
+    synapse_csv_id_to_tbl(syn, "syn51613666") %>%
+    dplyr::select(
+      "feature_name" =  "name",
+      "feature_id" = "id"
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn50944340") %>%
+        dplyr::select(
+          "feature_name" =  "name",
+          "feature_id" = "id"
+        ) #add features in TCGA table
+    )
 
   #computing Timepoint_Relative_Order
 
@@ -33,6 +53,7 @@ samples_tcga <- function(){
   features_to_samples <- #so far, just added Timepoint_Relative_Order
     timepoint_order_df %>%
     dplyr::inner_join(features, by = "feature_name") %>%
+    dplyr::inner_join(features, by = "feature_name") %>%
     dplyr::inner_join(samples, by = dplyr::join_by("HTAN.Biospecimen.ID"=="sample_name")) %>%
     dplyr::filter(!is.na(feature_value)) %>%
     dplyr::select(
@@ -49,7 +70,7 @@ samples_tcga <- function(){
   synapse_store_table_as_csv(
     syn,
     features_to_samples,
-    "",
+    "", #update
     "features_to_samples"
   )
 }

@@ -15,11 +15,63 @@ samples_to_tags_htan <- function() {
       "tag"
     )
 
+
+  immune_subtypes <- synapse_csv_id_to_tbl(syn, "syn63542971") %>%
+    dplyr::mutate(
+      "Immune_Subtype" = paste0("C", BestCall),
+      "sample_name" = gsub("\\.", "-", SampleIDs)
+    ) %>%
+    dplyr::select(
+      "sample_name",
+      "Immune_Subtype"
+    ) %>%
+    tidyr::pivot_longer(- "sample_name",
+                        names_to = "parent_tag",
+                        values_to = "tag") %>%
+    dplyr::select(
+      "sample_name",
+      "tag"
+    )
+
+  tide_result <- synapse_tsv_id_to_tbl(syn, "syn63542972") %>%
+    dplyr::mutate(
+      "TIDE_Responder" = dplyr::if_else(
+        Responder == FALSE,
+        "false_tide_responder",
+        "true_tide_responder"
+      ),
+      "TIDE_No_Benefits" = dplyr::if_else(
+        `No benefits` == FALSE,
+        "false_tide_no_benefits",
+        "true_tide_no_benefits"
+      )
+    ) %>%
+    dplyr::select(
+      "sample_name" = "...1",
+      "TIDE_Responder",
+      "TIDE_No_Benefits"
+    ) %>%
+    tidyr::pivot_longer(- "sample_name",
+                        names_to = "parent_tag",
+                        values_to = "tag") %>%
+    dplyr::select(
+      "sample_name",
+      "tag"
+    )
+
+  patient_tags <- synapse_csv_id_to_tbl(syn, "") %>% #REPLACE
+    dplyr::rename("patient_id" = "id") %>%
+    dplyr::select(-"name")
+
   samples <-
-    samples_htan() %>% #REPLACE
+    synapse_csv_id_to_tbl(syn, "") %>% #REPLACE
+    dplyr::inner_join(patient_tags, by = "patient_id") %>%
     dplyr::select(
       "sample_name" = "name",
-      "sample_id" = "id"
+      "sample_id" = "id",
+      "ethnicity",
+      "gender",
+      "race"
     )
 
   tags <-
@@ -28,7 +80,7 @@ samples_to_tags_htan <- function() {
       synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
     ) %>%
     dplyr::add_row(
-      synapse_csv_id_to_tbl(syn, "syn52576172") #htan tags REPLACE
+      synapse_csv_id_to_tbl(syn, "") #htan tags REPLACE
     ) %>%
     dplyr::select(
       "tag_name" = "name",
@@ -43,6 +95,8 @@ samples_to_tags_htan <- function() {
 
   samples_to_tags <-
     tags_htan %>%
+    dplyr::add_row(immune_subtypes) %>%
+    dplyr::add_row(tide_result) %>%
     dplyr::left_join(tag_names, by = "tag", relationship = "many-to-many") %>%
     dplyr::mutate(
       "new_tag" = dplyr::if_else(
@@ -64,7 +118,7 @@ samples_to_tags_htan <- function() {
   # synapse_store_table_as_csv(
   #   syn,
   #   samples_to_tags,
-  #   "",
+  #   "", #UPDATE
   #   "samples_to_tags"
   # )
 
