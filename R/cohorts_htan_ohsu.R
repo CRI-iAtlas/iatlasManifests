@@ -77,12 +77,12 @@ cohorts_htan_ohsu <- function(){
     )
 
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   cohorts,
-  #   "",
-  #   "cohorts"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    cohorts,
+    "syn63600272",
+    "cohorts"
+  )
 
 }
 
