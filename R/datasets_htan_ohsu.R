@@ -13,12 +13,12 @@ dataset_htan_ohsu <- function(){
       "Component" = "datasets"
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   ici_datasets,
-  #   "", #replace
-  #   "datasets"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    datasets,
+    "syn63600262",
+    "datasets"
+  )
 
 }
 

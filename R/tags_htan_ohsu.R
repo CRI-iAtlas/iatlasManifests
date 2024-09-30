@@ -45,11 +45,6 @@ tags_htan_ohsu <- function() {
 
     })
 
-  description_templates[["TCGA_Subtype"]] <- data.frame(
-    "tag_short_display" = "Not available",
-    "tag_characteristics" = "Not available"
-  )
-
   order_seed <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
     purrr::map(.f= function(category){
@@ -64,7 +59,6 @@ tags_htan_ohsu <- function() {
         as.vector()
 
     })
-  #order_seed[["TCGA_Study"]]$order <- 34
 
   new_colors_per_group <-
     purrr::set_names(unique(new_categories$parent_group)) %>%
@@ -91,13 +85,6 @@ tags_htan_ohsu <- function() {
 
   colnames(new_colors_per_group) <- c("parent_group", "color")
   rownames(new_colors_per_group) <- NULL
-
-  new_colors_per_group <- new_colors_per_group %>%
-    dplyr::add_row(
-      "parent_group" = "TCGA_Subtype",
-      "color" = NA_character_
-    )
-
 
   full_tags <- new_categories %>%
     dplyr::arrange(parent_group) %>%
@@ -127,16 +114,15 @@ tags_htan_ohsu <- function() {
       "order"
     ) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   tags,
-  #   "", #replace
-  #   "tags"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    full_tags,
+    "syn63600268",
+    "tags"
+  )
 
 
 }

@@ -11,20 +11,23 @@ genes_to_samples_htan_ohsu <- function(){
       "gene_id" = "id"
     )
 
-  # samples <-
-  #   synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
-  #   dplyr::select(
-  #     "sample" = "name",
-  #     "sample_id" = "id"
-  #   )
+  samples <-
+    synapse_csv_id_to_tbl(syn, "syn63600384") %>%
+    dplyr::select(
+      "sample" = "name",
+      "sample_id" = "id"
+    )
 
   rna_seq <-
-    synapse_csv_id_to_tbl(syn, "syn63542970")
+    synapse_csv_id_to_tbl(syn, "syn63542970") %>%
+    dplyr::mutate(
+      "sample" = substr(Run_ID, 26, 40)
+    )
 
 
   genes_to_samples <-
     rna_seq %>%
-    dplyr::inner_join(samples, by = dplyr::join_by("Run_ID" == "sample")) %>%
+    dplyr::inner_join(samples, by = "sample") %>%
     dplyr::inner_join(genes, by = "entrez") %>%
     dplyr::select(
       "rna_seq_expression" = "rna_seq_expr",
@@ -38,7 +41,7 @@ genes_to_samples_htan_ohsu <- function(){
   synapse_store_table_as_csv(
     syn,
     genes_to_samples,
-    "",
+    "syn63600267",
     "genes_to_samples"
   )
 }

@@ -1,4 +1,4 @@
-samples_to_tags_htan <- function() {
+samples_to_tags_htan_ohsu <- function() {
 
   require(magrittr)
   require(rlang)
@@ -11,7 +11,7 @@ samples_to_tags_htan <- function() {
                         names_to = "parent_tag",
                         values_to = "tag") %>%
     dplyr::select(
-      "sample" = "HTAN.Biospecimen.ID",
+      "sample_name" = "HTAN.Biospecimen.ID",
       "tag"
     )
 
@@ -19,7 +19,7 @@ samples_to_tags_htan <- function() {
   immune_subtypes <- synapse_csv_id_to_tbl(syn, "syn63542971") %>%
     dplyr::mutate(
       "Immune_Subtype" = paste0("C", BestCall),
-      "sample_name" = gsub("\\.", "-", SampleIDs)
+      "sample_name" =  substr(SampleIDs, 26, 40)
     ) %>%
     dplyr::select(
       "sample_name",
@@ -35,6 +35,7 @@ samples_to_tags_htan <- function() {
 
   tide_result <- synapse_tsv_id_to_tbl(syn, "syn63542972") %>%
     dplyr::mutate(
+      "sample_name" =  substr(`...1`, 26, 40),
       "TIDE_Responder" = dplyr::if_else(
         Responder == FALSE,
         "false_tide_responder",
@@ -47,7 +48,7 @@ samples_to_tags_htan <- function() {
       )
     ) %>%
     dplyr::select(
-      "sample_name" = "...1",
+      "sample_name",
       "TIDE_Responder",
       "TIDE_No_Benefits"
     ) %>%
@@ -59,12 +60,12 @@ samples_to_tags_htan <- function() {
       "tag"
     )
 
-  patient_tags <- synapse_csv_id_to_tbl(syn, "") %>% #REPLACE
+  patient_tags <- synapse_csv_id_to_tbl(syn, "syn63600274") %>%
     dplyr::rename("patient_id" = "id") %>%
     dplyr::select(-"name")
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "") %>% #REPLACE
+    synapse_csv_id_to_tbl(syn, "syn63600384") %>%
     dplyr::inner_join(patient_tags, by = "patient_id") %>%
     dplyr::select(
       "sample_name" = "name",
@@ -72,6 +73,14 @@ samples_to_tags_htan <- function() {
       "ethnicity",
       "gender",
       "race"
+    ) %>%
+    tidyr::pivot_longer(- c("sample_name", "sample_id"),
+                        names_to = "parent_tag",
+                        values_to = "tag") %>%
+    dplyr::select(
+      "sample_name",
+      "sample_id",
+      "tag"
     )
 
   tags <-
@@ -80,7 +89,25 @@ samples_to_tags_htan <- function() {
       synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
     ) %>%
     dplyr::add_row(
-      synapse_csv_id_to_tbl(syn, "") #htan tags REPLACE
+      synapse_csv_id_to_tbl(syn, "syn53698018") #msk tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn60157438") #li tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn58896103") #shiao tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn59210643") #krishna tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn53697423") #vanderbilt tags
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn63389543") #PRINCE specific
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn63600708")
     ) %>%
     dplyr::select(
       "tag_name" = "name",
@@ -97,6 +124,7 @@ samples_to_tags_htan <- function() {
     tags_htan %>%
     dplyr::add_row(immune_subtypes) %>%
     dplyr::add_row(tide_result) %>%
+    dplyr::add_row(dplyr::select(samples, sample_name, tag)) %>%
     dplyr::left_join(tag_names, by = "tag", relationship = "many-to-many") %>%
     dplyr::mutate(
       "new_tag" = dplyr::if_else(
@@ -106,20 +134,19 @@ samples_to_tags_htan <- function() {
       )
     ) %>%
     dplyr::select(-"tag") %>%
-    dplyr::rename("tag_name" = "new_tag", "sample_name" = "sample") %>%
+    dplyr::rename("tag_name" = "new_tag") %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
-    dplyr::inner_join(samples, by = "sample_name") %>%
+    dplyr::inner_join(dplyr::distinct(dplyr::select(samples, sample_name, sample_id)), by = "sample_name") %>%
     dplyr::select(-c("sample_name", "tag_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   samples_to_tags,
-  #   "", #UPDATE
-  #   "samples_to_tags"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    samples_to_tags,
+    "syn63600269",
+    "samples_to_tags"
+  )
 
 }

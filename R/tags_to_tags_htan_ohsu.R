@@ -16,7 +16,10 @@ tags_to_tags_htan_ohsu <- function() {
     dplyr::filter(!tag %in% db_tags$tag_name)
 
   tags <-
-    synapse_csv_id_to_tbl(syn, "") %>% #UPDATE WITH SYN ID OF TAGS HTAN OHSU
+    synapse_csv_id_to_tbl(syn, "syn63600708") %>%
+    dplyr::mutate(
+      "Component" = "tag"
+    ) %>%
     dplyr::add_row(synapse_csv_id_to_tbl(syn, "syn51613683")) %>%  #ici specific tags
     dplyr::select(
       "tag_name" = "name",
@@ -30,15 +33,14 @@ tags_to_tags_htan_ohsu <- function() {
     dplyr::inner_join(tags, by = c("tag" = "tag_name")) %>%
     dplyr::select("related_tag_id", "tag_id") %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "tags_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
 
   synapse_store_table_as_csv(
     syn,
     tags_to_tags,
-    "", #UPDATE
+    "syn63600270",
     "tags_to_tags"
   )
 

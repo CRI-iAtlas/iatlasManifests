@@ -15,11 +15,11 @@ features_htan <- function() {
       "Component" = "features"
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   features,
-  #   "", #REPLACE
-  #   "features"
-  # )
+  synapse_store_table_as_csv(
+    syn,
+    features,
+    "syn63600422",
+    "features"
+  )
 
 }

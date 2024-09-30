@@ -19,6 +19,7 @@ patients_htan <- function(){
 
   patients <-
     ohsu_files %>%
+    dplyr::filter(HTAN.Participant.ID == "HTA9_1") %>%
     dplyr::select(
       "name" = "HTAN.Participant.ID",
       "age_at_diagnosis" = "Age.at.Diagnosis",
@@ -36,31 +37,25 @@ patients_htan <- function(){
         .data$gender,
         NA_character_
       ),
-      "ethnicity" = dplyr::if_else(
-        .data$ethnicity %in% c("not hispanic or latino", "hispanic or latino"),
-        .data$ethnicity,
-        NA_character_
+      "ethnicity" = dplyr::case_when(
+        .data$ethnicity == "not hispanic or latino" ~ "not_hispanic_or_latino_ethnicity",
+        .data$ethnicity == "hispanic or latino" ~ "hispanic_or_latino_ethnicity",
+        is.na(.data$ethnicity) ~ NA_character_
       ),
-      "race" = dplyr::if_else(
-        .data$race %in% c(
-          "white",
-                 "black or african american",
-                 "asian",
-                 "native hawaiian or other pacific islander",
-                 "american indian or alaska native"
-        ),
-        .data$race,
-        NA_character_
-      )
+      "race" = "white_race"
     ) %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "patients"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
 
-  #readr::write_csv(patients, "synapse_storage_manifest.csv", na = "")
+  synapse_store_table_as_csv(
+    syn,
+    patients,
+    "syn63600263",
+    "patients"
+  )
 
 }
 

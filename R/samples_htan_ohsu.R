@@ -17,7 +17,7 @@ samples_htan <- function(){
   )
 
 
-  patients <- patients_htan() %>%  #update to read from patients in synapse id for patients_htan
+  patients <- synapse_csv_id_to_tbl(syn, "syn63600274") %>%
     dplyr::select(
       "patient_name" = "name",
       "patient_id" = "id"
@@ -33,16 +33,15 @@ samples_htan <- function(){
     dplyr::inner_join(patients, by = "patient_name") %>%
     dplyr::select(-"patient_name") %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
-  # synapse_store_table_as_csv(
-  #   syn,
-  #   samples,
-  #   "",#update with folder id
-  #   "samples"
-  # )
+    synapse_store_table_as_csv(
+      syn,
+      samples,
+      "syn63600264",#update with folder id
+      "samples"
+    )
 
 }
 
