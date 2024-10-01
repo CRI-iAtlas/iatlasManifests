@@ -6,8 +6,8 @@ patients_ici <- function(){
 
 
   patients <-
-    clinical_data %>%
-    #synapse_csv_id_to_tbl(syn, "syn54031467") %>%
+    #clinical_data %>%
+    synapse_csv_id_to_tbl(syn, "syn54031467") %>%
     dplyr::mutate(
       "race" = dplyr::case_when(
         Race == "Asian" ~ "asian_race",
