@@ -92,13 +92,13 @@ features_to_samples_htan_ohsu <- function(){
       "Cytolytic_Score",
       "IMPRES" = "IMPRES_Score"
     ) %>%
-    tidyr::pivot_longer(-(sample_id), names_to = "feature_name", values_to = "feature_value") %>%
+    tidyr::pivot_longer(-(sample_id), names_to = "feature_name", values_to = "feature_to_sample_value") %>%
     dplyr::inner_join(features, by = "feature_name") %>%
-    dplyr::filter(!is.na(feature_value)) %>%
+    dplyr::filter(!is.na(feature_to_sample_value)) %>%
     dplyr::select(
       "feature_id",
       "sample_id",
-      "feature_value"
+      "feature_to_sample_value"
     ) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n())
