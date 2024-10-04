@@ -1,4 +1,4 @@
-patients_ici <- function(){
+patients_porter <- function(){
 
   require(magrittr)
   require(rlang)
@@ -6,7 +6,6 @@ patients_ici <- function(){
 
 
   patients <-
-    #clinical_data %>%
     synapse_csv_id_to_tbl(syn, "syn54031467") %>%
     dplyr::mutate(
       "race" = dplyr::case_when(
@@ -35,7 +34,7 @@ patients_ici <- function(){
   synapse_store_table_as_csv(
     syn,
     patients,
-    #"",
+    "syn63623050",
     "patients"
   )
 

@@ -47,8 +47,8 @@ tags_porter <- function() {
 
   synapse_store_table_as_csv(
     syn,
-    tags,
-    "",
+    porter_tags,
+    "syn63623055",
     "tags"
   )
 

@@ -6,7 +6,7 @@ dataset_porter <- function(){
 
   syn <- create_synapse_login()
 
-  ici_datasets <-
+  datasets <-
     data.frame("name" = c("PORTER"), "display" = c("PORTER - mCRPC, PD-1"), "dataset_type" = "ici") %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n())
@@ -16,7 +16,7 @@ dataset_porter <- function(){
   synapse_store_table_as_csv(
     syn,
     datasets,
-    #"syn60085087",
+    "syn63623049",
     "datasets"
   )
 

@@ -55,7 +55,7 @@ cohorts_htan_msk <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
+    synapse_csv_id_to_tbl(syn, "syn63623061") %>%
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -86,7 +86,7 @@ cohorts_htan_msk <- function(){
   synapse_store_table_as_csv(
     syn,
     cohorts,
-    "", #update
+    "syn63623059",
     "cohorts"
   )
 

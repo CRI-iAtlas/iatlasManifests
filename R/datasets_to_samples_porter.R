@@ -4,10 +4,10 @@ datasets_to_samples_porter <- function(){
   require(rlang)
   syn <- create_synapse_login()
 
-  dataset_id <- synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
+  dataset_id <- synapse_csv_id_to_tbl(syn, "syn63623061") %>% #UPDATE
     dplyr::pull(id)
 
-  samples <- synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
+  samples <- synapse_csv_id_to_tbl(syn, "syn63623078") %>% #UPDATE
     dplyr::select(
       "name",
       "sample_id" = "id"
@@ -22,7 +22,7 @@ datasets_to_samples_porter <- function(){
   synapse_store_table_as_csv(
     syn,
     datasets_to_samples,
-    "",#UPDATE
+    "syn63623052",
     "datasets_to_samples"
   )
 }

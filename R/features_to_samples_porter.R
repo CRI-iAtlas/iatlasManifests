@@ -19,13 +19,13 @@ samples_to_features_porter <- function(){
         ) #add features in TCGA table
     )
 
-  patient_age <- synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
+  patient_age <- synapse_csv_id_to_tbl(syn, "syn63623064") %>% #UPDATE
     dplyr::rename("patient_id" = "id") %>%
     dplyr::select(-"name")
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
-    dplyr::inner_join(patient_tags, by = "patient_id") %>%
+    synapse_csv_id_to_tbl(syn, "syn63623078") %>% #UPDATE
+    dplyr::inner_join(patient_age, by = "patient_id") %>%
     dplyr::select(
       "sample_name" = "name",
       "sample_id" = "id",
@@ -40,21 +40,17 @@ samples_to_features_porter <- function(){
     )
 
   features_iatlas <- synapse_csv_id_to_tbl(syn, "syn63562155") %>%
-    dplyr::mutate(
-      "sample_name" = substr(Run_ID, 26, 40)
-    ) %>%
-    dplyr::select(-"Run_ID")
-
+    dplyr::rename(
+      "sample_name" = "Run_ID"
+    )
 
   features_to_samples <-
     samples %>%
     dplyr::inner_join(features_iatlas, by = "sample_name") %>%
-    dplyr::inner_join(timepoint_order_df, by = "sample_name") %>%
     dplyr::left_join(TIDE_df, by = "sample_name") %>%
     dplyr::select(
       "sample_id",
       "age_at_diagnosis",
-      "Timepoint_Relative_Order",
       "TIDE",
       "Module3_IFN_score" = "Module3_IFN_Score",
       "TGFB_score_21050467" = "TGFB_Score",
@@ -84,7 +80,7 @@ samples_to_features_porter <- function(){
   synapse_store_table_as_csv(
     syn,
     features_to_samples,
-    "", #UPDATE
+    "syn63623053",
     "features_to_samples"
   )
 }

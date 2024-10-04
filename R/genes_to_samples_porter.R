@@ -12,7 +12,7 @@ genes_to_samples_porter <- function() {
     )
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "") %>% #UPDATE
+    synapse_csv_id_to_tbl(syn, "syn63623078") %>%
     dplyr::select(
       "sample" = "name",
       "sample_id" = "id"
@@ -20,8 +20,8 @@ genes_to_samples_porter <- function() {
 
   rna_seq <-
     synapse_csv_id_to_tbl(syn, "syn63562156") %>%
-    dplyr::mutate(
-      "sample" = substr(Run_ID, 26, 40)
+    dplyr::rename(
+      "sample" = Run_ID
     )
 
 
@@ -41,7 +41,7 @@ genes_to_samples_porter <- function() {
   synapse_store_table_as_csv(
     syn,
     genes_to_samples,
-    "", #UPDATE
+    "syn63623054",
     "genes_to_samples"
   )
 

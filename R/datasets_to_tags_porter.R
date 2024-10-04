@@ -57,7 +57,7 @@ datasets_to_tags_porter <- function(){
       synapse_csv_id_to_tbl(syn, "syn63389543") #PRINCE specific
     ) %>%
     dplyr::add_row(
-      synapse_csv_id_to_tbl(syn, "") #PORTER specific UPDATE!
+      synapse_csv_id_to_tbl(syn, "syn63623105") #PORTER specific
     ) %>%
     dplyr::filter(
       name %in% parent_groups
@@ -68,7 +68,7 @@ datasets_to_tags_porter <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update
+    synapse_csv_id_to_tbl(syn, "syn63623061") %>% #update
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -84,7 +84,7 @@ datasets_to_tags_porter <- function(){
   synapse_store_table_as_csv(
     syn,
     datasets_to_tags,
-    "", #UPDATE
+    "syn63623058",
     "datasets_to_tags"
   )
 
