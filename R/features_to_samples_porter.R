@@ -19,17 +19,35 @@ samples_to_features_porter <- function(){
         ) #add features in TCGA table
     )
 
-  patient_age <- synapse_csv_id_to_tbl(syn, "syn63623064") %>% #UPDATE
+  surv_data <- synapse_csv_id_to_tbl(syn, "syn54031467") %>%
+    dplyr::mutate(
+      "PFI_time_1" = `rPFS (mo)` * 30,
+      "OS_time" = `OS (mo)` * 30
+    ) %>%
+    dplyr::select(
+      "name" = "Subject ID",
+      "PFI_time_1",
+      "PFI_1" = "rPFS Event Flag",
+      "OS_time",
+      "OS" = "OS Event Flag"
+    )
+
+  patient_age <- synapse_csv_id_to_tbl(syn, "syn63623064") %>%
     dplyr::rename("patient_id" = "id") %>%
+    dplyr::inner_join(surv_data, by = "name") %>%
     dplyr::select(-"name")
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "syn63623078") %>% #UPDATE
+    synapse_csv_id_to_tbl(syn, "syn63623078") %>%
     dplyr::inner_join(patient_age, by = "patient_id") %>%
     dplyr::select(
       "sample_name" = "name",
       "sample_id" = "id",
-      "age_at_diagnosis"
+      "age_at_diagnosis",
+      "PFI_time_1",
+      "PFI_1",
+      "OS_time",
+      "OS"
     )
 
   TIDE_df <-
@@ -51,6 +69,10 @@ samples_to_features_porter <- function(){
     dplyr::select(
       "sample_id",
       "age_at_diagnosis",
+      "PFI_time_1",
+      "PFI_1",
+      "OS_time",
+      "OS",
       "TIDE",
       "Module3_IFN_score" = "Module3_IFN_Score",
       "TGFB_score_21050467" = "TGFB_Score",
