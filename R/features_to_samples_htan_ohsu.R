@@ -9,13 +9,19 @@ features_to_samples_htan_ohsu <- function(){
 
   patient_age <- synapse_csv_id_to_tbl(syn, "syn63600274") %>%
     dplyr::rename("patient_id" = "id") %>%
+    dplyr::mutate(
+      "OS" = 0,
+      "OS_time" = 128.9
+    ) %>%
     dplyr::select(-"name")
 
   samples <- synapse_csv_id_to_tbl(syn, "syn63600384") %>%
     dplyr::inner_join(patient_age, by = "patient_id") %>%
     dplyr::select("sample_name" = "name",
                   "sample_id" = "id",
-                  "age_at_diagnosis"
+                  "age_at_diagnosis",
+                  "OS",
+                  "OS_time"
     )
 
   features <-
@@ -77,6 +83,8 @@ features_to_samples_htan_ohsu <- function(){
     dplyr::select(
       "sample_id",
       "age_at_diagnosis",
+      "OS",
+      "OS_time",
       "Timepoint_Relative_Order",
       "TIDE",
       "Module3_IFN_score" = "Module3_IFN_Score",
