@@ -19,17 +19,65 @@ features_to_samples_prince <- function(){
         ) #add features in TCGA table
     )
 
+
+  os <- synapse_csv_id_to_tbl(syn, "syn51251967") %>%
+    dplyr::bind_rows(
+      synapse_csv_id_to_tbl(syn, "syn51251963")
+    ) %>%
+    dplyr::select("\nSubject ID" , "\n OS (months)", "Last known \r\nAlive Date \r\n(Censored Patients)") %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+      "OS_time" =`\n OS (months)` * 30,
+      "OS" = dplyr::if_else(
+        is.na(.data$"Last known \r\nAlive Date \r\n(Censored Patients)"),
+        0,
+        1
+      )
+    ) %>%
+    dplyr::select(
+      "patient_name" = "\nSubject ID",
+      "OS_time",
+      "OS"
+    )
+
+  pfs <- synapse_csv_id_to_tbl(syn, "syn51251989") %>%
+    dplyr::bind_rows(
+      synapse_csv_id_to_tbl(syn, "syn51251985")
+    ) %>%
+    dplyr::select("\nSubject ID" , "\n PFS (months)", "PFS Censoring \r\nDate") %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+      "PFI_time_1" =`\n PFS (months)` * 30,
+      "PFI_1" = dplyr::if_else(
+        is.na(.data$"PFS Censoring \r\nDate"),
+        1,
+        0
+      )
+    ) %>%
+    dplyr::select(
+      "patient_name" = "\nSubject ID",
+      "PFI_time_1",
+      "PFI_1"
+    )
+
   patient_age <- synapse_csv_id_to_tbl(syn, "syn63331646") %>%
-    dplyr::rename("patient_id" = "id") %>%
-    dplyr::select(-"name")
+    dplyr::rename(
+      "patient_name" = "name",
+      "patient_id" = "id") %>%
+    dplyr::left_join(os, by = "patient_name") %>%
+    dplyr::left_join(pfs, by = "patient_name")
 
   samples <-
     synapse_csv_id_to_tbl(syn, "syn63332022") %>%
-    dplyr::inner_join(patient_tags, by = "patient_id") %>%
+    dplyr::inner_join(patient_age, by = "patient_id") %>%
     dplyr::select(
       "sample_name" = "name",
       "sample_id" = "id",
-      "age_at_diagnosis"
+      "age_at_diagnosis",
+      "OS",
+      "OS_time",
+      "PFI_1",
+      "PFI_time_1"
     )
 
   TIDE_df <-
