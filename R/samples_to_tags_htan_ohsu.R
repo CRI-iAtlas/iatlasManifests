@@ -61,6 +61,14 @@ samples_to_tags_htan_ohsu <- function() {
     )
 
   patient_tags <- synapse_csv_id_to_tbl(syn, "syn63600274") %>%
+    dplyr::mutate(
+    "ethnicity" = dplyr::case_when(
+      .data$ethnicity == "not hispanic or latino" ~ "not_hispanic_or_latino_ethnicity",
+      .data$ethnicity == "hispanic or latino" ~ "hispanic_or_latino_ethnicity",
+      is.na(.data$ethnicity) ~ NA_character_
+    ),
+    "race" = "white_race"
+    )
     dplyr::rename("patient_id" = "id") %>%
     dplyr::select(-"name")
 

@@ -37,12 +37,7 @@ patients_htan <- function(){
         .data$gender,
         NA_character_
       ),
-      "ethnicity" = dplyr::case_when(
-        .data$ethnicity == "not hispanic or latino" ~ "not_hispanic_or_latino_ethnicity",
-        .data$ethnicity == "hispanic or latino" ~ "hispanic_or_latino_ethnicity",
-        is.na(.data$ethnicity) ~ NA_character_
-      ),
-      "race" = "white_race"
+      "race" = "white"
     ) %>%
     dplyr::arrange(.data$name) %>%
     dplyr::mutate(
