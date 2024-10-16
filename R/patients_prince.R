@@ -15,13 +15,15 @@ patients_prince <- function(){
     ) %>%
     dplyr::mutate(
       "ethnicity" = dplyr::if_else(
-        "ethnicity" == "not-hispanic",
-        "not_hispanic_or_latino_ethnicity",
-        "hispanic_or_latino_ethnicity"
+        ethnicity == "not-hispanic",
+        "not hispanic or latino",
+        "hispanic or latino"
       ),
       "race" = dplyr::case_when(
-        "race" == "african-american" ~ "black_or_african_american_race",
-        TRUE ~ paste0(.data$race, "_race")
+        race == "african-american"  ~ "black or african american",
+        race == "white"  ~ "white",
+        race == "asian"  ~ "asian",
+        race == "other"  ~ NA_character_,
       )
     ) %>%
     dplyr::mutate(
