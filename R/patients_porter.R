@@ -9,14 +9,14 @@ patients_porter <- function(){
     synapse_csv_id_to_tbl(syn, "syn54031467") %>%
     dplyr::mutate(
       "race" = dplyr::case_when(
-        Race == "Asian" ~ "asian_race",
-        Race == "White" ~ "white_race",
-        Race == "Other" ~ "other_race",
-        Race == "Black or African American" ~ "black_or_african_american_race",
+        Race == "Asian" ~ "asian",
+        Race == "White" ~ "white",
+        Race == "Other" ~ NA_character_,
+        Race == "Black or African American" ~ "black or african american",
       ),
       "ethnicity" = dplyr::case_when(
-        Ethnicity == "Hispanic or Latino" ~ "hispanic_or_latino_ethnicity",
-        Ethnicity == "Not Hispanic or Latino" ~ "not_hispanic_or_latino_ethnicity",
+        Ethnicity == "Hispanic or Latino" ~ "hispanic or latino",
+        Ethnicity == "Not Hispanic or Latino" ~ "not hispanic or latino",
       ),
       "gender" = "male"
     ) %>%

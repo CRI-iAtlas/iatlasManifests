@@ -99,6 +99,18 @@ samples_to_tags_porter <- function() {
 
 
   patient_tags <- synapse_csv_id_to_tbl(syn, "syn63623064") %>%
+    dplyr::mutate(
+      "race" = dplyr::case_when(
+        Race == "Asian" ~ "asian_race",
+        Race == "White" ~ "white_race",
+        Race == "Other" ~ "other_race",
+        Race == "Black or African American" ~ "black_or_african_american_race",
+      ),
+      "ethnicity" = dplyr::case_when(
+        Ethnicity == "Hispanic or Latino" ~ "hispanic_or_latino_ethnicity",
+        Ethnicity == "Not Hispanic or Latino" ~ "not_hispanic_or_latino_ethnicity"
+      )
+    ) %>%
     dplyr::rename(
       "patient_name" = "name",
       "patient_id" = "id")
