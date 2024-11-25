@@ -22,7 +22,7 @@ patients_ici <- function(){
       dplyr::bind_rows(
         synapse_feather_id_to_tbl(syn, "syn25981550"),
         synapse_feather_id_to_tbl(syn, "syn27790733")
-      )
+        )
     ) %>%
     dplyr::select(
       "patient_barcode",
@@ -43,12 +43,12 @@ patients_ici <- function(){
       "Component" = "patients"
     )
 
-  synapse_store_table_as_csv(
-    syn,
-    patients,
-    "syn51589363",
-    "patients"
-  )
+  # synapse_store_table_as_csv(
+  #   syn,
+  #   patients,
+  #   "syn51589363",
+  #   "patients"
+  # )
 
 }
 
