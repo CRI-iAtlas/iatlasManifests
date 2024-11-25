@@ -1,0 +1,6 @@
+Component,HTAN Participant ID,Ethnicity,Gender,Race,Vital Status,Days to Birth,Country of Residence,Age Is Obfuscated,Year Of Birth,Occupation Duration Years,Premature At Birth,Weeks Gestation at Birth,entityId,Id,...18,...19,...20,...21,...23,...24,...25,...26,Cause of Death,Cause of Death Source,Days to Death,Year of Death
+Demographics,HTA9_1,not hispanic or latino,female,white,Alive,0,,False,,,,,syn27368363,7acee949-7916-48cd-a7aa-d69607abe483,,,,,,,,,,,,
+Demographics,HTA9_2,not hispanic or latino,female,white,Dead,0,,False,,,,,syn29422468,75f9431a-4685-4cb6-836d-91b34e0d7636,,,,,,,,,,,,
+Demographics,HTA9_3,not hispanic or latino,female,white,Dead,0,,False,,,,,syn29422469,0db630d3-aa85-4d7f-8697-b129d03935e7,,,,,,,,,,,,
+Demographics,HTA9_14,not hispanic or latino,female,white,Alive,0,,False,,,,,syn29422470,d3e8b9ec-c22c-4b72-a822-8085c503a973,,,,,,,,,,,,
+Demographics,HTA9_15,not hispanic or latino,female,Not Reported,Alive,0,,False,,,,,syn29422471,b8a95737-5ce2-4e87-b326-ed4ad48371f0,,,,,,,,,,,,
