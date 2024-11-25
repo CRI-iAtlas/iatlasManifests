@@ -6,7 +6,7 @@ samples_tcga <- function(){
 
   features <-
     synapse_csv_id_to_tbl(syn, "syn50944340") %>%
-    dplyr::filter(.data$feature_class != "Clinical") %>%
+    #dplyr::filter(.data$feature_class != "Clinical") %>% #clinical features (age, weight,height) are stored at the patients table, but we need them here to make this available in queries (https://github.com/CRI-iAtlas/iatlas-app/issues/249)
     dplyr::select(
       "feature_name" =  "name",
       "feature_id" = "id"
@@ -23,7 +23,8 @@ samples_tcga <- function(){
     synapse_feather_id_to_tbl(syn,  "syn22128019") %>%
     dplyr::rename_all(~stringr::str_replace_all(.x, "[\\.]", "_")) %>%
     dplyr::mutate("Tumor_fraction" = 1 - .data$Stromal_Fraction) %>%
-    dplyr::rename("sample_name" = "ParticipantBarcode") %>%
+    dplyr::rename("sample_name" = "ParticipantBarcode",
+                  "age_at_diagnosis" = "age_at_initial_pathologic_diagnosis") %>%
     dplyr::select(dplyr::all_of(c("sample_name", features$feature_name))) %>%
     tidyr::pivot_longer(-"sample_name", names_to = "feature_name") %>%
     tidyr::drop_na() %>%
