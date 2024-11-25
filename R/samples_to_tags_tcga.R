@@ -32,6 +32,13 @@ samples_to_tags_tcga <- function() {
       "Immune_Subtype" = "Subtype_Immune_Model_Based",
       "TCGA_Subtype" = "Subtype_Curated_Malta_Noushmehr_et_al"
     ) %>%
+    dplyr::inner_join(
+      dplyr::select(synapse_csv_id_to_tbl(syn, "syn50932269"), name, gender, race, ethnicity),
+      by = dplyr::join_by("sample" == "name")) %>% #add gender, race, ethnicity info
+    dplyr::mutate(
+      race = paste0(gsub(" ", "_", race), "_race"),
+      ethnicity = paste0(gsub(" ", "_", ethnicity), "_ethnicity")
+    ) %>%
     tidyr::pivot_longer(-"sample", values_to = "tag") %>%
     tidyr::drop_na() %>%
     tidyr::pivot_longer(-"sample", values_to = "tag") %>%
@@ -50,8 +57,7 @@ samples_to_tags_tcga <- function() {
     dplyr::inner_join(samples, by = "sample_name") %>%
     dplyr::select(-c("sample_name", "tag_name")) %>%
     dplyr::mutate(
-      "id" = uuid::UUIDgenerate(n = dplyr::n()),
-      "Component" = "samples_to_tags"
+      "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(

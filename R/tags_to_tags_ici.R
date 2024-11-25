@@ -1,4 +1,4 @@
-tags_to_tags_tcga <- function() {
+tags_to_tags_ici <- function() {
 
   require(magrittr)
   require(rlang)

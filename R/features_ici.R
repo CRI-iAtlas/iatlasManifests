@@ -10,6 +10,7 @@ features_germline <- function() {
 
     dplyr::rename("feature_class" = "class") %>%
     dplyr::mutate(
+      "method_tag" = "Response_ICI_Predictors",
       "id" = uuid::UUIDgenerate(n = dplyr::n()),
       "Component" = "features"
     )

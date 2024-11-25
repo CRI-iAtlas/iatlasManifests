@@ -1,0 +1,100 @@
+Component,HTAN Participant ID,Ethnicity,Gender,Race,Vital Status,Days to Birth,Country of Residence,Age Is Obfuscated,Year Of Birth,Occupation Duration Years,Premature At Birth,Weeks Gestation at Birth,entityId,Id,Cause of Death,Cause of Death Source,Days to Death,Year of Death
+Demographics,HTA8_1023,not hispanic or latino,female,white,Alive,0.0,,,1948,,,,syn24983473,b3db363a-9c58-4fb1-a9e6-3b2bb0108cbc,,,,
+Demographics,HTA8_1024,not hispanic or latino,male,white,Dead,0.0,,,1948,,,,syn24983474,e068d4e7-0864-4f49-b534-22a5ccc90220,Not Reported,,26245.0,2020.0
+Demographics,HTA8_1025,not allowed to collect,male,white,Alive,0.0,,,1940,,,,syn24983475,2d9a61e2-7680-49e2-9ed8-843e3eaef06f,,,,
+Demographics,HTA8_1026,not hispanic or latino,female,asian,Dead,0.0,,,1960,,,,syn24983476,dc0e74f7-42bd-45f3-b16e-aa741acb74f3,Not Reported,,21089.0,2018.0
+Demographics,HTA8_1027,not hispanic or latino,female,asian,Dead,0.0,,,1955,,,,syn24983477,efc7ab17-8b32-44ef-8a12-7dc7aeaada17,Not Reported,,23377.0,2019.0
+Demographics,HTA8_1001,not hispanic or latino,female,white,Alive,0.0,,,1937,,,,syn24983478,8bc58562-8965-4ec2-8eef-a0cfae7997ec,,,,
+Demographics,HTA8_1002,not hispanic or latino,female,white,Alive,0.0,,,1954,,,,syn24983479,b37c0727-b9f0-4279-870e-4d4177ed859c,,,,
+Demographics,HTA8_1003,not hispanic or latino,female,white,Alive,0.0,,,1945,,,,syn24983480,1fa2a0c0-d2ae-4f48-bd5d-ebe0efa5acc1,,,,
+Demographics,HTA8_1004,not hispanic or latino,female,white,Alive,0.0,,,1945,,,,syn24983481,07512e56-6636-4bf2-9d3b-e1f8c6cd28bc,,,,
+Demographics,HTA8_1005,not hispanic or latino,male,white,Alive,0.0,,,1941,,,,syn24983482,71ac2eea-a893-41b3-9b10-cd2f6b069232,,,,
+Demographics,HTA8_1006,not hispanic or latino,male,white,Alive,0.0,,,1953,,,,syn24983483,f2abc0ef-f223-4ecf-af69-7a1d45821cc2,,,,
+Demographics,HTA8_1007,not hispanic or latino,female,white,Dead,0.0,,,1956,,,,syn24983484,90cdc5b4-b777-4755-bde8-0c4dd1169601,Not Reported,,23200.0,2020.0
+Demographics,HTA8_1008,not hispanic or latino,male,black or african american,Alive,0.0,,,1957,,,,syn24983485,bfcc9fe6-91f2-4ffb-9f2e-727d1218cf68,,,,
+Demographics,HTA8_1009,not hispanic or latino,male,white,Alive,0.0,,,1953,,,,syn24983486,8105ede9-e347-458e-8c5d-78ae2e69693e,,,,
+Demographics,HTA8_1010,not hispanic or latino,female,white,Alive,0.0,,,1945,,,,syn24983487,46dd1f52-a12b-4c95-9ec2-f9ab47363765,,,,
+Demographics,HTA8_1011,not hispanic or latino,male,white,Alive,0.0,,,1943,,,,syn24983488,a1d0d854-9989-4f27-b8ff-ad8652f07524,,,,
+Demographics,HTA8_1012,not hispanic or latino,female,white,Alive,0.0,,,1956,,,,syn24983489,a38f5aa7-3a77-4257-ba27-1fd5d117e5c9,,,,
+Demographics,HTA8_1013,not hispanic or latino,female,asian,Alive,0.0,,,1964,,,,syn24983490,ca9182cb-8254-4b66-9ca1-da0ac334e818,,,,
+Demographics,HTA8_1014,not hispanic or latino,female,white,Alive,0.0,,,1941,,,,syn24983491,7f09d0c0-8025-41eb-8086-8fe8ea871317,,,,
+Demographics,HTA8_1015,not hispanic or latino,male,asian,Dead,0.0,,,1951,,,,syn24983492,12499b06-63e8-44cb-9a69-b2ce54f26847,Not Reported,,23977.0,2017.0
+Demographics,HTA8_1016,not hispanic or latino,female,asian,Alive,0.0,,,1947,,,,syn24983493,ca435876-da53-400c-b836-323407406158,,,,
+Demographics,HTA8_1017,not hispanic or latino,female,white,Alive,0.0,,,1956,,,,syn24983494,6c7e826c-3e6b-4a3c-ba03-8a933a060779,,,,
+Demographics,HTA8_1018,not hispanic or latino,female,white,Dead,0.0,,,1948,,,,syn24983495,7455987c-75e1-4c5b-88bd-e204dd24f762,Not Reported,,25930.0,2019.0
+Demographics,HTA8_1019,not hispanic or latino,male,white,Alive,0.0,,,1942,,,,syn24983496,14323002-4f86-409f-b638-ac76ef323270,,,,
+Demographics,HTA8_1020,not hispanic or latino,female,white,Alive,0.0,,,1951,,,,syn24983497,e774cd71-f4b2-4ec5-ab76-35a6d0487e08,,,,
+Demographics,HTA8_1021,not hispanic or latino,female,white,Alive,0.0,,,1977,,,,syn24983498,fae0bf49-07bf-4d1c-a7f1-059fe0acaa4d,,,,
+Demographics,HTA8_1022,not hispanic or latino,male,white,Dead,0.0,,,1936,,,,syn24983499,1169a575-74c7-4dbc-b2d2-e2c88eb752a7,Not Reported,,30140.0,2018.0
+Demographics,HTA8_2001,not hispanic or latino,female,white,Dead,0.0,,,1952,,,,syn24983500,6ec3692c-540d-4aac-a20d-559c88430c1a,Not Reported,,24341.0,2018.0
+Demographics,HTA8_2002,not hispanic or latino,female,white,Dead,0.0,,,1951,,,,syn24983501,949b9ce2-cf10-4b05-81c1-c46ce96542ce,Not Reported,,24792.0,2019.0
+Demographics,HTA8_2003,not hispanic or latino,female,white,Alive,0.0,,,1947,,,,syn24983502,a5c6c3c3-0acb-434f-9af5-1d0d65490d66,,,,
+Demographics,HTA8_2004,not hispanic or latino,female,white,Alive,0.0,,,1966,,,,syn24983503,4d73a18e-36d2-4ba0-9c52-b7891ff28d6b,,,,
+Demographics,HTA8_2005,not hispanic or latino,female,white,Alive,0.0,,,1974,,,,syn24983504,d95b7e64-b5b3-497d-ac6c-37883a934572,,,,
+Demographics,HTA8_2006,hispanic or latino,female,white,Dead,0.0,,,1954,,,,syn24983505,3eef4644-5de1-40bc-b4c4-8a9bc6be0707,Not Reported,,23740.0,2019.0
+Demographics,HTA8_2007,not hispanic or latino,female,white,Alive,0.0,,,1957,,,,syn24983506,db66d472-18a0-443e-a10d-d5b206b8099f,,,,
+Demographics,HTA8_2008,not hispanic or latino,male,white,Alive,0.0,,,1947,,,,syn24983507,89eff6f3-420d-4497-b550-28d328a421d8,,,,
+Demographics,HTA8_2009,not hispanic or latino,male,white,Dead,0.0,,,1950,,,,syn24983508,f7639541-38e0-4d70-b240-41751f410c13,Not Reported,,25706.0,2020.0
+Demographics,HTA8_2010,not hispanic or latino,male,white,Dead,0.0,,,1959,,,,syn24983509,c5ee9383-c648-449c-928a-2b137b6a1516,Not Reported,,21842.0,2019.0
+Demographics,HTA8_2011,not hispanic or latino,male,asian,Dead,0.0,,,1952,,,,syn24983510,5c274190-eebf-476e-a629-1de52a703258,Not Reported,,24570.0,2019.0
+Demographics,HTA8_2012,not hispanic or latino,female,white,Dead,0.0,,,1946,,,,syn24983511,c4e43d9e-8d68-4133-bf07-43a97294d742,Not Reported,,26866.0,2020.0
+Demographics,HTA8_2013,not hispanic or latino,female,white,Alive,0.0,,,1949,,,,syn24983512,cc494eca-c2b3-4984-88f9-4f7775d5fb4a,,,,
+Demographics,HTA8_2014,not hispanic or latino,male,white,Alive,0.0,,,1947,,,,syn24983513,2c94b5a7-575f-4eca-b7e5-2efc513fcc14,,,,
+Demographics,HTA8_2015,not hispanic or latino,male,white,Dead,0.0,,,1966,,,,syn24983514,d09a3080-ebbe-4422-9ac9-d39174408338,Not Reported,,19488.0,2019.0
+Demographics,HTA8_2016,not hispanic or latino,female,white,Alive,0.0,,,1944,,,,syn24983515,107eab3c-b646-428f-902e-b57854273d5d,,,,
+Demographics,HTA8_2017,not hispanic or latino,male,white,Alive,0.0,,,1953,,,,syn24983516,0db7fb5a-c95e-4be0-84f7-2f69ab1a141e,,,,
+Demographics,HTA8_2018,not hispanic or latino,female,white,Dead,0.0,,,1957,,,,syn24983517,58963edc-b610-402d-920f-525c45b2994d,Not Reported,,23050.0,2020.0
+Demographics,HTA8_2019,not hispanic or latino,male,white,Dead,0.0,,,1940,,,,syn24983518,3d68a48b-c580-4814-9981-4fb5249ba5ef,Not Reported,,29068.0,2019.0
+Demographics,HTA8_3001,not hispanic or latino,female,asian,Alive,0.0,,,1947,,,,syn24983519,bb8608cd-f99c-4b3d-8b16-19792c3e3c06,,,,
+Demographics,HTA8_3002,not hispanic or latino,male,white,Alive,0.0,,,1942,,,,syn24983520,c5110777-aecc-4c32-bd54-d9772de21558,,,,
+Demographics,HTA8_3003,not hispanic or latino,female,white,Alive,0.0,,,1951,,,,syn24983521,38a388b6-f064-4839-b65b-4f70e05df558,,,,
+Demographics,HTA8_3004,not hispanic or latino,male,white,Alive,0.0,,,1939,,,,syn24983522,533286bc-97d0-4287-880e-721756a4d347,,,,
+Demographics,HTA8_2020,not hispanic or latino,female,white,Dead,,,,1945,,,,syn26485291,2aef7acc-5ff6-45a0-bbb1-a82352b2c3f8,unknown,,26000.0,2016.0
+Demographics,HTA8_2021,not hispanic or latino,female,white,Dead,,,,1938,,,,syn26485292,bb458583-4604-45cd-8c1a-416f45594d60,unknown,,28101.0,2015.0
+Demographics,HTA8_2022,not hispanic or latino,male,white,Dead,,,,1957,,,,syn26485293,9c053afe-c475-43e6-ae21-1d7a023eb07b,unknown,,21135.0,2015.0
+Demographics,HTA8_2023,not hispanic or latino,male,white,Alive,,,,1951,,,,syn26485294,5dadb66f-b16f-43b7-8c4e-8c535fe08479,,,,
+Demographics,HTA8_2024,not hispanic or latino,male,white,Dead,,,,1940,,,,syn26485295,c46b5f06-286a-481a-9d37-2056e946bad4,unknown,,26192.0,2012.0
+Demographics,HTA8_2025,not hispanic or latino,female,Not Reported,Dead,,,,1965,,,,syn26485296,c8d14193-5c89-4bd0-aad1-94aee8a7f7d0,unknown,,19942.0,2019.0
+Demographics,HTA8_2026,not hispanic or latino,female,white,Dead,,,,1949,,,,syn26485297,857b4df8-7ec7-4b0d-bde1-55924ef067c8,unknown,,25934.0,2020.0
+Demographics,HTA8_2027,not hispanic or latino,male,white,Dead,,,,1956,,,,syn26485298,112d7628-a7f7-403f-aa11-0f384ebd8f3c,unknown,,21923.0,2016.0
+Demographics,HTA8_2028,not hispanic or latino,female,white,Dead,,,,1942,,,,syn26485299,33be0697-0e53-4afe-ab1f-11b84de7e0d5,unknown,,25347.0,2011.0
+Demographics,HTA8_2029,not hispanic or latino,male,white,Dead,,,,1947,,,,syn26485300,57ee56f5-cedf-49d6-a689-214fd4bf85c8,unknown,,24530.0,2014.0
+Demographics,HTA8_2030,not hispanic or latino,female,white,Dead,,,,1936,,,,syn26485301,447dc5f3-8d70-49fd-ba98-2064dfbfe055,unknown,,29455.0,2017.0
+Demographics,HTA8_2031,not hispanic or latino,female,white,Alive,,,,1947,,,,syn26485302,1dd0c16b-cf1f-481e-be83-a1c3907cb75f,,,,
+Demographics,HTA8_2032,not hispanic or latino,female,white,Dead,,,,1954,,,,syn26485303,73b5dc27-d59f-4d86-8f1f-03e6f7d0c6ce,unknown,,20852.0,2011.0
+Demographics,HTA8_2033,not hispanic or latino,male,white,Alive,,,,1937,,,,syn26485304,47fd767e-5388-47f1-805e-63f9dbafde42,,,,
+Demographics,HTA8_2034,not hispanic or latino,male,white,Dead,,,,1955,,,,syn26485305,ae0efd85-45f1-45ba-8283-2592924df36d,unknown,,21759.0,2015.0
+Demographics,HTA8_2035,not hispanic or latino,male,white,Dead,,,,1950,,,,syn26485306,aaa81ba2-6953-48dd-ad90-277547a4792b,unknown,,24705.0,2017.0
+Demographics,HTA8_2036,not allowed to collect,female,white,Dead,,,,1935,,,,syn26485307,e466b6c4-00a4-4f6b-81f9-6ad6cf7f9db8,unknown,,28225.0,2013.0
+Demographics,HTA8_2037,not hispanic or latino,male,asian,Dead,,,,1925,,,,syn26485308,4517051e-39e9-4562-8cfd-d372aabc07a0,unknown,,34320.0,2019.0
+Demographics,HTA8_2038,not hispanic or latino,female,white,Dead,,,,1948,,,,syn26485309,d7c85030-fac1-43f1-96f3-03b784960bb4,unknown,,26134.0,2019.0
+Demographics,HTA8_2039,not hispanic or latino,male,white,Dead,,,,1952,,,,syn26485310,fb60560d-979f-4f63-93ad-098ba26cc3ee,unknown,,22507.0,2013.0
+Demographics,HTA8_2040,not hispanic or latino,male,white,Dead,,,,1935,,,,syn26485311,59135d24-1c54-4edf-8410-ef5bdca5c99b,unknown,,27148.0,2009.0
+Demographics,HTA8_2041,not hispanic or latino,male,white,Dead,,,,1947,,,,syn26485312,4ad17fcb-5ab0-47de-a2ef-ed9c975456fc,unknown,,26421.0,2017.0
+Demographics,HTA8_2042,not hispanic or latino,female,white,Alive,,,,1947,,,,syn26485313,8045e251-0433-4284-80d8-bd1985b70d4e,,,,
+Demographics,HTA8_2043,not hispanic or latino,male,white,Dead,,,,1942,,,,syn26485314,51f71708-ed8b-4aee-9d05-3b816c1e47a4,unknown,,27034.0,2016.0
+Demographics,HTA8_2044,not hispanic or latino,female,white,Dead,,,,1952,,,,syn26485315,197888f7-0eda-47a9-aefa-16044a996664,unknown,,23931.0,2018.0
+Demographics,HTA8_2045,not hispanic or latino,male,white,Alive,,,,1948,,,,syn26485316,dd2ce219-eb7c-4984-9ca2-30d00fbde289,,,,
+Demographics,HTA8_2046,not hispanic or latino,female,white,Alive,,,,1950,,,,syn26485317,053eb9b0-f696-48a0-93ba-a391170ba428,,,,
+Demographics,HTA8_2047,not hispanic or latino,male,white,Alive,,,,1945,,,,syn26485318,abf030fc-d3c4-4035-80ef-656badd1063d,,,,
+Demographics,HTA8_2048,not hispanic or latino,male,not allowed to collect,Alive,,,,1948,,,,syn26485319,e30ad862-9011-4c2c-8ebe-ec1c91167199,,,,
+Demographics,HTA8_2049,not hispanic or latino,male,black or african american,Dead,,,,1946,,,,syn26485320,53eea3ba-1ccd-4572-9321-dcba58ea73ee,unknown,,24488.0,2013.0
+Demographics,HTA8_2050,not hispanic or latino,male,white,Dead,,,,1929,,,,syn26485321,93ec37c2-71ca-4300-abdf-b43db38412d2,unknown,,29407.0,2010.0
+Demographics,HTA8_2051,not hispanic or latino,female,white,Dead,,,,1947,,,,syn26485322,0d253ecf-f6ca-4974-8045-3cb3600d759b,unknown,,24781.0,2015.0
+Demographics,HTA8_2052,not hispanic or latino,female,white,Alive,,,,1951,,,,syn26485323,be77ca29-b8c9-4b1c-857f-3402d524c671,,,,
+Demographics,HTA8_2053,not hispanic or latino,female,white,Dead,,,,1944,,,,syn26485324,1cd38552-bd29-488d-a257-7b4845d769b5,unknown,,26704.0,2017.0
+Demographics,HTA8_2054,not hispanic or latino,female,white,Dead,,,,1945,,,,syn26485325,d929d0fe-ae6a-43d1-9d6c-b92cd17e4d6e,unknown,,25222.0,2014.0
+Demographics,HTA8_2055,not allowed to collect,male,white,Dead,,,,1943,,,,syn26485326,07d440a6-80cd-49bd-8c0b-ec6dbdf23374,unknown,,24808.0,2010.0
+Demographics,HTA8_2056,not hispanic or latino,male,white,Dead,,,,1951,,,,syn26485327,feb3d292-df80-4da7-bfbb-f44130502649,unknown,,24631.0,2018.0
+Demographics,HTA8_2057,not hispanic or latino,male,white,Alive,,,,1940,,,,syn32534571,46bd0c20-de55-4348-98b1-118b379b13a8,,,,
+Demographics,HTA8_2058,not hispanic or latino,female,white,Alive,,,,1943,,,,syn32534572,6005616b-4c23-4ad0-80f6-3657f6f0aa60,,,,
+Demographics,HTA8_1028,not hispanic or latino,female,white,Dead,,,,1971,,,,,c87f2e41-d080-4202-a517-fc0528baeac6,Not Applicable,,17981.0,2020.0
+Demographics,HTA8_1029,not hispanic or latino,male,white,Alive,,,,1963,,,,,d4ba8d9e-dcef-4bd7-9cc5-1c41322e6d69,,,,
+Demographics,HTA8_1030,not hispanic or latino,male,white,Alive,,,,1965,,,,,c2aaead5-9d6b-4123-aea9-2650a5f21549,,,,
+Demographics,HTA8_1031,not hispanic or latino,female,white,Dead,,,,1966,,,,,c379136a-5c50-40a6-beb5-7a6b092ed824,Cancer Related,,20379.0,2021.0
+Demographics,HTA8_1032,not hispanic or latino,female,white,Dead,,,,1963,,,,,57ba1d9b-2af8-4474-8ecb-a179333bddd5,Cancer Related,,20905.0,2020.0
+Demographics,HTA8_1033,not hispanic or latino,female,white,Alive,,,,1945,,,,,88b4126c-1492-44bc-a2c9-ee0a074e7bf1,,,,
+Demographics,HTA8_1034,not hispanic or latino,female,white,Alive,,,,1962,,,,,9131d4a6-8273-4a19-9ee6-629e4bf50ea4,,,,
+Demographics,HTA8_1035,not hispanic or latino,female,white,Dead,,,,1955,,,,,0421fd31-4d5c-4034-9637-b29be2755680,Cancer Related,,23945.0,2021.0
+Demographics,HTA8_1036,not allowed to collect,male,white,Alive,,,,1959,,,,,1109df71-51f0-478b-9ec6-810df9ecc0fa,,,,
+Demographics,HTA8_1037,not hispanic or latino,male,white,Alive,,,,1954,,,,,14d5cbf5-d103-45a7-857a-48b1244742a7,,,,
