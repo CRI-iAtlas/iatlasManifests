@@ -6,6 +6,7 @@ patients_amadeus <- function(){
 
   #not all patients in the clinical data table have RNA seq data, so we'll only store data for those who are in the manifest
   patients_manifest <- synapse_tsv_id_to_tbl(syn, "syn64290150") %>%
+    dplyr::bind_rows(synapse_tsv_id_to_tbl(syn, "syn64369373") ) %>%
     dplyr::mutate(
       patient = dplyr::case_when(
         Patient_Name == "104-0013/104-0022" ~ "104-0022",

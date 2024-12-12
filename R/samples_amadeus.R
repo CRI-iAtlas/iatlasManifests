@@ -14,6 +14,7 @@ samples_amadeus <- function(){
 
   samples <-
     synapse_tsv_id_to_tbl(syn, "syn64290150") %>% #manifest file, to get patient - sample relationship
+    dplyr::bind_rows(synapse_tsv_id_to_tbl(syn, "syn64369373") ) %>%
     dplyr::mutate(
       "name" = gsub("/", "_", paste(Dataset, Patient_Name, Run_Name, sep= "-")),
       "patient_name" = paste0("AMADEUS_",
