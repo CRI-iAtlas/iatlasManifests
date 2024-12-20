@@ -4,6 +4,8 @@ samples_to_tags_amadeus <- function() {
   require(rlang)
   syn <- create_synapse_login()
 
+  #TODO: add biopsy site from biopsy table in Github
+
   clinical_df <- synapse_csv_id_to_tbl(syn, "syn54074560") %>%
     dplyr::mutate(
       "patient_name" = paste("AMADEUS", `Subject ID`, sep = "_")
@@ -81,7 +83,7 @@ samples_to_tags_amadeus <- function() {
       "Sample_Collection_Timepoint"
     )
 
-  samples_annotation <- dplyr::bind_rows(batch, batch1, batch2, batch3, batch3_20080, batch3_20938)
+  samples_annotation <- dplyr::distinct(dplyr::bind_rows(batch, batch1, batch2, batch3, batch3_20080, batch3_20938))
 
 
   patient_tags <- synapse_csv_id_to_tbl(syn, "syn64290704") %>%
@@ -216,7 +218,12 @@ samples_to_tags_amadeus <- function() {
       ),
       .groups = "drop"
     ) %>%
-    dplyr::select(patient_name, parent_tag, tag_name)
+    dplyr::distinct() %>%
+    dplyr::inner_join(samples, by = "patient_name", relationship = "many-to-many") %>%
+    dplyr::select(sample_name, parent_tag, tag_name)
+
+  # Biopsy site is available at table from: https://github.com/ParkerICI/amadeus-trial-data/blob/main/clinical-data/AMADEUS_primarycohort_biopsy.csv
+  biopsy_df <- synapse_csv_id_to_tbl(syn, "syn64425737") %>%
 
 
   tags <-
@@ -308,30 +315,41 @@ samples_to_tags_amadeus <- function() {
         "ipilimumab_nivolumab_subsq_ici_rx",
         "na_subsq_ici_rx"
       ),
+      "AMADEUS_Study" = dplyr::case_when(
+        `Tumor Type` == "Breast" ~ "BRCA_amadeus",
+        `Tumor Type` == "Prostate" ~  "CRPC_amadeus",
+        `Tumor Type` ==  "Non-small Cell Lung Cancer" ~ "LUCA_amadeus",
+        `Tumor Type` ==  "Head and Neck" ~ "HNCA_amadeus",
+        `Tumor Type` == "Sarcoma" ~ "SARC_amadeus",
+        `Tumor Type` == "Renal" ~ "RNCA_amadeus",
+        `Tumor Type` == "Thyroid" ~ "THYR_amadeus",
+        `Tumor Type` == "Colorectal" ~ "CRCA_amadeus",
+        `Tumor Type` == "Hepatocellular Carcinoma" ~ "HCCA_amadeus",
+        `Tumor Type` == "Liver" ~ "HECH_amadeus",
+        `Tumor Type` == "Neuroendocrine" ~ "NEUC_amadeus",
+        `Tumor Type` == "Gynecologic" ~ "UTCA_amadeus",
+        `Tumor Type` == "Urethral" ~ "URET_amadeus",
+        `Tumor Type` == "Penile" ~ "PENC_amadeus",
+        `Tumor Type` == "PAPILLA OF VATER" ~ "AMPV_amadeus",
+        `Tumor Type` == "Retroperitoneal Teratoma" ~ "TERA_amadeus",
+        `Tumor Type` == "Merkel Cell Carcinoma" ~ "NESK_amadeus",
+        `Tumor Type` == "Pelvis" ~ "PELV_amadeus",
+        `Tumor Type` == "Gastroesophageal Junction" ~ "GEJC_amadeus",
+        `Tumor Type` == "Peritoneum" ~ "PRTC_amadeus",
+        `Tumor Type` == "Gastric" ~ "GSCA_amadeus",
+        `Tumor Type` == "Lung" ~ "LUCA_amadeus",
+        `Tumor Type` == "Pancreatic"  ~ "PANC_amadeus",
+        is.na(`Tumor Type`) ~ "na_amadeus"
+      ),
       "TCGA_Study" = dplyr::case_when(
         `Tumor Type` == "Breast" ~ "BRCA",
         `Tumor Type` == "Prostate" ~  "CRPC",
         `Tumor Type` ==  "Non-small Cell Lung Cancer" ~ "NSCLC",
         `Tumor Type` ==  "Head and Neck" ~ "HNSC",
         `Tumor Type` == "Sarcoma" ~ "SARC",
-        `Tumor Type` == "Renal" ~ "RNCA",
-        `Tumor Type` == "Thyroid" ~ "THYR",
-        `Tumor Type` == "Colorectal" ~ "CRCA",
-        `Tumor Type` == "Hepatocellular Carcinoma" ~ "HCCA",
-        `Tumor Type` == "Liver" ~ "HECH",
-        `Tumor Type` == "Neuroendocrine" ~ "NEUC",
-        `Tumor Type` == "Gynecologic" ~ "UTCA",
-        `Tumor Type` == "Urethral" ~ "URET",
-        `Tumor Type` == "Penile" ~ "PENC",
-        `Tumor Type` == "PAPILLA OF VATER" ~ "AMPV",
-        `Tumor Type` == "Retroperitoneal Teratoma" ~ "TERA",
-        `Tumor Type` == "Merkel Cell Carcinoma" ~ "NESK",
-        `Tumor Type` == "Pelvis" ~ "PELV",
-        `Tumor Type` == "Gastroesophageal Junction" ~ "GEJC",
-        `Tumor Type` == "Peritoneum" ~ "PRTC",
-        `Tumor Type` == "Gastric" ~ "GSCA",
-        `Tumor Type` == "Lung" ~ "LUCA",
-        `Tumor Type` == "Pancreatic"  ~ "PANC",
+        `Tumor Type` == "Hepatocellular Carcinoma" ~ "LIHC",
+        `Tumor Type` == "Liver" ~ "CHOL",
+        `Tumor Type` %in% c("Pancreatic", "Lung", "Gastric", "Peritoneum", "Gastroesophageal Junction", "Pelvis", "Merkel Cell Carcinoma", "Retroperitoneal Teratoma", "PAPILLA OF VATER", "Colorectal", "Renal", "Thyroid", "Neuroendocrine", "Gynecologic","Urethral", "Penile") ~ "na_tcga_study"
         is.na(`Tumor Type`) ~ "na_tcga_study"
       ),
       "TCGA_Subtype" = "na_tcga_subtype",
@@ -361,7 +379,7 @@ samples_to_tags_amadeus <- function() {
       "Tissue_Subtype" = "na_tissue_subtype",
       "Clinical_Stage" = "iv_clinical_stage",
       "Polyp_Histology" = "na_polyp_histology",
-      "FFPE" = "true_ffpe",
+      "FFPE" = "true_ffpe"
       #"Biopsy_Site" = "pbmc_biopsy_site"
     ) %>%
     dplyr::select(
@@ -381,13 +399,14 @@ samples_to_tags_amadeus <- function() {
       "Tissue_Subtype",
       "Metastasized",
       "Clinical_Stage",
-      "Biopsy_Site",
+      #"Biopsy_Site",
       "FFPE",
       "Responder",
       "Response",
       "Polyp_Histology",
       "Clinical_Benefit",
       "Progression",
+      "AMADEUS_Study",
       "TCGA_Study",
       "TCGA_Subtype",
     ) %>%

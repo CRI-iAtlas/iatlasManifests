@@ -64,6 +64,7 @@ tags_amadeus <- function() {
   amadeus_tags <- rbind(amadeus_tags, c('SARC_amadeus', 'SARC', 'Sarcoma', "#00A99D", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('THYR_amadeus', 'THYR', 'Thyroid',"#E41A1C", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('UTCA_amadeus', 'UTCA', 'Uterine', "#984EA3", NA_character_, 'group', NA_integer_))
+  amadeus_tags <- rbind(amadeus_tags, c('na_amadeus', 'Not available', 'Not available', "#868A88", 'Not available', 'group', NA_integer_))
 
   #TODO: still need to add new TCGA cancer type
   #add new cancer types acronyms
