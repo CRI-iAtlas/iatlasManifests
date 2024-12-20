@@ -33,6 +33,7 @@ tags_amadeus <- function() {
     tag_type = character(),
     order = numeric()
   )
+
   #add tags for new cancer tissues
   amadeus_tags[1,] <- c("uterus_cancer_tissue","Uterus","Uterus", "#8DD3C7", "Uterus is the cancer tissue", "group", NA_integer_)
   amadeus_tags <- rbind(amadeus_tags, c("colon_rectum_cancer_tissue", "Colon rectum","Colon rectum", "#FB8072", "Colon rectum is the cancer tissue", "group", NA_integer_))
@@ -42,7 +43,6 @@ tags_amadeus <- function() {
   amadeus_tags <- rbind(amadeus_tags, c("peritoneum_cancer_tissue", "Peritoneum", "Peritoneum", "#FCCDE5", "Peritoneum is the cancer tissue", "group", NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c("neuroendocrine_cancer_tissue", "Neuroendocrine",  "Neuroendocrine", "#BC80BD",  "Neuroendocrine is the cancer tissue", "group", NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c("duodenum_cancer_tissue", "Duodenum", "Duodenum", "#CCEBC5", "Duodenum is the cancer tissue", "group", NA_integer_))
-
 
   #add cancer types acronyms from AMADEUS
   amadeus_tags <- rbind(amadeus_tags, c("BRCA_amadeus", "BRCA", "Breast invasive carcinoma", "#ED2891", NA_character_, "group", NA_integer_))
@@ -65,9 +65,44 @@ tags_amadeus <- function() {
   amadeus_tags <- rbind(amadeus_tags, c('THYR_amadeus', 'THYR', 'Thyroid',"#E41A1C", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('UTCA_amadeus', 'UTCA', 'Uterine', "#984EA3", NA_character_, 'group', NA_integer_))
 
-  #TODO: still need to add new TCGA cancer types, if necessary
+  #TODO: still need to add new TCGA cancer type
   #add new cancer types acronyms
-  #amadeus_tags <- rbind(amadeus_tags, c("NESK", "NESK", "", "#CCEBC5", "Duodenum is the cancer tissue", "group", NA_integer_))
+  amadeus_tags <- rbind(amadeus_tags, c("NSCLC", "NSCLC", "Non-small cell lung cancer", "#CCEBC5", NA_character_, "group", NA_integer_))
+
+  #add tags for new prior treatment with ICI
+  amadeus_tags <- rbind(amadeus_tags, c('nivolumab_vopratelimab_prior_ici_rx', 'nivolumab, vopratelimab', 'Nivolumab, Vopratelimab', "#984EA3", "Patient received nivolumab, vopratelimab prior to ICI study", 'group', NA_integer_))
+  amadeus_tags <- rbind(amadeus_tags, c('pembrolizumab_spartalizumab_prior_ici_rx', 'pembrolizumab, spartalizumab', 'Pembrolizumab, Spartalizumab', "#E41A1C", "Patient received pembrolizumab, spartalizumab prior to ICI study", 'group', NA_integer_))
+  amadeus_tags <- rbind(amadeus_tags, c('nivolumab_pembrolizumab_vopratelimab_prior_ici_rx', 'nivolumab, pembrolizumab, vopratelimab', 'Nivolumab, Pembrolizumab, Vopratelimab', "#00A99D", "Patient received nivolumab, pembrolizumab, vopratelimab prior to ICI study", 'group', NA_integer_))
+  amadeus_tags <- rbind(amadeus_tags, c('durvalumab_tremelimumab_prior_ici_rx', 'durvalumab, tremelimumab', 'Durvalumab, Tremelimumab', "#FFB74D", "Patient received durvalumab, tremelimumab prior to ICI study", 'group', NA_integer_))
+  amadeus_tags <- rbind(amadeus_tags, c('atezolizumab_nivolumab_prior_ici_rx', 'atezolizumab, nivolumab', 'Atezolizumab, Nivolumab', "#BF5B17", "Patient received atezolizumab, nivolumab prior to ICI study", 'group', NA_integer_))
+
+  #add tags for new prior treatments
+  prior_rx <- synapse_csv_id_to_tbl(syn, "syn64423811") %>%
+    dplyr::filter(prior_info == "Prior_Rx") %>%
+    dplyr::select(tag_name, all_drugs) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(
+      short_display= gsub(";", ", ", all_drugs),
+      long_display= gsub(";", ", ", all_drugs),
+      color= "",
+      description = paste("Patient received", long_display, "prior to ICI study"),
+      tag_type = "group",
+      order = 53 + dplyr::row_number()
+    ) %>%
+    dplyr::select(
+      name = tag_name,
+      short_display,
+      long_display,
+      color,
+      description,
+      tag_type,
+      order
+    )
+
+  new_colors <- Polychrome::createPalette(nrow(prior_rx), "#FFA9A3")
+  prior_rx$color <- new_colors
+
+  amadeus_tags <- rbind(amadeus_tags, prior_rx)
 
   amadeus_tags <- amadeus_tags %>%
     dplyr::mutate(
@@ -77,7 +112,7 @@ tags_amadeus <- function() {
   synapse_store_table_as_csv(
     syn,
     amadeus_tags,
-    "",
+    "syn64156734",
     "tags"
   )
 

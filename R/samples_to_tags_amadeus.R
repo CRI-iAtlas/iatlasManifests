@@ -9,6 +9,7 @@ samples_to_tags_amadeus <- function() {
       "patient_name" = paste("AMADEUS", `Subject ID`, sep = "_")
     )
 
+  #sample collection timepoint is available from batch info
   batch <- synapse_tsv_id_to_tbl(syn, "syn54033036") %>% #file with clinical info
     dplyr::mutate(
       "sample_name" = gsub("/", "_", paste0(paste("AMADEUS_PERSONALIS_Batch-TXMonly", `Participant ID`, sep = "-"), paste("-ar", `Personalis Sample Name/Specimen ID`, sep = "_"))),
@@ -190,6 +191,34 @@ samples_to_tags_amadeus <- function() {
       "tag_name"
     )
 
+  # prior rx are available in table from github repo: https://github.com/ParkerICI/amadeus-trial-data/blob/main/clinical-data/AMADEUS_primarycohort_priortherapy.csv
+  ici_drugs <- c("ATEZOLIZUMAB","DURVALUMAB","NIVOLUMAB","PEMBROLIZUMAB","SPARTALIZUMAB", "TREMELIMUMAB", "VOPRATELIMAB")
+  patterns_to_remove <- c(";", " ", ", ")
+
+  prior_rx <- synapse_csv_id_to_tbl(syn, "syn64420878") %>%
+    dplyr::mutate(
+      "patient_name" = paste0("AMADEUS_",
+                              ifelse(subject.id == "104-0013/104-0022",
+                                     "104-0022",
+                                     sub("_.*$", "",  subject.id))),
+      "parent_tag" = dplyr::case_when(
+        stringr::str_detect(therapy.coded.preferred.name, paste0(ici_drugs, collapse = '|')) ~ "Prior_ICI_Rx",
+        !stringr::str_detect(therapy.coded.preferred.name, paste0(ici_drugs, collapse = '|')) ~ "Prior_Rx"
+      )
+    ) %>%
+    dplyr::group_by(patient_name, parent_tag) %>%
+    dplyr::summarise(
+      all_drugs = paste0(sort(tolower(unique(therapy.coded.preferred.name))), collapse = ", "),
+      tag_name = dplyr::if_else(
+        parent_tag == "Prior_ICI_Rx",
+        paste0(gsub(", ", "_", all_drugs), "_prior_ici_rx"),
+        paste0((stringr::str_replace_all(all_drugs, paste0(patterns_to_remove, collapse = '|'), "_")), "_prior_rx")
+      ),
+      .groups = "drop"
+    ) %>%
+    dplyr::select(patient_name, parent_tag, tag_name)
+
+
   tags <-
     synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
     dplyr::add_row(
@@ -215,6 +244,9 @@ samples_to_tags_amadeus <- function() {
     ) %>%
     dplyr::add_row(
       synapse_csv_id_to_tbl(syn, "syn63623105") #PORTER specific
+    ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn64423867") #AMADEUS specific
     ) %>%
     dplyr::select(
       "tag_name" = "name",
@@ -270,12 +302,6 @@ samples_to_tags_amadeus <- function() {
       ),
       "Non_ICI_Rx" = "na_non_ici_rx",
       "NeoICI_Rx" = "none_neoici_rx",
-      # "Prior_Rx" = dplyr::if_else(
-      #   `Prior Lines of Therapy` == 0,
-      #   "none_prior_rx",
-      #   "unnamed_prior_rx"
-      # ),
-      # "Prior_ICI_Rx" = "unknown_prior_ici_rx",
       "Subsq_Rx" = 'unknown_subsq_rx',
       "Subsq_ICI_Rx" =  dplyr::if_else(
         `Crossover to Ipi+Nivo` == "Y",
@@ -323,8 +349,6 @@ samples_to_tags_amadeus <- function() {
         `Tumor Type` ==  "Head and Neck" ~ "na_cancer_tissue",
         is.na(`Tumor Type`) ~ "na_cancer_tissue",
         `Tumor Type` == "Gynecologic" ~ "uterus_cancer_tissue",
-        `Tumor Type` == "Urethral" ~ "ureter_cancer_tissue",
-        `Tumor Type` == "Penile" ~ "penis_cancer_tissue",
         `Tumor Type` == "Colorectal" ~ "colon_rectum_cancer_tissue",
         `Tumor Type` == "Hepatocellular Carcinoma" ~ "liver_cancer_tissue",
         `Tumor Type` == "Liver" ~ "liver_cancer_tissue",
@@ -332,14 +356,13 @@ samples_to_tags_amadeus <- function() {
         `Tumor Type` == "Pelvis" ~ "pelvis_cancer_tissue",
         `Tumor Type` == "Peritoneum" ~ "peritoneum_cancer_tissue",
         `Tumor Type` == "Neuroendocrine" ~ "neuroendocrine_cancer_tissue",
-        `Tumor Type` == "PAPILLA OF VATER" ~ "duodenum_cancer_tissue",
-        `Tumor Type` == "Retroperitoneal Teratoma" ~ "retroperitoneum_cancer_tissue",
+        `Tumor Type` == "PAPILLA OF VATER" ~ "duodenum_cancer_tissue"
       ),
       "Tissue_Subtype" = "na_tissue_subtype",
       "Clinical_Stage" = "iv_clinical_stage",
       "Polyp_Histology" = "na_polyp_histology",
       "FFPE" = "true_ffpe",
-      "Biopsy_Site" = "pbmc_biopsy_site"
+      #"Biopsy_Site" = "pbmc_biopsy_site"
     ) %>%
     dplyr::select(
       "sample_name",
@@ -352,8 +375,6 @@ samples_to_tags_amadeus <- function() {
       "ICI_Target",
       "Non_ICI_Rx",
       "NeoICI_Rx",
-      # "Prior_Rx",
-      # "Prior_ICI_Rx",
       "Subsq_Rx",
       "Subsq_ICI_Rx",
       "Cancer_Tissue",
@@ -372,6 +393,7 @@ samples_to_tags_amadeus <- function() {
     ) %>%
     tidyr::pivot_longer(-sample_name, names_to = "parent_tag", values_to = "tag_name")%>%
     dplyr::bind_rows(patients_manifest) %>%
+    dplyr::bind_rows(prior_rx) %>%
     dplyr::bind_rows(patient_tags) %>%
     dplyr::bind_rows(immune_subtypes) %>%
     dplyr::bind_rows(tide_result) %>%
