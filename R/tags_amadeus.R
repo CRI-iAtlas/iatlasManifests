@@ -104,6 +104,7 @@ tags_amadeus <- function() {
   prior_rx$color <- new_colors
 
   amadeus_tags <- rbind(amadeus_tags, prior_rx)
+  amadeus_tags <- rbind(amadeus_tags, parent_tags)
 
   amadeus_tags <- amadeus_tags %>%
     dplyr::mutate(

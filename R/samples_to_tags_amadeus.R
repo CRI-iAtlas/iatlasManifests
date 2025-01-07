@@ -4,8 +4,6 @@ samples_to_tags_amadeus <- function() {
   require(rlang)
   syn <- create_synapse_login()
 
-  #TODO: add biopsy site from biopsy table in Github
-
   clinical_df <- synapse_csv_id_to_tbl(syn, "syn54074560") %>%
     dplyr::mutate(
       "patient_name" = paste("AMADEUS", `Subject ID`, sep = "_")
@@ -92,7 +90,7 @@ samples_to_tags_amadeus <- function() {
         race == "asian" ~ "asian_race",
         race == "white" ~ "white_race",
         race == "other" ~ "other_race",
-        race == "black or african American" ~ "black_or_african_american_race",
+        race == "black or african american" ~ "black_or_african_american_race",
         is.na(race) ~ "na_race"
       ),
       "ethnicity" = dplyr::case_when(
@@ -222,8 +220,6 @@ samples_to_tags_amadeus <- function() {
     dplyr::inner_join(samples, by = "patient_name", relationship = "many-to-many") %>%
     dplyr::select(sample_name, parent_tag, tag_name)
 
-  # Biopsy site is available at table from: https://github.com/ParkerICI/amadeus-trial-data/blob/main/clinical-data/AMADEUS_primarycohort_biopsy.csv
-  biopsy_df <- synapse_csv_id_to_tbl(syn, "syn64425737") %>%
 
 
   tags <-
@@ -311,9 +307,9 @@ samples_to_tags_amadeus <- function() {
       "NeoICI_Rx" = "none_neoici_rx",
       "Subsq_Rx" = 'unknown_subsq_rx',
       "Subsq_ICI_Rx" =  dplyr::if_else(
-        `Crossover to Ipi+Nivo` == "Y",
-        "ipilimumab_nivolumab_subsq_ici_rx",
-        "na_subsq_ici_rx"
+        is.na(`Crossover to Ipi+Nivo`),
+        "na_subsq_ici_rx",
+        "ipilimumab_nivolumab_subsq_ici_rx"
       ),
       "AMADEUS_Study" = dplyr::case_when(
         `Tumor Type` == "Breast" ~ "BRCA_amadeus",
@@ -349,7 +345,7 @@ samples_to_tags_amadeus <- function() {
         `Tumor Type` == "Sarcoma" ~ "SARC",
         `Tumor Type` == "Hepatocellular Carcinoma" ~ "LIHC",
         `Tumor Type` == "Liver" ~ "CHOL",
-        `Tumor Type` %in% c("Pancreatic", "Lung", "Gastric", "Peritoneum", "Gastroesophageal Junction", "Pelvis", "Merkel Cell Carcinoma", "Retroperitoneal Teratoma", "PAPILLA OF VATER", "Colorectal", "Renal", "Thyroid", "Neuroendocrine", "Gynecologic","Urethral", "Penile") ~ "na_tcga_study"
+        `Tumor Type` %in% c("Pancreatic", "Lung", "Gastric", "Peritoneum", "Gastroesophageal Junction", "Pelvis", "Merkel Cell Carcinoma", "Retroperitoneal Teratoma", "PAPILLA OF VATER", "Colorectal", "Renal", "Thyroid", "Neuroendocrine", "Gynecologic","Urethral", "Penile") ~ "na_tcga_study",
         is.na(`Tumor Type`) ~ "na_tcga_study"
       ),
       "TCGA_Subtype" = "na_tcga_subtype",
@@ -379,8 +375,8 @@ samples_to_tags_amadeus <- function() {
       "Tissue_Subtype" = "na_tissue_subtype",
       "Clinical_Stage" = "iv_clinical_stage",
       "Polyp_Histology" = "na_polyp_histology",
-      "FFPE" = "true_ffpe"
-      #"Biopsy_Site" = "pbmc_biopsy_site"
+      "FFPE" = "true_ffpe",
+      "Biopsy_Site" = "pbmc_biopsy_site" #from methods description
     ) %>%
     dplyr::select(
       "sample_name",
@@ -399,7 +395,7 @@ samples_to_tags_amadeus <- function() {
       "Tissue_Subtype",
       "Metastasized",
       "Clinical_Stage",
-      #"Biopsy_Site",
+      "Biopsy_Site",
       "FFPE",
       "Responder",
       "Response",
@@ -416,6 +412,7 @@ samples_to_tags_amadeus <- function() {
     dplyr::bind_rows(patient_tags) %>%
     dplyr::bind_rows(immune_subtypes) %>%
     dplyr::bind_rows(tide_result) %>%
+    dplyr::distinct() %>%
     dplyr::inner_join(samples, by = "sample_name") %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
     dplyr::select("tag_id", "sample_id") %>%
@@ -426,7 +423,7 @@ samples_to_tags_amadeus <- function() {
   synapse_store_table_as_csv(
     syn,
     samples_to_tags,
-    "",
+    "syn64156735",
     "samples_to_tags"
   )
 
