@@ -6,8 +6,6 @@ samples_to_tags_porter <- function() {
 
   clinical_df <- synapse_csv_id_to_tbl(syn, "syn54031467")
 
-  ffpe_tumor_annotation <- synapse_tsv_id_to_tbl(syn, "syn54022320")
-
   batch1 <- synapse_tsv_id_to_tbl(syn, "syn54019614") %>% #file with clinical info
     dplyr::mutate(
       "sample_name" = paste0(paste("PORTER_PERSONALIS_BATCH1", `Screening ID`, sep = "-"), paste("-ar", `Sample Name`, sep = "_")),
@@ -101,14 +99,14 @@ samples_to_tags_porter <- function() {
   patient_tags <- synapse_csv_id_to_tbl(syn, "syn63623064") %>%
     dplyr::mutate(
       "race" = dplyr::case_when(
-        Race == "Asian" ~ "asian_race",
-        Race == "White" ~ "white_race",
-        Race == "Other" ~ "other_race",
-        Race == "Black or African American" ~ "black_or_african_american_race",
+        race == "asian" ~ "asian_race",
+        race == "white" ~ "white_race",
+        race == "black or african american" ~ "black_or_african_american_race",
+        is.na(race) ~ "na_race"
       ),
       "ethnicity" = dplyr::case_when(
-        Ethnicity == "Hispanic or Latino" ~ "hispanic_or_latino_ethnicity",
-        Ethnicity == "Not Hispanic or Latino" ~ "not_hispanic_or_latino_ethnicity"
+        ethnicity == "hispanic or latino" ~ "hispanic_or_latino_ethnicity",
+        ethnicity == "not hispanic or latino" ~ "not_hispanic_or_latino_ethnicity"
       )
     ) %>%
     dplyr::rename(
@@ -123,6 +121,17 @@ samples_to_tags_porter <- function() {
       "sample_id" = "id"
     )
 
+  patient_tags <- samples %>%
+    dplyr::select(sample_name, race, ethnicity) %>%
+    tidyr::pivot_longer(- "sample_name",
+                        names_to = "parent_tag",
+                        values_to = "tag_name") %>%
+    dplyr::select(
+      "sample_name",
+      "parent_tag",
+      "tag_name"
+    )
+
   immune_subtypes <- synapse_csv_id_to_tbl(syn, "syn63562157") %>%
     dplyr::mutate(
       "Immune_Subtype" = paste0("C", BestCall),
@@ -134,10 +143,11 @@ samples_to_tags_porter <- function() {
     ) %>%
     tidyr::pivot_longer(- "sample_name",
                         names_to = "parent_tag",
-                        values_to = "tag") %>%
+                        values_to = "tag_name") %>%
     dplyr::select(
       "sample_name",
-      "tag"
+      "parent_tag",
+      "tag_name"
     )
 
   tide_result <- synapse_tsv_id_to_tbl(syn, "syn63562158") %>%
@@ -160,10 +170,11 @@ samples_to_tags_porter <- function() {
     ) %>%
     tidyr::pivot_longer(- "sample_name",
                         names_to = "parent_tag",
-                        values_to = "tag") %>%
+                        values_to = "tag_name") %>%
     dplyr::select(
       "sample_name",
-      "tag"
+      "parent_tag",
+      "tag_name"
     )
 
   tags <-
@@ -281,6 +292,9 @@ samples_to_tags_porter <- function() {
       "TCGA_Subtype",
     ) %>%
     tidyr::pivot_longer(-sample_name, names_to = "parent_tag", values_to = "tag_name")%>%
+    dplyr::bind_rows(patient_tags) %>%
+    dplyr::bind_rows(immune_subtypes) %>%
+    dplyr::bind_rows(tide_result) %>%
     dplyr::inner_join(samples, by = "sample_name") %>%
     dplyr::inner_join(tags, by = "tag_name") %>%
     dplyr::select("tag_id", "sample_id") %>%
