@@ -52,7 +52,6 @@ tags_amadeus <- function() {
   amadeus_tags <- rbind(amadeus_tags, c('HNCA_amadeus', 'HNCA', 'Head and Neck', "#66A61E", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('HCCA_amadeus', 'HCCA', 'hepatocellular carcinoma',"#E6AB02", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('HECH_amadeus', 'HECH', 'Hepatocellular cholangiocarcinoma', "#A6761D", NA_character_, 'group', NA_integer_))
-  amadeus_tags <- rbind(amadeus_tags, c('LUCA_amadeus', 'LUCA', 'Lung',"#666666", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('NESK_amadeus', 'NESK', 'Merkel cell', "#7FC97F", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('NEUC_amadeus', 'NEUC', 'Neuroendocrine', "#BEAED4", NA_character_, 'group', NA_integer_))
   amadeus_tags <- rbind(amadeus_tags, c('LUCA_amadeus', 'LUCA', 'non-small cell lung', "#FDC086", NA_character_, 'group', NA_integer_))
