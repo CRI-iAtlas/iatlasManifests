@@ -1,4 +1,4 @@
-dataset_TEMPLATE <- function(){ #UPDATE function name
+dataset_anders <- function(){
 
   require(magrittr)
   require(rlang)
@@ -9,9 +9,9 @@ dataset_TEMPLATE <- function(){ #UPDATE function name
   #add a "display", which is the name that will be displayed at the app. For datasets with treatment info, we usually add the tumor type and treatment info
   #add "dataset_type", options are "cg" for cancer genomics, "ici" for immmune checkpoint inhibitor datasets, and "scrna" for single-cell RNA seq dataset
   datasets <-
-    data.frame("name" = c(""), #UPDATE
-               "display" = c("AMADEUS - several tumor types, PD-1 +/- CTLA4"), #UPDATE
-               "dataset_type" = "") %>% #UPDATE
+    data.frame("name" = c("Anders_JITC_2022"),
+               "display" = c("Anders - BRCA, PD-1"),
+               "dataset_type" = "ici") %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
@@ -20,7 +20,7 @@ dataset_TEMPLATE <- function(){ #UPDATE function name
   synapse_store_table_as_csv(
     syn,
     datasets,
-    "", #UPDATE with synapse ID for folder named "Dataset [NAME OF DATASET]"
+    "syn65888279",
     "datasets"
   )
 

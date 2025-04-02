@@ -1,4 +1,4 @@
-datasets_to_samples_TEMPLATE <- function(){ #UPDATE function name
+datasets_to_samples_anders <- function(){
 
   require(magrittr)
   require(rlang)
@@ -12,10 +12,10 @@ datasets_to_samples_TEMPLATE <- function(){ #UPDATE function name
   # dataset_id = id for the associated dataset, generated in the datasets_TEMPLATE
   # id = id created in this script for each relationship
 
-  dataset_id <- synapse_csv_id_to_tbl(syn, "") %>% #update with synapse ID for the dataset file
+  dataset_id <- synapse_csv_id_to_tbl(syn, "syn65888296") %>% #update with synapse ID for the dataset file
     dplyr::pull(id)
 
-  samples <- synapse_csv_id_to_tbl(syn, "") %>%
+  samples <- synapse_csv_id_to_tbl(syn, "syn65902354") %>%
     dplyr::select(
       "name",
       "sample_id" = "id"
@@ -30,7 +30,7 @@ datasets_to_samples_TEMPLATE <- function(){ #UPDATE function name
   synapse_store_table_as_csv(
     syn,
     datasets_to_samples,
-    "", #UPDATE
+    "syn65888282",
     "datasets_to_samples"
   )
 }
