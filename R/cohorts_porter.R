@@ -9,7 +9,7 @@ cohorts_htan_msk <- function(){
     c("gender",
       "race",
       "ethnicity",
-      "Sample_Collection_Timepoint",
+      "Sample_Treatment",
       "ICI_Rx",
       "ICI_Pathway",
       "ICI_Target",

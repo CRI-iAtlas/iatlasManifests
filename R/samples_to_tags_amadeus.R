@@ -383,7 +383,7 @@ samples_to_tags_amadeus <- function() {
       "gender",
       "race",
       "ethnicity",
-      "Sample_Collection_Timepoint",
+      "Sample_Treatment" = "Sample_Collection_Timepoint",
       "ICI_Rx",
       "ICI_Pathway",
       "ICI_Target",

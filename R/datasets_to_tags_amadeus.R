@@ -8,7 +8,7 @@ datasets_to_tags_amadeus <- function(){
     c("gender",
       "race",
       "ethnicity",
-      "Sample_Collection_Timepoint",
+      "Sample_Treatment",
       "ICI_Rx",
       "ICI_Pathway",
       "ICI_Target",

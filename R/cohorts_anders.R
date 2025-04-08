@@ -1,4 +1,4 @@
-cohorts_amadeus <- function(){
+cohorts_anders <- function(){
 
   require(magrittr)
   require(rlang)
@@ -16,7 +16,7 @@ cohorts_amadeus <- function(){
     c("gender",
       "race",
       "ethnicity",
-      "Sample_Collection_Timepoint",
+      "Sample_Treatment",
       "ICI_Rx",
       "ICI_Pathway",
       "ICI_Target",
@@ -80,7 +80,7 @@ cohorts_amadeus <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update
+    synapse_csv_id_to_tbl(syn, "syn65888296") %>% #update
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -111,7 +111,7 @@ cohorts_amadeus <- function(){
   synapse_store_table_as_csv(
     syn,
     cohorts,
-    "", #update
+    "syn65888289", #update
     "cohorts"
   )
 

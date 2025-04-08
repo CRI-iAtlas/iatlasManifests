@@ -1,4 +1,4 @@
-genes_to_samples_TEMPLATE <- function() {#UPDATE function name
+genes_to_samples_anders <- function() {
 
   require(magrittr)
   require(rlang)
@@ -18,14 +18,14 @@ genes_to_samples_TEMPLATE <- function() {#UPDATE function name
     )
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update with synapse id for the samples table
+    synapse_csv_id_to_tbl(syn, "syn65902354") %>% #update with synapse id for the samples table
     dplyr::select(
       "sample" = "name",
       "sample_id" = "id"
     )
 
   rna_seq <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update with synapse id for the gene expression table
+    synapse_csv_id_to_tbl(syn, "syn65888204") %>% #update with synapse id for the gene expression table
     dplyr::rename(
       "sample" = Run_ID
     )
@@ -47,7 +47,7 @@ genes_to_samples_TEMPLATE <- function() {#UPDATE function name
   synapse_store_table_as_csv(
     syn,
     genes_to_samples,
-    "", #UPDATE
+    "syn65888284",
     "genes_to_samples"
   )
 
