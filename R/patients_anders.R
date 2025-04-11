@@ -27,7 +27,8 @@ patients_anders <- function(){ #UPDATE function name
       "name",
       "age_at_diagnosis" = "patient_age_at_diagnosis",
       "race",
-      "ethnicity"
+      "ethnicity",
+      "gender"
     ) %>%
     dplyr::distinct() %>%
     dplyr::mutate(
