@@ -1,4 +1,4 @@
-datasets_to_tags_TEMPLATE <- function(){
+datasets_to_tags_damrauer_rose_zappasodi <- function(){
 
   require(magrittr)
   require(rlang)
@@ -37,8 +37,7 @@ datasets_to_tags_TEMPLATE <- function(){
       "Clinical_Benefit",
       "Progression",
       "TCGA_Study",
-      "TCGA_Subtype",
-      "AMADEUS_Study")
+      "TCGA_Subtype")
 
   tags <- #keep this and add more synapse ids for new parent groups
     synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
@@ -78,7 +77,7 @@ datasets_to_tags_TEMPLATE <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update
+    synapse_csv_id_to_tbl(syn, "syn66227471") %>% #update
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -94,7 +93,7 @@ datasets_to_tags_TEMPLATE <- function(){
   synapse_store_table_as_csv(
     syn,
     datasets_to_tags,
-    "", #update
+    "syn66227468",
     "datasets_to_tags"
   )
 

@@ -1,4 +1,4 @@
-genes_to_samples_TEMPLATE <- function() {#UPDATE function name
+genes_to_samples_damrauer_rose_zappasodi <- function() {
 
   require(magrittr)
   require(rlang)
@@ -13,28 +13,30 @@ genes_to_samples_TEMPLATE <- function() {#UPDATE function name
   genes <-
     synapse_csv_id_to_tbl(syn, "syn50896922") %>% #no need to update this
     dplyr::select(
-      "entrez" = "entrez_id",
+      "entrez_id",
       "gene_id" = "id"
     )
 
   samples <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update with synapse id for the samples table
+    synapse_csv_id_to_tbl(syn, "syn66227595") %>%
     dplyr::select(
       "sample" = "name",
       "sample_id" = "id"
     )
 
+  hgnc_to_entrez_df <- synapse_csv_id_to_tbl(syn, "syn50896922")
+
   rna_seq <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update with synapse id for the gene expression table
-    dplyr::rename(
-      "sample" = Run_ID
-    )
+    synapse_tsv_id_to_tbl(syn, "syn66227436") %>%
+    tidyr::pivot_longer(-"Gene", names_to = "sample", values_to = "rna_seq_expr") %>%
+    dplyr::inner_join(hgnc_to_entrez_df, by = dplyr::join_by(Gene == hgnc_id), relationship = "many-to-many")
+
 
 
   genes_to_samples <-
     rna_seq %>%
     dplyr::inner_join(samples, by = "sample") %>%
-    dplyr::inner_join(genes, by = "entrez") %>%
+    dplyr::inner_join(genes, by = "entrez_id") %>%
     dplyr::select(
       "rna_seq_expression" = "rna_seq_expr",
       "gene_id",
@@ -47,7 +49,7 @@ genes_to_samples_TEMPLATE <- function() {#UPDATE function name
   synapse_store_table_as_csv(
     syn,
     genes_to_samples,
-    "", #UPDATE
+    "syn66227464",
     "genes_to_samples"
   )
 

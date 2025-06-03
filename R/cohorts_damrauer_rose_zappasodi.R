@@ -1,4 +1,4 @@
-cohorts_amadeus <- function(){
+cohorts_damrauer_rose_zappasodi <- function(){
 
   require(magrittr)
   require(rlang)
@@ -39,8 +39,7 @@ cohorts_amadeus <- function(){
       "Clinical_Benefit",
       "Progression",
       "TCGA_Study",
-      "TCGA_Subtype",
-      "AMADEUS_Study")
+      "TCGA_Subtype")
 
   tags <-  #keep this and add more synapse ids for new parent groups
     synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
@@ -80,7 +79,7 @@ cohorts_amadeus <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "") %>% #update
+    synapse_csv_id_to_tbl(syn, "syn66227471") %>% #update
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -111,7 +110,7 @@ cohorts_amadeus <- function(){
   synapse_store_table_as_csv(
     syn,
     cohorts,
-    "", #update
+    "syn66227469", #update
     "cohorts"
   )
 
