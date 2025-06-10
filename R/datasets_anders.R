@@ -10,7 +10,7 @@ dataset_anders <- function(){
   #add "dataset_type", options are "cg" for cancer genomics, "ici" for immmune checkpoint inhibitor datasets, and "scrna" for single-cell RNA seq dataset
   datasets <-
     data.frame("name" = c("Anders_JITC_2022"),
-               "display" = c("Anders - BRCA, PD-1"),
+               "display" = c("Anders 2022 - BRCA, PD-1"),
                "dataset_type" = "ici") %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n())
