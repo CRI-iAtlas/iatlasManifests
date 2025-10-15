@@ -1,8 +1,14 @@
-datasets_to_tags_porter <- function(){
+datasets_to_tags_anders <- function(){
 
   require(magrittr)
   require(rlang)
   syn <- create_synapse_login()
+
+  # columns in the datasets_to_tags table:
+  # tag_id = id for the associated tag, generated in the tags table
+  # dataset_id = id for the associated dataset, generated in the datasets_TEMPLATE
+  # id = id created in this script for each relationship
+
 
   parent_groups <- #from samples to tags
     c("gender",
@@ -33,7 +39,7 @@ datasets_to_tags_porter <- function(){
       "TCGA_Study",
       "TCGA_Subtype")
 
-  tags <-
+  tags <- #keep this and add more synapse ids for new parent groups
     synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
     dplyr::add_row(
       synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
@@ -59,6 +65,9 @@ datasets_to_tags_porter <- function(){
     dplyr::add_row(
       synapse_csv_id_to_tbl(syn, "syn63623105") #PORTER specific
     ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn64423867") #AMADEUS specific
+    ) %>%
     dplyr::filter(
       name %in% parent_groups
     ) %>%
@@ -68,7 +77,7 @@ datasets_to_tags_porter <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "syn63623061") %>% #update
+    synapse_csv_id_to_tbl(syn, "syn65888296") %>% #update
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
@@ -84,7 +93,7 @@ datasets_to_tags_porter <- function(){
   synapse_store_table_as_csv(
     syn,
     datasets_to_tags,
-    "syn63623058",
+    "syn65888288",
     "datasets_to_tags"
   )
 

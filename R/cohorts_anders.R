@@ -1,10 +1,18 @@
-datasets_to_tags_porter <- function(){
+cohorts_anders <- function(){
 
   require(magrittr)
   require(rlang)
   syn <- create_synapse_login()
 
-  parent_groups <- #from samples to tags
+  # columns in the datasets_to_tags table:
+  # name = cohort name (dataset name + parent group name)
+  # cohort_tag_id = id for the associated tag, generated in the tags table
+  # dataset_id = id for the associated dataset, generated in the datasets_TEMPLATE
+  # id = id created in this script for each relationship
+
+
+  parent_tags <-
+    #from samples to tags
     c("gender",
       "race",
       "ethnicity",
@@ -31,9 +39,10 @@ datasets_to_tags_porter <- function(){
       "Clinical_Benefit",
       "Progression",
       "TCGA_Study",
-      "TCGA_Subtype")
+      "TCGA_Subtype",
+      "AMADEUS_Study")
 
-  tags <-
+  tags <-  #keep this and add more synapse ids for new parent groups
     synapse_csv_id_to_tbl(syn, "syn51613683") %>% #ici specific tags
     dplyr::add_row(
       synapse_csv_id_to_tbl(syn, "syn51080176") #add tags from tcga
@@ -59,6 +68,9 @@ datasets_to_tags_porter <- function(){
     dplyr::add_row(
       synapse_csv_id_to_tbl(syn, "syn63623105") #PORTER specific
     ) %>%
+    dplyr::add_row(
+      synapse_csv_id_to_tbl(syn, "syn64423867") #AMADEUS specific
+    ) %>%
     dplyr::filter(
       name %in% parent_groups
     ) %>%
@@ -68,24 +80,39 @@ datasets_to_tags_porter <- function(){
     )
 
   datasets <-
-    synapse_csv_id_to_tbl(syn, "syn63623061") %>% #update
+    synapse_csv_id_to_tbl(syn, "syn65888296") %>% #update
     dplyr::select(
       "dataset_name" = "name",
       "dataset_id" = "id"
     )
 
-  datasets_to_tags <-
-    tidyr::crossing(tags, datasets) %>%
-    dplyr::select(-c("tag_name", "dataset_name")) %>%
+  cohorts <-
+    tidyr::crossing(
+      tag_name = tags$tag_name,
+      dataset_name = datasets$dataset_name) %>%
+    dplyr::mutate(
+      name = paste(dataset_name, tag_name, sep = "_")
+    ) %>%
+    dplyr::bind_rows(
+      data.frame(
+        name = datasets$dataset_name,
+        dataset_name = datasets$dataset_name,
+        tag_name = NA
+      )
+    ) %>%
+    dplyr::left_join(tags, by = "tag_name") %>%
+    dplyr::inner_join(datasets, by = "dataset_name") %>%
+    dplyr::select(-c("tag_name", "dataset_name"),
+                  cohort_tag_id = tag_id) %>%
     dplyr::mutate(
       "id" = uuid::UUIDgenerate(n = dplyr::n())
     )
 
   synapse_store_table_as_csv(
     syn,
-    datasets_to_tags,
-    "syn63623058",
-    "datasets_to_tags"
+    cohorts,
+    "syn65888289", #update
+    "cohorts"
   )
 
 }
